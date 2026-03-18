@@ -36,12 +36,12 @@ prompt APPLICATION 109 - Home - Portale Unico
 --   Exported By:     UTENTI_TLG
 --   Flashback:       0
 --   Export Type:     Application Export
---     Pages:                     59
+--     Pages:                     60
 --       Items:                  129
 --       Computations:             1
 --       Validations:              6
 --       Processes:               55
---       Regions:                143
+--       Regions:                144
 --       Buttons:                100
 --       Dynamic Actions:         46
 --     Shared Components:
@@ -53,7 +53,7 @@ prompt APPLICATION 109 - Home - Portale Unico
 --       Navigation:
 --         Lists:                 13
 --         Breadcrumbs:            1
---           Entries:             36
+--           Entries:             37
 --       Security:
 --         Authentication:         2
 --         Authorization:         15
@@ -181,7 +181,7 @@ wwv_flow_imp_shared.create_list(
  p_id=>wwv_flow_imp.id(11854436487520684)
 ,p_name=>'Navigation Menu'
 ,p_list_status=>'PUBLIC'
-,p_version_scn=>383621867
+,p_version_scn=>383889707
 );
 wwv_flow_imp_shared.create_list_item(
  p_id=>wwv_flow_imp.id(12053404076520948)
@@ -368,6 +368,15 @@ wwv_flow_imp_shared.create_list_item(
 ,p_list_item_icon=>'fa-file-o'
 ,p_list_item_current_type=>'COLON_DELIMITED_PAGE_LIST'
 ,p_list_item_current_for_pages=>'36'
+);
+wwv_flow_imp_shared.create_list_item(
+ p_id=>wwv_flow_imp.id(7432790527246089)
+,p_list_item_display_sequence=>120
+,p_list_item_link_text=>'PROVA'
+,p_list_item_link_target=>'f?p=&APP_ID.:3000:&APP_SESSION.::&DEBUG.:::'
+,p_list_item_icon=>'fa-file-o'
+,p_list_item_current_type=>'COLON_DELIMITED_PAGE_LIST'
+,p_list_item_current_for_pages=>'3000'
 );
 wwv_flow_imp_shared.create_list_item(
  p_id=>wwv_flow_imp.id(12203700122521462)
@@ -1819,6 +1828,12 @@ wwv_flow_imp_shared.create_menu_option(
 ,p_short_name=>'DEMO'
 ,p_link=>'f?p=&APP_ID.:36:&APP_SESSION.::&DEBUG.:::'
 ,p_page_id=>36
+);
+wwv_flow_imp_shared.create_menu_option(
+ p_id=>wwv_flow_imp.id(7433696222246101)
+,p_short_name=>'PROVA'
+,p_link=>'f?p=&APP_ID.:3000:&APP_SESSION.::&DEBUG.:::'
+,p_page_id=>3000
 );
 wwv_flow_imp_shared.create_menu_option(
  p_id=>wwv_flow_imp.id(11854134689520682)
@@ -30067,6 +30082,31 @@ wwv_flow_imp_page.create_page_plug(
 );
 end;
 /
+prompt --application/pages/page_03000
+begin
+wwv_flow_imp_page.create_page(
+ p_id=>3000
+,p_name=>'PROVA'
+,p_alias=>'PROVA'
+,p_step_title=>'PROVA'
+,p_autocomplete_on_off=>'OFF'
+,p_page_template_options=>'#DEFAULT#'
+,p_protection_level=>'C'
+);
+wwv_flow_imp_page.create_page_plug(
+ p_id=>wwv_flow_imp.id(7433195390246093)
+,p_plug_name=>'Breadcrumb'
+,p_region_template_options=>'#DEFAULT#:t-BreadcrumbRegion--useBreadcrumbTitle'
+,p_component_template_options=>'#DEFAULT#'
+,p_plug_template=>wwv_flow_imp.id(11956924783520758)
+,p_plug_display_sequence=>10
+,p_plug_display_point=>'REGION_POSITION_01'
+,p_menu_id=>wwv_flow_imp.id(11853987875520682)
+,p_plug_source_type=>'NATIVE_BREADCRUMB'
+,p_menu_template_id=>wwv_flow_imp.id(12019022798520805)
+);
+end;
+/
 prompt --application/pages/page_09999
 begin
 wwv_flow_imp_page.create_page(
@@ -35540,4 +35580,4 @@ prompt  ...done
 
 
 
--- sqlcl_snapshot {"hash":"2dd06277a5f5121af8716c1a36b4911f42b7b3e0","type":"APEX_APPLICATIONS","name":"f109","schemaName":"PORTALEUNICO","sxml":""}
+-- sqlcl_snapshot {"hash":"392bfec6724d6e9e6779f1213b43ba447466777b","type":"APEX_APPLICATIONS","name":"f109","schemaName":"PORTALEUNICO","sxml":""}

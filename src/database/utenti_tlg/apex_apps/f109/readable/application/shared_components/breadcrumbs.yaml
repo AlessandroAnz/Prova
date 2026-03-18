@@ -19,6 +19,20 @@
         url: 'f?p=&APP_ID.:36:&APP_SESSION.::&DEBUG.:::'
         page: 36 # DEMO
 
+  - # ====== Entry: PROVA ========================================
+    id: 7433696222246101
+    identification: 
+      name: PROVA
+      page-number: 3000
+
+    execution: 
+      sequence: 10
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:3000:&APP_SESSION.::&DEBUG.:::'
+        page: 3000 # PROVA
+
   - # ====== Entry: Home =========================================
     id: 11854134689520682
     identification: 
