@@ -1,0 +1,603 @@
+---
+- # ====== Breadcrumb: Breadcrumb ==============================
+  id: 11853987875520682
+  identification: 
+    name: Breadcrumb
+
+  entries: 
+  - # ====== Entry: DEMO =========================================
+    id: 7410759974678228
+    identification: 
+      name: DEMO
+      page-number: 36
+
+    execution: 
+      sequence: 10
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:36:&APP_SESSION.::&DEBUG.:::'
+        page: 36 # DEMO
+
+  - # ====== Entry: Home =========================================
+    id: 11854134689520682
+    identification: 
+      name: Home
+      page-number: 1
+
+    execution: 
+      sequence: 10
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:1:&APP_SESSION.::&DEBUG.'
+        page: 1 # Home
+
+  - # ====== Entry: Administration ===============================
+    id: 12204554145521465
+    identification: 
+      name: Administration
+      page-number: 10000
+
+    execution: 
+      sequence: 10
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:10000:&APP_SESSION.::&DEBUG.:::'
+        page: 10000 # Administration
+
+  - # ====== Entry: Quadri Attivati ==============================
+    id: 23389471093312426
+    identification: 
+      name: Quadri Attivati
+      page-number: 2
+
+    execution: 
+      sequence: 10
+
+    appearance: 
+      parent-entry: Home # 11854134689520682
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:2:&SESSION.::&DEBUG.:::'
+        page: 2 # Quadri Attivati
+
+  - # ====== Entry: TipologiaQuadri ==============================
+    id: 23415924669754170
+    identification: 
+      name: TipologiaQuadri
+      page-number: 3
+
+    execution: 
+      sequence: 10
+
+    appearance: 
+      parent-entry: Home # 11854134689520682
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:3:&APP_SESSION.::&DEBUG.:::'
+        page: 3 # TipologiaQuadri
+
+  - # ====== Entry: Anomalie Trasmissive =========================
+    id: 23442344912973136
+    identification: 
+      name: Anomalie Trasmissive
+      page-number: 4
+
+    execution: 
+      sequence: 10
+
+    appearance: 
+      parent-entry: Home # 11854134689520682
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:4:&SESSION.::&DEBUG.:::'
+        page: 4 # AnomalieTrasmissive
+
+  - # ====== Entry: QuadriOffLine ================================
+    id: 23499158993369246
+    identification: 
+      name: QuadriOffLine
+      page-number: 5
+
+    execution: 
+      sequence: 10
+
+    appearance: 
+      parent-entry: Home # 11854134689520682
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:5:&APP_SESSION.::&DEBUG.:::'
+        page: 5 # QuadriOffLine
+
+  - # ====== Entry: Visualizza Utenti ============================
+    id: 27934516870941108
+    identification: 
+      name: Visualizza Utenti
+      page-number: 6
+
+    execution: 
+      sequence: 10
+
+    appearance: 
+      parent-entry: Menu Configurazione # 28022005329231841
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:6:&SESSION.::&DEBUG.:::'
+        page: 6 # Visualizza Utenti
+
+  - # ====== Entry: Gestione Utenti ==============================
+    id: 27935720540941111
+    identification: 
+      name: Gestione Utenti
+      page-number: 7
+
+    execution: 
+      sequence: 10
+
+    appearance: 
+      parent-entry: Visualizza Utenti # 27934516870941108
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:7:&APP_SESSION.::&DEBUG.:::'
+        page: 7 # Gestione Utenti
+
+  - # ====== Entry: Visualizza Applicazioni ======================
+    id: 27968706702073684
+    identification: 
+      name: Visualizza Applicazioni
+      page-number: 9
+
+    execution: 
+      sequence: 10
+
+    appearance: 
+      parent-entry: Menu Configurazione # 28022005329231841
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:9:&SESSION.::&DEBUG.:::'
+        page: 9 # Visualizza Applicazioni
+
+  - # ====== Entry: Gestione Applicazioni ========================
+    id: 27969887137073686
+    identification: 
+      name: Gestione Applicazioni
+      page-number: 10
+
+    execution: 
+      sequence: 10
+
+    appearance: 
+      parent-entry: Visualizza Applicazioni # 27968706702073684
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:10:&APP_SESSION.::&DEBUG.:::'
+        page: 10 # Gestione Applicazioni
+
+  - # ====== Entry: Visualizza Imprese ===========================
+    id: 27991465993115948
+    identification: 
+      name: Visualizza Imprese
+      page-number: 11
+
+    execution: 
+      sequence: 10
+
+    appearance: 
+      parent-entry: Menu Configurazione # 28022005329231841
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:11:&SESSION.::&DEBUG.:::'
+        page: 11 # Visualizza Imprese
+
+  - # ====== Entry: Gestione Imprese =============================
+    id: 27992686636115949
+    identification: 
+      name: Gestione Imprese
+      page-number: 12
+
+    execution: 
+      sequence: 10
+
+    appearance: 
+      parent-entry: Visualizza Imprese # 27991465993115948
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:12:&APP_SESSION.::&DEBUG.:::'
+        page: 12 # Gestione Imprese
+
+  - # ====== Entry: Visualizza Profili ===========================
+    id: 28012720381188729
+    identification: 
+      name: Visualizza Profili
+      page-number: 13
+
+    execution: 
+      sequence: 10
+
+    appearance: 
+      parent-entry: Menu Configurazione # 28022005329231841
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:13:&SESSION.::&DEBUG.:::'
+        page: 13 # Visualizza Profili
+
+  - # ====== Entry: Gestione Profili =============================
+    id: 28013922096188731
+    identification: 
+      name: Gestione Profili
+      page-number: 14
+
+    execution: 
+      sequence: 10
+
+    appearance: 
+      parent-entry: Visualizza Profili # 28012720381188729
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:14:&APP_SESSION.::&DEBUG.:::'
+        page: 14 # Gestione Profili
+
+  - # ====== Entry: Menu Configurazione ==========================
+    id: 28022005329231841
+    identification: 
+      name: Menu Configurazione
+      page-number: 15
+
+    execution: 
+      sequence: 10
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:15:&SESSION.::&DEBUG.:::'
+        page: 15 # Menu Configurazione
+
+  - # ====== Entry: Gruppi Utenti ================================
+    id: 28034870369650995
+    identification: 
+      name: Gruppi Utenti
+      page-number: 16
+
+    execution: 
+      sequence: 10
+
+    appearance: 
+      parent-entry: Menu Configurazione # 28022005329231841
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:16:&APP_SESSION.::&DEBUG.:::'
+        page: 16 # Gruppi Utenti
+
+  - # ====== Entry: Gestione Gruppo ==============================
+    id: 28045676637673537
+    identification: 
+      name: Gestione Gruppo
+      page-number: 17
+
+    execution: 
+      sequence: 10
+
+    appearance: 
+      parent-entry: Gruppi Utenti # 28034870369650995
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:17:&SESSION.::&DEBUG.:::'
+        page: 17 # Crea/Modifica Gruppo
+
+  - # ====== Entry: Elenco Utenti ================================
+    id: 28061805492758228
+    identification: 
+      name: Elenco Utenti
+      page-number: 18
+
+    execution: 
+      sequence: 10
+
+    appearance: 
+      parent-entry: Gruppi Utenti # 28034870369650995
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:18:&SESSION.::&DEBUG.:::'
+        page: 18 # Elenco Utenti
+
+  - # ====== Entry: Aggiungi BCT =================================
+    id: 28124285091817155
+    identification: 
+      name: Aggiungi BCT
+      page-number: 21
+
+    execution: 
+      sequence: 10
+
+    appearance: 
+      parent-entry: Elenco Utenti # 28061805492758228
+      long-name: Aggiungi BCT o Groups
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:21:&SESSION.::&DEBUG.:::'
+        page: 21 # Aggiungi BCT o Gruppo
+
+  - # ====== Entry: Aggiungi =====================================
+    id: 28138134163090029
+    identification: 
+      name: Aggiungi
+      page-number: 19
+
+    execution: 
+      sequence: 10
+
+    appearance: 
+      parent-entry: Elenco Utenti # 28061805492758228
+      long-name: Aggiungi Utente
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:19:&SESSION.::&DEBUG.:::'
+        page: 19 # Aggiungi Utente
+
+  - # ====== Entry: Ruolo Portale ================================
+    id: 28423819972232984
+    identification: 
+      name: Ruolo Portale
+      page-number: 8
+
+    execution: 
+      sequence: 10
+
+    appearance: 
+      parent-entry: Menu Configurazione # 28022005329231841
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:8:&APP_SESSION.::&DEBUG.:::'
+        page: 8 # Ruolo Portale
+
+  - # ====== Entry: Gestione Ruolo Portale =======================
+    id: 28424928818232987
+    identification: 
+      name: Gestione Ruolo Portale
+      page-number: 20
+
+    execution: 
+      sequence: 10
+
+    appearance: 
+      parent-entry: Ruolo Portale # 28423819972232984
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:20:&APP_SESSION.::&DEBUG.:::'
+        page: 20 # Gestione Ruolo Portale
+
+  - # ====== Entry: Ruolo Portale e Applicazioni =================
+    id: 28450867393984865
+    identification: 
+      name: Ruolo Portale e Applicazioni
+      page-number: 22
+
+    execution: 
+      sequence: 10
+
+    appearance: 
+      parent-entry: Menu Configurazione # 28022005329231841
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:22:&APP_SESSION.::&DEBUG.:::'
+        page: 22 # Ruolo Portale e Applicazioni
+
+  - # ====== Entry: Visualizza Aree Geografiche ==================
+    id: 28540031886819602
+    identification: 
+      name: Visualizza Aree Geografiche
+      page-number: 23
+
+    execution: 
+      sequence: 10
+
+    appearance: 
+      parent-entry: Menu Configurazione # 28022005329231841
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:23:&APP_SESSION.::&DEBUG.:::'
+        page: 23 # Visualizza Aree Geografiche
+
+  - # ====== Entry: Gestione Aree Geografiche ====================
+    id: 28541318500819602
+    identification: 
+      name: Gestione Aree Geografiche
+      page-number: 24
+
+    execution: 
+      sequence: 10
+
+    appearance: 
+      parent-entry: Visualizza Aree Geografiche # 28540031886819602
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:24:&APP_SESSION.::&DEBUG.:::'
+        page: 24 # Gestione Aree Geografiche
+
+  - # ====== Entry: Visualizza Localita' =========================
+    id: 28558525441953200
+    identification: 
+      name: Visualizza Localita'
+      page-number: 25
+
+    execution: 
+      sequence: 10
+
+    appearance: 
+      parent-entry: Menu Configurazione # 28022005329231841
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:25:&APP_SESSION.::&DEBUG.:::'
+        page: 25 # Visualizza Localita'
+
+  - # ====== Entry: Gestione Localita' ===========================
+    id: 28559710152953200
+    identification: 
+      name: Gestione Localita'
+      page-number: 26
+
+    execution: 
+      sequence: 10
+
+    appearance: 
+      parent-entry: Visualizza Localita' # 28558525441953200
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:26:&APP_SESSION.::&DEBUG.:::'
+        page: 26 # Gestione Localita'
+
+  - # ====== Entry: Associazione Gruppi-Utenti ===================
+    id: 28923740644284614
+    identification: 
+      name: Associazione Gruppi-Utenti
+      page-number: 28
+
+    execution: 
+      sequence: 10
+
+    appearance: 
+      parent-entry: Menu Configurazione # 28022005329231841
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:28:&APP_SESSION.::&DEBUG.:::'
+        page: 28 # Elenco Utenti
+
+  - # ====== Entry: Aggiungi Utente ==============================
+    id: 28952793028481859
+    identification: 
+      name: Aggiungi Utente
+      page-number: 29
+
+    execution: 
+      sequence: 10
+
+    appearance: 
+      parent-entry: Associazione Gruppi-Utenti # 28923740644284614
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:29:&SESSION.::&DEBUG.:::'
+        page: 29 # Aggiungi Utente
+
+  - # ====== Entry: Aggiungi BCT =================================
+    id: 28963767228503705
+    identification: 
+      name: Aggiungi BCT
+      page-number: 30
+
+    execution: 
+      sequence: 10
+
+    appearance: 
+      parent-entry: Associazione Gruppi-Utenti # 28923740644284614
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:30:&APP_SESSION.::&DEBUG.:::'
+        page: 30 # Aggiungi BCT o Gruppo
+
+  - # ====== Entry: Visualizza Estrazione ========================
+    id: 197657898447606986
+    identification: 
+      name: Visualizza Estrazione
+      page-number: 31
+
+    execution: 
+      sequence: 10
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:31:&SESSION.::&DEBUG.:::'
+        page: 31 # visualizza_estrazione_mail
+
+  - # ====== Entry: Menu Control Room ============================
+    id: 327069524595672000
+    identification: 
+      name: Menu Control Room
+      page-number: 32
+
+    execution: 
+      sequence: 10
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:32:&SESSION.::&DEBUG.:::'
+        page: 32 # Menu Control Room
+
+  - # ====== Entry: Job Status Monitoring ========================
+    id: 327072464815723640
+    identification: 
+      name: Job Status Monitoring
+      page-number: 33
+
+    execution: 
+      sequence: 10
+
+    appearance: 
+      parent-entry: Menu Control Room # 327069524595672000
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:33:&APP_SESSION.::&DEBUG.:::'
+        page: 33 # Job Status Monitoring
+
+  - # ====== Entry: Visualizza Job Logs ==========================
+    id: 327492272423272177
+    identification: 
+      name: Visualizza Job Logs
+      page-number: 34
+
+    execution: 
+      sequence: 10
+
+    appearance: 
+      parent-entry: Job Status Monitoring # 327072464815723640
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:34:&SESSION.::&DEBUG.:::'
+        page: 34 # Visualizza Job Logs
+
+  - # ====== Entry: I Tuoi Job Monitorati ========================
+    id: 330823941058862028
+    identification: 
+      name: I Tuoi Job Monitorati
+      page-number: 35
+
+    execution: 
+      sequence: 10
+
+    appearance: 
+      parent-entry: Job Status Monitoring # 327072464815723640
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:35:&SESSION.::&DEBUG.:::'
+        page: 35 # Job Status Monitoring Alarm
+

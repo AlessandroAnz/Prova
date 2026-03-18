@@ -1,0 +1,470 @@
+---
+- # ====== List of Values: LOGIN_REMEMBER_USERNAME =============
+  id: 12049725829520933
+  identification: 
+    name: LOGIN_REMEMBER_USERNAME
+
+  subscription: 
+    version-number: 1
+
+  source: 
+    location: Static Values
+
+  entries: 
+  - # ====== Entry: Remember username ============================
+    id: 12050223711520934
+    entry: 
+      sequence: 10
+      display: Remember username
+      return: Y
+
+- # ====== List of Values: DESKTOP THEME STYLES ================
+  id: 12065117796521038
+  identification: 
+    name: DESKTOP THEME STYLES
+
+  subscription: 
+    version-number: 1
+
+  source: 
+    location: Local Database
+    type: SQL Query
+    sql-query: |
+      select s.name d,
+             s.theme_style_id r
+        from apex_application_theme_styles s,
+             apex_application_themes t
+       where s.application_id = :app_id
+         and t.application_id = s.application_id
+         and t.theme_number   = s.theme_number
+         and t.ui_type_name   = 'DESKTOP'
+         and t.is_current     = 'Yes'
+       order by 1
+
+  column-mapping: 
+    return: R
+    display: D
+    default-sort: Use Order By from Query
+
+- # ====== List of Values: USER_THEME_PREFERENCE ===============
+  id: 12065806448521062
+  identification: 
+    name: USER_THEME_PREFERENCE
+
+  subscription: 
+    version-number: 1
+
+  source: 
+    location: Static Values
+
+  entries: 
+  - # ====== Entry: Allow End Users to choose Theme Style ========
+    id: 12066124809521063
+    entry: 
+      sequence: 1
+      display: Allow End Users to choose Theme Style
+      return: Yes
+
+- # ====== List of Values: TIMEFRAME (4 WEEKS) =================
+  id: 12084572364521216
+  identification: 
+    name: TIMEFRAME (4 WEEKS)
+
+  subscription: 
+    version-number: 1
+
+  source: 
+    location: Local Database
+    type: SQL Query
+    sql-query: |
+      select disp,
+             val as seconds
+        from table( apex_util.get_timeframe_lov_data )
+       order by insert_order
+
+  column-mapping: 
+    return: SECONDS
+    display: DISP
+    default-sort: Use Order By from Query
+
+- # ====== List of Values: VIEW_AS_REPORT_CHART ================
+  id: 12119620459521299
+  identification: 
+    name: VIEW_AS_REPORT_CHART
+
+  subscription: 
+    version-number: 1
+
+  source: 
+    location: Static Values
+
+  entries: 
+  - # ====== Entry: Add Report Page ==============================
+    id: 12119839068521301
+    entry: 
+      sequence: 1
+      display: Add Report Page
+      return: REPORT
+
+    globalization: 
+      template: <span class="fa fa-table" aria-hidden="true"></span><span class="u-VisuallyHidden">#DISPLAY_VALUE#</span>
+
+  - # ====== Entry: Add Chart Page ===============================
+    id: 12120262152521302
+    entry: 
+      sequence: 2
+      display: Add Chart Page
+      return: CHART
+
+    globalization: 
+      template: <span class="fa fa-pie-chart" aria-hidden="true"></span><span class="u-VisuallyHidden">#DISPLAY_VALUE#</span>
+
+- # ====== List of Values: ACCESS_ROLES ========================
+  id: 12148840435521378
+  identification: 
+    name: ACCESS_ROLES
+
+  subscription: 
+    version-number: 1
+
+  source: 
+    location: Local Database
+    type: SQL Query
+    sql-query: |
+      select role_name d, role_id r
+      from APEX_APPL_ACL_ROLES where application_id = :APP_ID 
+      order by 1
+
+  column-mapping: 
+    return: R
+    display: D
+    default-sort: Use Order By from Query
+
+- # ====== List of Values: EMAIL_USERNAME_FORMAT ===============
+  id: 12156395113521388
+  identification: 
+    name: EMAIL_USERNAME_FORMAT
+
+  subscription: 
+    version-number: 1
+
+  source: 
+    location: Static Values
+
+  entries: 
+  - # ====== Entry: Email Addresses ==============================
+    id: 12156672458521388
+    entry: 
+      sequence: 1
+      display: Email Addresses
+      return: EMAIL
+
+- # ====== List of Values: FEEDBACK_RATING =====================
+  id: 12173688211521428
+  identification: 
+    name: FEEDBACK_RATING
+
+  subscription: 
+    version-number: 1
+
+  source: 
+    location: Static Values
+
+  entries: 
+  - # ====== Entry: Positive =====================================
+    id: 12173990249521428
+    entry: 
+      sequence: 1
+      display: Positive
+      return: 3
+
+    globalization: 
+      template: <span title="#DISPLAY_VALUE#" aria-label="#DISPLAY_VALUE#"><span class="fa fa-smile-o fa-2x feedback-positive" aria-hidden="true" ></span></span>
+
+  - # ====== Entry: Neutral ======================================
+    id: 12174393461521428
+    entry: 
+      sequence: 2
+      display: Neutral
+      return: 2
+
+    globalization: 
+      template: <span title="#DISPLAY_VALUE#" aria-label="#DISPLAY_VALUE#"><span class="fa fa-emoji-neutral fa-2x feedback-neutral" aria-hidden="true" ></span></span>
+
+  - # ====== Entry: Negative =====================================
+    id: 12174812618521429
+    entry: 
+      sequence: 3
+      display: Negative
+      return: 1
+
+    globalization: 
+      template: <span title="#DISPLAY_VALUE#" aria-label="#DISPLAY_VALUE#"><span class="fa fa-frown-o fa-2x feedback-negative" aria-hidden="true" ></span></span>
+
+- # ====== List of Values: FEEDBACK_STATUS =====================
+  id: 12184075742521437
+  identification: 
+    name: FEEDBACK_STATUS
+
+  subscription: 
+    version-number: 1
+
+  source: 
+    location: Static Values
+
+  entries: 
+  - # ====== Entry: No Action ====================================
+    id: 12184378016521437
+    entry: 
+      sequence: 1
+      display: No Action
+      return: 0
+
+  - # ====== Entry: Acknowledged =================================
+    id: 12184787689521437
+    entry: 
+      sequence: 2
+      display: Acknowledged
+      return: 1
+
+  - # ====== Entry: Open =========================================
+    id: 12185209156521437
+    entry: 
+      sequence: 3
+      display: Open
+      return: 3
+
+  - # ====== Entry: Closed =======================================
+    id: 12185528221521438
+    entry: 
+      sequence: 4
+      display: Closed
+      return: 4
+
+- # ====== List of Values: AREEGEO =============================
+  id: 23440116036901904
+  identification: 
+    name: AREEGEO
+
+  subscription: 
+    version-number: 1
+
+  source: 
+    location: Local Database
+    type: SQL Query
+    sql-query: select  descrizione d, id r from utenti_tlg.tbl_aree
+
+  column-mapping: 
+    return: R
+    display: D
+    default-sort: D
+    sort-direction: Ascending (Nulls Last)
+
+- # ====== List of Values: RUOLI_MONITORAGGIO ==================
+  id: 27946503786000470
+  identification: 
+    name: RUOLI_MONITORAGGIO
+
+  subscription: 
+    version-number: 1
+
+  source: 
+    location: Static Values
+
+  entries: 
+  - # ====== Entry: Base =========================================
+    id: 27946777451000473
+    entry: 
+      sequence: 1
+      display: Base
+      return: 1
+
+  - # ====== Entry: Admin ========================================
+    id: 27947206783000476
+    entry: 
+      sequence: 2
+      display: Admin
+      return: 2
+
+- # ====== List of Values: ZBX_TIPO_UTENTE =====================
+  id: 28068532180758242
+  identification: 
+    name: ZBX_TIPO_UTENTE
+
+  subscription: 
+    version-number: 1
+
+  source: 
+    location: Static Values
+
+  entries: 
+  - # ====== Entry: Normale ======================================
+    id: 28068944848758245
+    entry: 
+      sequence: 1
+      display: Normale
+      return: 1
+
+  - # ====== Entry: Admin ========================================
+    id: 28069391600758245
+    entry: 
+      sequence: 2
+      display: Admin
+      return: 2
+
+- # ====== List of Values: GRUPPI_UTENTE =======================
+  id: 28082184098784305
+  identification: 
+    name: GRUPPI_UTENTE
+
+  subscription: 
+    version-number: 1
+
+  source: 
+    location: Local Database
+    type: SQL Query
+    sql-query: select usrgrpid, name from monitoraggio_tlg.usrgrp
+
+  column-mapping: 
+    return: USRGRPID
+    display: NAME
+    default-sort: NAME
+    sort-direction: Ascending (Nulls Last)
+
+- # ====== List of Values: RUOLI_PORTALE =======================
+  id: 28436269546840905
+  identification: 
+    name: RUOLI_PORTALE
+
+  subscription: 
+    version-number: 1
+
+  source: 
+    location: Local Database
+    type: Table / View
+    table-owner: Parsing Schema
+    table-name: TBL_RUOLO_PORTALE
+
+  column-mapping: 
+    return: ID_RUOLO_PORTALE
+    display: RUOLO_PORTALE
+    default-sort: RUOLO_PORTALE
+    sort-direction: Ascending (Nulls Last)
+
+- # ====== List of Values: ZBX_TIPO_UTENTE1 ====================
+  id: 28930587571284623
+  identification: 
+    name: ZBX_TIPO_UTENTE1
+
+  subscription: 
+    version-number: 1
+
+  source: 
+    location: Static Values
+
+  entries: 
+  - # ====== Entry: Normale ======================================
+    id: 28930937639284626
+    entry: 
+      sequence: 1
+      display: Normale
+      return: 1
+
+  - # ====== Entry: Admin ========================================
+    id: 28931378057284627
+    entry: 
+      sequence: 2
+      display: Admin
+      return: 2
+
+- # ====== List of Values: IMPRESE_LOV =========================
+  id: 32841603862157756
+  identification: 
+    name: IMPRESE_LOV
+
+  subscription: 
+    version-number: 1
+
+  source: 
+    location: Local Database
+    type: Table / View
+    table-owner: Parsing Schema
+    table-name: TBL_ANAG_IMPRESE
+
+  column-mapping: 
+    return: ID_IMPRESA
+    display: NOME_IMPRESA
+    default-sort: NOME_IMPRESA
+    sort-direction: Ascending (Nulls Last)
+
+- # ====== List of Values: COPYUSER_LOV ========================
+  id: 148929127297337517
+  identification: 
+    name: COPYUSER_LOV
+
+  subscription: 
+    version-number: 1
+
+  source: 
+    location: Local Database
+    type: SQL Query
+    sql-query: select distinct au.nome_utente as "Nome Utente",(select ruolo_portale from tbl_ruolo_portale rp where rp.id_ruolo_portale=au.id_ruolo_portale) as "Ruolo Portale",au.id_utente from tbl_anag_utenti au
+
+  column-mapping: 
+    return: ID_UTENTE
+    display: Nome Utente
+    default-sort: Nome Utente
+    sort-direction: Ascending (Nulls Last)
+
+  columns: 
+  - # ====== Column: ID_UTENTE ===================================
+    id: 148929651982340763
+    identification: 
+      column-name: ID_UTENTE
+      show: false
+
+    layout: 
+      sequence: 10
+
+    source: 
+      data-type: NUMBER
+
+    advanced: 
+      searchable: false
+
+  - # ====== Column: Nome Utente =================================
+    id: 148930052250340764
+    identification: 
+      column-name: Nome Utente
+      show: true
+
+    heading: 
+      heading: Nome Utente
+
+    layout: 
+      sequence: 20
+
+    source: 
+      data-type: VARCHAR2
+
+    advanced: 
+      searchable: true
+
+  - # ====== Column: Ruolo Portale ===============================
+    id: 148930523138340764
+    identification: 
+      column-name: Ruolo Portale
+      show: true
+
+    heading: 
+      heading: Ruolo Portale
+
+    layout: 
+      sequence: 30
+
+    source: 
+      data-type: VARCHAR2
+
+    advanced: 
+      searchable: true
+

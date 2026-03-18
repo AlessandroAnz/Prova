@@ -1,0 +1,324 @@
+---
+# ====== Page: Ruolo Portale e Applicazioni ==================
+id: 22
+identification: 
+  name: Ruolo Portale e Applicazioni
+  alias: RUOLO-PORTALE-E-APPLICAZIONI
+  title: Ruolo Portale e Applicazioni
+
+appearance: 
+  page-mode: Normal
+  page-template: Theme Default
+  template-options: 
+  - '#DEFAULT#'
+
+navigation-menu: 
+  override-user-interface-level: false
+
+navigation: 
+  cursor-focus: Do not focus cursor
+  warn-on-unsaved-changes: true
+
+javascript: 
+  execute-when-page-loads: $("#P22_APPL table").prepend('<tr><td colspan="2">'  + "Applicazioni Disponibili"  + '</td><td colspan="2">'  + "Applicazioni Attive"  + '</td></tr>');
+
+css: 
+  inline: |
+    #P22_APPL_LABEL{
+        position: relative;
+        top: 50%;
+        -webkit-transform: translateY(-50%);
+        -ms-transform: translateY(-50%);
+        transform: translateY(-50%);
+    }
+    
+    @media only screen and (min-width: 768px){
+         /* For desktop: */
+    #P22_APPL_LEFT{
+        width:400px;
+    }
+    }
+    
+    @media only screen and (min-width: 768px){
+         /* For desktop: */
+    #P22_APPL_RIGHT{
+        width:400px;
+    }
+    }
+
+security: 
+  authentication: Page Requires Authentication
+  deep-linking: Application Default
+  page-access-protection: Arguments Must Have Checksum
+  form-auto-complete: Off
+  browser-cache: Application Default
+
+session-management: 
+  rejoin-sessions: Application Default
+
+advanced: 
+  enable-duplicate-page-submissions: Yes - Enable page to be re-posted
+  reload-on-submit: Only for Success
+
+server-cache: 
+  caching: Disabled
+
+regions: 
+- # ====== Region: Ruolo Applicazione ==========================
+  id: 28436836418845761
+  identification: 
+    name: Ruolo Applicazione
+    type: Static Content
+
+  layout: 
+    sequence: 10
+    parent-region: No Parent
+    slot: BODY
+    start-new-layout: false
+    start-new-row: true
+    column: 2
+    new-column: true
+    column-span: 11
+
+  appearance: 
+    template: Standard
+    template-options: 
+    - '#DEFAULT#'
+    - t-Region--scrollBody
+    render-components: Above Content
+
+  advanced: 
+    region-display-selector: true
+    exclude-title-from-translation: false
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    settings: 
+      output-as: HTML
+      expand-shortcuts: false
+
+- # ====== Region: Breadcrumb ==================================
+  id: 28450429366984864
+  identification: 
+    name: Breadcrumb
+    type: Breadcrumb
+
+  source: 
+    breadcrumb: Breadcrumb # 11853987875520682
+
+  layout: 
+    sequence: 10
+    parent-region: No Parent
+    slot: REGION_POSITION_01
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Title Bar
+    template-options: 
+    - '#DEFAULT#'
+    - t-BreadcrumbRegion--compactTitle
+    - t-BreadcrumbRegion--useBreadcrumbTitle
+    render-components: Above Content
+
+  advanced: 
+    region-display-selector: false
+    exclude-title-from-translation: false
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    appearance: 
+      breadcrumb-template: Breadcrumb
+      template-options: 
+      - '#DEFAULT#'
+
+page-items: 
+- # ====== Page Item: P22_RUOLO_PORTALE ========================
+  id: 28437005083845762
+  identification: 
+    name: P22_RUOLO_PORTALE
+    type: Select List
+
+  label: 
+    label: Ruolo Portale
+    alignment: Left
+
+  settings: 
+    page-action-on-selection: Submit Page
+    execute-validations: true
+
+  multiple-values: 
+    type: No
+
+  layout: 
+    sequence: 10
+    region: Ruolo Applicazione # 28436836418845761
+    slot: BODY
+    alignment: Left
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+    label-column-span: Page Template Default
+
+  appearance: 
+    template: Optional
+    template-options: 
+    - '#DEFAULT#'
+    height: 1
+
+  validation: 
+    value-required: true
+
+  list-of-values: 
+    type: Shared Component
+    list-of-values: RUOLI_PORTALE # 28436269546840905
+    display-extra-values: true
+    display-null-value: true
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    type: Null
+    used: Only when current value in session state is null
+
+  session-state: 
+    storage: Per Session (Persistent)
+
+  quick-picks: 
+    show-quick-picks: false
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P22_APPL =================================
+  id: 28437110088845763
+  identification: 
+    name: P22_APPL
+    type: Shuttle
+
+  label: 
+    label: Applicazioni
+    alignment: Left
+
+  settings: 
+    show-controls: Moving Only
+
+  multiple-values: 
+    type: Delimited List
+    separator: ':'
+
+  layout: 
+    sequence: 20
+    region: Ruolo Applicazione # 28436836418845761
+    slot: BODY
+    alignment: Left
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+    label-column-span: Page Template Default
+
+  appearance: 
+    template: Optional
+    template-options: 
+    - '#DEFAULT#'
+    height: 5
+
+  validation: 
+    value-required: false
+
+  list-of-values: 
+    type: SQL Query
+    sql-query: |
+      select apex_app_id || ' - ' || applicazione as applicazione, a.id_applicazione
+      from utenti_tlg.tbl_anag_applicazioni a
+      order by apex_app_id
+      
+    display-extra-values: false
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    type: SQL Query (return single value)
+    sql-query: |
+      SELECT listagg(id_applicazione, ':'ON OVERFLOW TRUNCATE) within group (order by id_ruolo_portale)
+      FROM TBL_RUOLO_PORTALE_APPLICAZIONE trpa 
+      WHERE ID_RUOLO_PORTALE = :P22_RUOLO_PORTALE
+    used: Always, replacing any existing value in session state
+
+  session-state: 
+    storage: Per Session (Persistent)
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+dynamic-actions: 
+- # ====== Dynamic Action: New =================================
+  id: 28437373344845766
+  identification: 
+    name: New
+
+  execution: 
+    sequence: 10
+    event-scope: Static
+    type: Immediate
+
+  when: 
+    event: Change
+    selection-type: Item(s)
+    item(s): 
+    - P22_APPL
+
+  actions: 
+  - # ====== Action: Execute Server-side Code ====================
+    id: 28437437296845767
+    identification: 
+      action: Execute Server-side Code
+
+    settings: 
+      language: PE.PROPERTY.SOURCE_SNIPPET_LANG.LOV.PLSQL.D
+      pl/sql-code: |
+        Declare
+          Cursor c_values
+           is 
+          Select
+            t.column_value As app_id
+          From
+             Table ( apex_string.split(:P22_APPL, ':') ) t
+          Where
+             t.column_value Is Not Null;
+        Begin
+          apex_debug.message('in process: '|| :P22_APPL || ', Ruolo: ' || :P22_RUOLO_PORTALE);
+          delete from tbl_ruolo_portale_applicazione where id_ruolo_portale = :P22_RUOLO_PORTALE;
+          for c in c_values loop
+             insert into tbl_ruolo_portale_applicazione (id_ruolo_portale,id_applicazione)
+               values (:P22_RUOLO_PORTALE, c.app_id);
+          end loop;
+        End;
+      items-to-submit: 
+      - P22_APPL
+
+    execution: 
+      sequence: 10
+      event: New # 28437373344845766
+      fire-when-event-result-is: True
+      fire-on-initialization: false
+      stop-execution-on-error: true
+      wait-for-result: true
+

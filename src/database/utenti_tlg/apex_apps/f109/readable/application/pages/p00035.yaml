@@ -1,0 +1,892 @@
+---
+# ====== Page: Job Status Monitoring Alarm ===================
+id: 35
+identification: 
+  name: Job Status Monitoring Alarm
+  alias: JOB-STATUS-MONITORING-ALARM
+  title: I Tuoi Job Monitorati
+
+appearance: 
+  page-mode: Normal
+  page-template: Theme Default
+  template-options: 
+  - '#DEFAULT#'
+
+navigation-menu: 
+  override-user-interface-level: false
+
+navigation: 
+  cursor-focus: Do not focus cursor
+  warn-on-unsaved-changes: false
+
+security: 
+  authentication: Page Requires Authentication
+  deep-linking: Application Default
+  page-access-protection: Arguments Must Have Checksum
+  form-auto-complete: Off
+  browser-cache: Application Default
+
+session-management: 
+  rejoin-sessions: Application Default
+
+advanced: 
+  enable-duplicate-page-submissions: Yes - Enable page to be re-posted
+  reload-on-submit: Only for Success
+
+server-cache: 
+  caching: Disabled
+
+regions: 
+- # ====== Region: I Tuoi Job Monitorati =======================
+  id: 645094636549467629
+  identification: 
+    name: I Tuoi Job Monitorati
+    type: Interactive Grid
+
+  source: 
+    location: Local Database
+    type: SQL Query
+    sql-query: |
+      select * from monitoraggio_tlg.TBL_JOB_MONITORING_ALARM 
+      where apex_user = :APP_USER
+
+  layout: 
+    sequence: 70
+    parent-region: No Parent
+    slot: BODY
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Standard
+    template-options: 
+    - '#DEFAULT#'
+    - t-Region--noPadding
+    - t-Region--scrollBody
+    - margin-top-lg
+    render-components: Above Content
+
+  advanced: 
+    static-id: myjobs
+    region-display-selector: true
+    exclude-title-from-translation: false
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    id: 330833616966872559
+    edit: 
+      enabled: true
+      allowed-operations: 
+      - Delete Row
+      lost-update-type: Row Values
+
+    performance: 
+      lazy-loading: false
+
+    appearance: 
+      select-first-row: true
+      fixed-row-height: true
+
+    pagination: 
+      type: Scroll
+      show-total-count: true
+
+    toolbar: 
+      show: true
+      controls: 
+      - Search Column Selection
+      - Search Field
+      - Actions Menu
+      - Reset Button
+      - Save Button
+
+    enable-users-to: 
+      save-public-report: false
+      flashback: true
+      define-chart-view: true
+      download: true
+
+    download: 
+      formats: 
+      - CSV
+      - HTML
+      - Excel
+      - PDF
+      send-as-email: true
+
+    heading: 
+      fixed-to: Page
+
+    icon-view: 
+      show: false
+
+    detail-view: 
+      show: false
+
+    saved-reports: 
+    - # ====== Saved Report: Primary Report ========================
+      id: 330839519413875248
+      identification: 
+        name: Primary Report
+        alias: 3238092
+
+  columns: 
+  - # ====== Column: JOB_NAME ====================================
+    id: 330833628278872560
+    identification: 
+      column-name: JOB_NAME
+      type: Textarea
+
+    heading: 
+      heading: Job Name
+      alignment: start
+
+    settings: 
+      resizable: true
+      auto-height: false
+      character-counter: false
+      trim-spaces: Leading and Trailing
+
+    layout: 
+      sequence: 30
+      column-alignment: start
+      stretch: Use Report Setting
+
+    accessibility: 
+      value-identifies-row: false
+
+    validation: 
+      value-required: true
+      maximum-length: 200
+
+    source: 
+      type: Database Column
+      database-column: JOB_NAME
+      data-type: VARCHAR2
+      query-only: false
+      primary-key: true
+
+    default: 
+      duplicate-copies-existing-value: true
+
+    session-state: 
+      data-type: VARCHAR2
+
+    column-filter: 
+      enabled: true
+      performance-impacting-operators: 
+      - Contains
+      - Starts With
+      - Case Insensitive
+      - Regular Expression
+      text-case: Mixed
+      lov-type: None
+
+    export-/-printing: 
+      include-in-export-/-print: true
+
+    enable-users-to: 
+      sort: true
+      control-break/aggregate: true
+      hide: true
+
+  - # ====== Column: APEX_USER ===================================
+    id: 330833745466872561
+    identification: 
+      column-name: APEX_USER
+      type: Textarea
+
+    heading: 
+      heading: Apex User
+      alignment: start
+
+    settings: 
+      resizable: true
+      auto-height: false
+      character-counter: false
+      trim-spaces: Leading and Trailing
+
+    layout: 
+      sequence: 40
+      column-alignment: start
+      stretch: Use Report Setting
+
+    accessibility: 
+      value-identifies-row: false
+
+    validation: 
+      value-required: true
+      maximum-length: 200
+
+    source: 
+      type: Database Column
+      database-column: APEX_USER
+      data-type: VARCHAR2
+      query-only: false
+      primary-key: true
+
+    default: 
+      duplicate-copies-existing-value: true
+
+    session-state: 
+      data-type: VARCHAR2
+
+    column-filter: 
+      enabled: true
+      performance-impacting-operators: 
+      - Contains
+      - Starts With
+      - Case Insensitive
+      - Regular Expression
+      text-case: Mixed
+      lov-type: None
+
+    export-/-printing: 
+      include-in-export-/-print: true
+
+    enable-users-to: 
+      sort: false
+      hide: true
+
+    server-side-condition: 
+      type: Never
+
+  - # ====== Column: APEX$ROW_ACTION =============================
+    id: 330834144565872565
+    identification: 
+      column-name: APEX$ROW_ACTION
+      type: Actions Menu
+
+    layout: 
+      sequence: 1
+
+  - # ====== Column: SCHEMA_NAME =================================
+    id: 330834506135872568
+    identification: 
+      column-name: SCHEMA_NAME
+      type: Textarea
+
+    heading: 
+      heading: Schema Name
+      alignment: start
+
+    settings: 
+      resizable: true
+      auto-height: false
+      character-counter: false
+      trim-spaces: Leading and Trailing
+
+    layout: 
+      sequence: 2
+      column-alignment: start
+      stretch: Use Report Setting
+
+    accessibility: 
+      value-identifies-row: false
+
+    validation: 
+      value-required: true
+      maximum-length: 100
+
+    source: 
+      type: Database Column
+      database-column: SCHEMA_NAME
+      data-type: VARCHAR2
+      query-only: false
+      primary-key: false
+
+    default: 
+      duplicate-copies-existing-value: true
+
+    session-state: 
+      data-type: VARCHAR2
+
+    column-filter: 
+      enabled: true
+      performance-impacting-operators: 
+      - Contains
+      - Starts With
+      - Case Insensitive
+      - Regular Expression
+      text-case: Mixed
+      lov-type: None
+
+    export-/-printing: 
+      include-in-export-/-print: true
+
+    enable-users-to: 
+      sort: true
+      control-break/aggregate: true
+      hide: true
+
+  printing: 
+    page: 
+      size: A4
+      orientation: Landscape
+      units: Millimeters
+      width: 297
+      height: 210
+      border-width: 0.5
+      border-color: '#666666'
+
+    page-header: 
+      font: Helvetica
+      font-weight: Normal
+      font-size: 12
+      font-color: '#000000'
+      alignment: center
+      page-header-text: I Tuoi Job Monitorati
+
+    column-headings: 
+      font: Helvetica
+      font-weight: Bold
+      font-size: 10
+      font-color: '#000000'
+      background-color: '#EEEEEE'
+
+    columns: 
+      font: Helvetica
+      font-weight: Normal
+      font-size: 10
+      font-color: '#000000'
+      background-color: '#FFFFFF'
+
+    page-footer: 
+      font: Helvetica
+      font-weight: Normal
+      font-size: 12
+      font-color: '#000000'
+      alignment: center
+
+- # ====== Region: Breadcrumb ==================================
+  id: 650859179782133880
+  identification: 
+    name: Breadcrumb
+    type: Breadcrumb
+
+  source: 
+    breadcrumb: Breadcrumb # 11853987875520682
+
+  layout: 
+    sequence: 10
+    parent-region: No Parent
+    slot: REGION_POSITION_01
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Title Bar
+    template-options: 
+    - '#DEFAULT#'
+    - t-BreadcrumbRegion--compactTitle
+    - t-BreadcrumbRegion--useBreadcrumbTitle
+    render-components: Above Content
+
+  advanced: 
+    region-display-selector: false
+    exclude-title-from-translation: false
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    appearance: 
+      breadcrumb-template: Breadcrumb
+      template-options: 
+      - '#DEFAULT#'
+
+page-items: 
+- # ====== Page Item: P35_SCHEMA ===============================
+  id: 330834583940872569
+  identification: 
+    name: P35_SCHEMA
+    type: Popup LOV
+
+  label: 
+    label: 'Scegli Schema: '
+    alignment: Left
+
+  settings: 
+    display-as: Inline Popup
+    initial-fetch: Automatic
+    manual-entry: false
+    search-as-you-type: false
+
+  multiple-values: 
+    type: No
+
+  layout: 
+    sequence: 20
+    region: No Parent
+    slot: BODY
+    alignment: Left
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: 3
+    label-column-span: Page Template Default
+
+  appearance: 
+    template: Optional - Floating
+    template-options: 
+    - '#DEFAULT#'
+    width: 30
+
+  validation: 
+    value-required: false
+
+  list-of-values: 
+    type: SQL Query
+    sql-query: select distinct schema_name from monitoraggio_tlg.tbl_job_monitoring
+    display-extra-values: true
+    display-null-value: true
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    type: Null
+    used: Only when current value in session state is null
+
+  session-state: 
+    storage: Per Session (Persistent)
+
+  quick-picks: 
+    show-quick-picks: false
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: false
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P35_JOB ==================================
+  id: 330834658255872570
+  identification: 
+    name: P35_JOB
+    type: Popup LOV
+
+  label: 
+    label: 'Scegli Job: '
+    alignment: Left
+
+  settings: 
+    display-as: Inline Popup
+    initial-fetch: Automatic
+    manual-entry: false
+    search-as-you-type: false
+
+  multiple-values: 
+    type: No
+
+  layout: 
+    sequence: 40
+    region: No Parent
+    slot: BODY
+    alignment: Left
+    start-new-layout: false
+    start-new-row: false
+    column: Automatic
+    new-column: true
+    column-span: 3
+    label-column-span: Page Template Default
+
+  appearance: 
+    template: Optional - Floating
+    template-options: 
+    - '#DEFAULT#'
+    width: 30
+
+  validation: 
+    value-required: false
+
+  list-of-values: 
+    type: SQL Query
+    sql-query: |
+      select distinct job_name
+      from monitoraggio_tlg.tbl_job_monitoring 
+      where schema_name = :P35_SCHEMA
+      and job_name not in (
+              select job_name 
+              from monitoraggio_tlg.tbl_job_monitoring_alarm 
+              where schema_name = :P35_SCHEMA
+              and apex_user = :app_user
+          )
+    display-extra-values: true
+    display-null-value: true
+
+  cascading-list-of-values: 
+    parent-item(s): 
+    - P35_SCHEMA
+    items-to-submit: 
+    - P35_SCHEMA
+    parent-required: true
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    type: Null
+    used: Only when current value in session state is null
+
+  session-state: 
+    storage: Per Session (Persistent)
+
+  quick-picks: 
+    show-quick-picks: false
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: false
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P35_MESSAGE ==============================
+  id: 330835497020872578
+  identification: 
+    name: P35_MESSAGE
+    type: Display Only
+
+  label: 
+    alignment: Left
+
+  settings: 
+    format: Plain Text
+    based-on: Item Value
+    show-line-breaks: true
+    send-on-page-submit: true
+
+  layout: 
+    sequence: 10
+    region: No Parent
+    slot: BODY
+    alignment: Left
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+    label-column-span: Page Template Default
+
+  appearance: 
+    template: Optional - Above
+    template-options: 
+    - '#DEFAULT#'
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    type: Static Value
+    static-value: Aggiungi alla tabella sottostante i job per cui vuoi ricevere una notifica email in caso di problemi.
+    used: Only when current value in session state is null
+
+  session-state: 
+    data-type: VARCHAR2
+    storage: Per Session (Persistent)
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+buttons: 
+- # ====== Button: Aggiungi_tutti ==============================
+  id: 327472864284209189
+  identification: 
+    button-name: Aggiungi_tutti
+    label: Aggiungi Tutti I Job
+
+  layout: 
+    sequence: 60
+    region: No Parent
+    slot: BODY
+    start-new-layout: false
+    start-new-row: false
+    column: 11
+    new-column: true
+    column-span: Automatic
+    alignment: Left center
+
+  appearance: 
+    button-template: Text
+    hot: true
+    template-options: 
+    - '#DEFAULT#'
+    - t-Button--gapTop
+
+  behavior: 
+    action: Defined by Dynamic Action
+    execute-validations: false
+
+- # ====== Button: Aggiungi ====================================
+  id: 330834770970872571
+  identification: 
+    button-name: Aggiungi
+    label: Aggiungi
+
+  layout: 
+    sequence: 50
+    region: No Parent
+    slot: BODY
+    start-new-layout: false
+    start-new-row: false
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+    alignment: Left center
+
+  appearance: 
+    button-template: Text
+    hot: true
+    template-options: 
+    - '#DEFAULT#'
+    - t-Button--gapTop
+
+  behavior: 
+    action: Defined by Dynamic Action
+    execute-validations: false
+
+dynamic-actions: 
+- # ====== Dynamic Action: New_2 ===============================
+  id: 327472951142209190
+  identification: 
+    name: New_2
+
+  execution: 
+    sequence: 30
+    event-scope: Static
+    type: Immediate
+
+  when: 
+    event: Click
+    selection-type: Button
+    button: Aggiungi_tutti # 327472864284209189
+
+  actions: 
+  - # ====== Action: Confirm =====================================
+    id: 327473035627209191
+    identification: 
+      action: Confirm
+
+    settings: 
+      message: Sei sicuro di voler aggiungere tutti i job di tutti gli schema ai tuoi job monitorati? potrai comunque cancellarne alcuni successivamente.
+      style: Information
+      icon: fa-info
+      confirm-label: CONFERMA E AGGIUNGI
+      cancel-label: INDIETRO
+
+    execution: 
+      sequence: 10
+      event: New_2 # 327472951142209190
+      fire-when-event-result-is: True
+      fire-on-initialization: false
+
+  - # ====== Action: Execute JavaScript Code =====================
+    id: 327473147367209192
+    identification: 
+      action: Execute JavaScript Code
+
+    settings: 
+      code: apex.region("myjobs").refresh();
+
+    execution: 
+      sequence: 30
+      event: New_2 # 327472951142209190
+      fire-when-event-result-is: True
+      fire-on-initialization: false
+
+  - # ====== Action: Execute Server-side Code ====================
+    id: 327473282797209193
+    identification: 
+      action: Execute Server-side Code
+
+    settings: 
+      language: PE.PROPERTY.SOURCE_SNIPPET_LANG.LOV.PLSQL.D
+      pl/sql-code: |
+        BEGIN
+            INSERT INTO monitoraggio_tlg.tbl_job_monitoring_alarm (job_name, apex_user, schema_name)
+            SELECT m.job_name,
+                   :APP_USER,
+                   m.schema_name
+              FROM monitoraggio_tlg.tbl_job_monitoring m
+             WHERE NOT EXISTS (
+                       SELECT 1
+                         FROM monitoraggio_tlg.tbl_job_monitoring_alarm a
+                        WHERE a.job_name    = m.job_name
+                          AND a.schema_name = m.schema_name
+                          AND a.apex_user   = :APP_USER
+                   );
+            COMMIT;
+        END;
+
+    execution: 
+      sequence: 20
+      event: New_2 # 327472951142209190
+      fire-when-event-result-is: True
+      fire-on-initialization: false
+      stop-execution-on-error: true
+      wait-for-result: true
+
+  - # ====== Action: Set Value ===================================
+    id: 327473349839209194
+    identification: 
+      action: Set Value
+
+    settings: 
+      set-type: Static Assignment
+      suppress-change-event: false
+
+    affected-elements: 
+      selection-type: Item(s)
+      item(s): 
+      - P35_SCHEMA
+      - P35_JOB
+
+    execution: 
+      sequence: 40
+      event: New_2 # 327472951142209190
+      fire-when-event-result-is: True
+      fire-on-initialization: true
+      stop-execution-on-error: true
+      wait-for-result: true
+
+- # ====== Dynamic Action: New =================================
+  id: 330834849960872572
+  identification: 
+    name: New
+
+  execution: 
+    sequence: 10
+    event-scope: Static
+    type: Immediate
+
+  when: 
+    event: Click
+    selection-type: Button
+    button: Aggiungi # 330834770970872571
+
+  actions: 
+  - # ====== Action: Execute Server-side Code ====================
+    id: 330834935266872573
+    identification: 
+      action: Execute Server-side Code
+
+    settings: 
+      language: PE.PROPERTY.SOURCE_SNIPPET_LANG.LOV.PLSQL.D
+      pl/sql-code: 'insert into monitoraggio_tlg.tbl_job_monitoring_alarm (schema_name, job_name, apex_user) values (:P35_SCHEMA, :P35_JOB, :APP_USER);'
+
+    execution: 
+      sequence: 10
+      event: New # 330834849960872572
+      fire-when-event-result-is: True
+      fire-on-initialization: false
+      stop-execution-on-error: true
+      wait-for-result: true
+
+  - # ====== Action: Execute JavaScript Code =====================
+    id: 330835094798872574
+    identification: 
+      action: Execute JavaScript Code
+
+    settings: 
+      code: apex.region("myjobs").refresh();
+
+    execution: 
+      sequence: 20
+      event: New # 330834849960872572
+      fire-when-event-result-is: True
+      fire-on-initialization: false
+
+  - # ====== Action: Set Value ===================================
+    id: 330835637800872580
+    identification: 
+      action: Set Value
+
+    settings: 
+      set-type: Static Assignment
+      suppress-change-event: false
+
+    affected-elements: 
+      selection-type: Item(s)
+      item(s): 
+      - P35_SCHEMA
+      - P35_JOB
+
+    execution: 
+      sequence: 40
+      event: New # 330834849960872572
+      fire-when-event-result-is: True
+      fire-on-initialization: true
+      stop-execution-on-error: true
+      wait-for-result: true
+
+- # ====== Dynamic Action: New_1 ===============================
+  id: 330835176458872575
+  identification: 
+    name: New_1
+
+  execution: 
+    sequence: 20
+    event-scope: Static
+    type: Immediate
+
+  when: 
+    event: Change
+    selection-type: Item(s)
+    item(s): 
+    - P35_JOB
+
+  actions: 
+  - # ====== Action: Execute Server-side Code ====================
+    id: 330835286366872576
+    identification: 
+      action: Execute Server-side Code
+
+    settings: 
+      language: PE.PROPERTY.SOURCE_SNIPPET_LANG.LOV.PLSQL.D
+      pl/sql-code: null;
+      items-to-submit: 
+      - P35_JOB
+
+    execution: 
+      sequence: 10
+      event: New_1 # 330835176458872575
+      fire-when-event-result-is: True
+      fire-on-initialization: false
+      stop-execution-on-error: true
+      wait-for-result: true
+
+processes: 
+- # ====== Process: I Tuoi Job Monitorati - Save Interactive Gri
+  id: 330834407146872567
+  identification: 
+    name: I Tuoi Job Monitorati - Save Interactive Grid Data
+    type: Interactive Grid - Automatic Row Processing (DML)
+    execution-chain: None
+    editable-region: I Tuoi Job Monitorati # 645094636549467629
+
+  settings: 
+    target-type: Region Source
+    prevent-lost-updates: true
+    lock-row: Yes
+    return-primary-key(s)-after-insert: true
+
+  execution: 
+    sequence: 10
+    point: Processing
+    run-process: Once Per Page Visit (default)
+
+  error: 
+    display-location: Inline in Notification
+
+  server-side-condition: 
+    execution-scope: For Created and Modified Rows
+

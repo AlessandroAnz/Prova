@@ -1,0 +1,2483 @@
+---
+# ====== Page: visualizza_estrazione_mail ====================
+id: 31
+identification: 
+  name: visualizza_estrazione_mail
+  alias: VISUALIZZA-ESTRAZIONE-MAIL
+  title: Visualizza Estrazione
+
+appearance: 
+  page-mode: Normal
+  page-template: Theme Default
+  template-options: 
+  - '#DEFAULT#'
+
+navigation-menu: 
+  override-user-interface-level: false
+
+navigation: 
+  cursor-focus: Do not focus cursor
+  warn-on-unsaved-changes: true
+
+security: 
+  authentication: Page Requires Authentication
+  deep-linking: Application Default
+  page-access-protection: Unrestricted
+  form-auto-complete: Off
+  browser-cache: Application Default
+
+session-management: 
+  rejoin-sessions: Application Default
+
+advanced: 
+  enable-duplicate-page-submissions: Yes - Enable page to be re-posted
+  reload-on-submit: Only for Success
+
+server-cache: 
+  caching: Disabled
+
+regions: 
+- # ====== Region: Estrazione ID: &P31_ID_ESTRAZIONE. ==========
+  id: 192557020579178872
+  identification: 
+    name: 'Estrazione ID: &P31_ID_ESTRAZIONE.'
+    type: Interactive Report
+
+  source: 
+    location: Local Database
+    type: SQL Query
+    sql-query: |
+      select * from EXPORTTLR.TBL_HISTORY_BCT where id_estrazione = :P31_ID_ESTRAZIONE
+      --and nvl(id_istanza, 0) = :P31_ID_ISTANZA
+    page-items-to-submit: 
+    - P31_ID_ESTRAZIONE
+
+  layout: 
+    sequence: 80
+    parent-region: No Parent
+    slot: BODY
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Standard
+    template-options: 
+    - '#DEFAULT#'
+    - t-Region--scrollBody
+    render-components: Above Content
+
+  advanced: 
+    region-display-selector: false
+    exclude-title-from-translation: false
+
+  server-side-condition: 
+    type: Rows returned
+    sql-query: |2
+          SELECT 1
+          FROM EXPORTTLR.TBL_HISTORY_BCT
+          WHERE id_estrazione = :P31_ID_ESTRAZIONE;
+
+  server-cache: 
+    caching: Disabled
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    id: 197801381923035003
+    link: 
+      link-column: Exclude Link Column
+
+    pagination: 
+      type: Row Ranges X to Y of Z
+      display-position: Top and Bottom - Right
+
+    performance: 
+      lazy-loading: false
+      maximum-rows-to-process: 1000000
+
+    search-bar: 
+      include-search-bar: true
+      search-field: true
+      finder-drop-down: true
+      reports-select-list: true
+      rows-per-page-selector: false
+
+    actions-menu: 
+      include-actions-menu: true
+      filter: true
+      select-columns: true
+      rows-per-page: true
+      sort: true
+      control-break: true
+      highlight: true
+      compute: true
+      aggregate: true
+      chart: true
+      group-by: true
+      pivot: true
+      flashback: true
+      save-report: true
+      save-public-report: false
+      reset: true
+      help: true
+      download: true
+      subscription: true
+
+    download: 
+      formats: 
+      - CSV
+      - HTML
+      - Excel
+      - PDF
+      send-as-email: true
+
+    heading: 
+      fixed-to: Page
+
+    icon-view: 
+      show: false
+
+    detail-view: 
+      show: false
+
+    saved-reports: 
+    - # ====== Saved Report: Primary Report ========================
+      id: 197978894282254583
+      identification: 
+        name: Primary Report
+        alias: 1909486
+
+    columns: 
+    - # ====== Column: BCT =========================================
+      id: 197801471389035004
+      identification: 
+        column-name: BCT
+        type: Plain Text
+
+      heading: 
+        heading: Bct
+        alignment: center
+
+      single-row-view: 
+        use-column-heading: true
+
+      layout: 
+        sequence: 10
+        column-alignment: start
+
+      accessibility: 
+        value-identifies-row: false
+
+      source: 
+        primary-key: false
+
+      column-filter: 
+        type: Default Based on Column Type
+
+      enable-users-to: 
+        hide: true
+        sort: true
+        filter: true
+        highlight: true
+        control-break: true
+        aggregate: true
+        compute: true
+        chart: true
+        group-by: true
+        pivot: true
+
+      security: 
+        escape-special-characters: true
+
+    - # ====== Column: SST =========================================
+      id: 197801590820035005
+      identification: 
+        column-name: SST
+        type: Plain Text
+
+      heading: 
+        heading: Sst
+        alignment: center
+
+      single-row-view: 
+        use-column-heading: true
+
+      layout: 
+        sequence: 20
+        column-alignment: start
+
+      accessibility: 
+        value-identifies-row: false
+
+      source: 
+        primary-key: false
+
+      column-filter: 
+        type: Default Based on Column Type
+
+      enable-users-to: 
+        hide: true
+        sort: true
+        filter: true
+        highlight: true
+        control-break: true
+        aggregate: true
+        compute: true
+        chart: true
+        group-by: true
+        pivot: true
+
+      security: 
+        escape-special-characters: true
+
+    - # ====== Column: ITEMID ======================================
+      id: 197801659003035006
+      identification: 
+        column-name: ITEMID
+        type: Plain Text
+
+      heading: 
+        heading: Itemid
+        alignment: center
+
+      single-row-view: 
+        use-column-heading: true
+
+      layout: 
+        sequence: 30
+        column-alignment: end
+
+      accessibility: 
+        value-identifies-row: false
+
+      source: 
+        primary-key: false
+
+      column-filter: 
+        type: Default Based on Column Type
+
+      enable-users-to: 
+        hide: true
+        sort: true
+        filter: true
+        highlight: true
+        control-break: true
+        aggregate: true
+        compute: true
+        chart: true
+        group-by: true
+        pivot: true
+
+      security: 
+        escape-special-characters: true
+
+    - # ====== Column: ITEM ========================================
+      id: 197801786923035007
+      identification: 
+        column-name: ITEM
+        type: Plain Text
+
+      heading: 
+        heading: Item
+        alignment: center
+
+      single-row-view: 
+        use-column-heading: true
+
+      layout: 
+        sequence: 40
+        column-alignment: start
+
+      accessibility: 
+        value-identifies-row: false
+
+      source: 
+        primary-key: false
+
+      column-filter: 
+        type: Default Based on Column Type
+
+      enable-users-to: 
+        hide: true
+        sort: true
+        filter: true
+        highlight: true
+        control-break: true
+        aggregate: true
+        compute: true
+        chart: true
+        group-by: true
+        pivot: true
+
+      security: 
+        escape-special-characters: true
+
+    - # ====== Column: CLOCK =======================================
+      id: 197801906924035008
+      identification: 
+        column-name: CLOCK
+        type: Plain Text
+
+      heading: 
+        heading: Clock
+        alignment: center
+
+      single-row-view: 
+        use-column-heading: true
+
+      layout: 
+        sequence: 50
+        column-alignment: end
+
+      accessibility: 
+        value-identifies-row: false
+
+      source: 
+        primary-key: false
+
+      column-filter: 
+        type: Default Based on Column Type
+
+      enable-users-to: 
+        hide: true
+        sort: true
+        filter: true
+        highlight: true
+        control-break: true
+        aggregate: true
+        compute: true
+        chart: true
+        group-by: true
+        pivot: true
+
+      security: 
+        escape-special-characters: true
+
+    - # ====== Column: DATA ========================================
+      id: 197818243867039159
+      identification: 
+        column-name: DATA
+        type: Plain Text
+
+      heading: 
+        heading: Data
+        alignment: center
+
+      single-row-view: 
+        use-column-heading: true
+
+      layout: 
+        sequence: 60
+        column-alignment: center
+
+      accessibility: 
+        value-identifies-row: false
+
+      source: 
+        primary-key: false
+
+      column-filter: 
+        type: Default Based on Column Type
+        date-ranges: All
+
+      enable-users-to: 
+        hide: true
+        sort: true
+        filter: true
+        highlight: true
+        control-break: true
+        aggregate: true
+        compute: true
+        chart: true
+        group-by: true
+        pivot: true
+
+      security: 
+        escape-special-characters: true
+
+    - # ====== Column: VALUE =======================================
+      id: 197818418036039160
+      identification: 
+        column-name: VALUE
+        type: Plain Text
+
+      heading: 
+        heading: Value
+        alignment: center
+
+      single-row-view: 
+        use-column-heading: true
+
+      layout: 
+        sequence: 70
+        column-alignment: end
+
+      accessibility: 
+        value-identifies-row: false
+
+      source: 
+        primary-key: false
+
+      column-filter: 
+        type: Default Based on Column Type
+
+      enable-users-to: 
+        hide: true
+        sort: true
+        filter: true
+        highlight: true
+        control-break: true
+        aggregate: true
+        compute: true
+        chart: true
+        group-by: true
+        pivot: true
+
+      security: 
+        escape-special-characters: true
+
+    - # ====== Column: USER_NAME ===================================
+      id: 197818455405039161
+      identification: 
+        column-name: USER_NAME
+        type: Plain Text
+
+      heading: 
+        heading: User Name
+        alignment: center
+
+      single-row-view: 
+        use-column-heading: true
+
+      layout: 
+        sequence: 80
+        column-alignment: start
+
+      accessibility: 
+        value-identifies-row: false
+
+      source: 
+        primary-key: false
+
+      column-filter: 
+        type: Default Based on Column Type
+
+      enable-users-to: 
+        hide: true
+        sort: true
+        filter: true
+        highlight: true
+        control-break: true
+        aggregate: true
+        compute: true
+        chart: true
+        group-by: true
+        pivot: true
+
+      security: 
+        escape-special-characters: true
+
+    - # ====== Column: ID_ESTRAZIONE ===============================
+      id: 197818537372039162
+      identification: 
+        column-name: ID_ESTRAZIONE
+        type: Plain Text
+
+      heading: 
+        heading: Id Estrazione
+        alignment: center
+
+      single-row-view: 
+        use-column-heading: true
+
+      layout: 
+        sequence: 90
+        column-alignment: end
+
+      accessibility: 
+        value-identifies-row: false
+
+      source: 
+        primary-key: false
+
+      column-filter: 
+        type: Default Based on Column Type
+
+      enable-users-to: 
+        hide: true
+        sort: true
+        filter: true
+        highlight: true
+        control-break: true
+        aggregate: true
+        compute: true
+        chart: true
+        group-by: true
+        pivot: true
+
+      security: 
+        escape-special-characters: true
+
+    - # ====== Column: ID_ISTANZA ==================================
+      id: 197818674690039163
+      identification: 
+        column-name: ID_ISTANZA
+        type: Plain Text
+
+      heading: 
+        heading: Id Istanza
+        alignment: center
+
+      single-row-view: 
+        use-column-heading: true
+
+      layout: 
+        sequence: 100
+        column-alignment: end
+
+      accessibility: 
+        value-identifies-row: false
+
+      source: 
+        primary-key: false
+
+      column-filter: 
+        type: Default Based on Column Type
+
+      enable-users-to: 
+        hide: true
+        sort: true
+        filter: true
+        highlight: true
+        control-break: true
+        aggregate: true
+        compute: true
+        chart: true
+        group-by: true
+        pivot: true
+
+      security: 
+        escape-special-characters: true
+
+    - # ====== Column: DATA_ESTRAZIONE =============================
+      id: 197818789254039164
+      identification: 
+        column-name: DATA_ESTRAZIONE
+        type: Plain Text
+
+      heading: 
+        heading: Data Estrazione
+        alignment: center
+
+      single-row-view: 
+        use-column-heading: true
+
+      layout: 
+        sequence: 110
+        column-alignment: center
+
+      accessibility: 
+        value-identifies-row: false
+
+      source: 
+        primary-key: false
+
+      column-filter: 
+        type: Default Based on Column Type
+        date-ranges: All
+
+      enable-users-to: 
+        hide: true
+        sort: true
+        filter: true
+        highlight: true
+        control-break: true
+        aggregate: true
+        compute: true
+        chart: true
+        group-by: true
+        pivot: true
+
+      security: 
+        escape-special-characters: true
+
+    printing: 
+      output: 
+        layout: Default Report Layout
+        view-file-as: Attachment
+
+      page: 
+        size: A4
+        orientation: Landscape
+        units: Millimeters
+        width: 297
+        height: 210
+        border-width: 0.5
+        border-color: '#666666'
+
+      page-header: 
+        font: Helvetica
+        font-weight: Normal
+        font-size: 12
+        font-color: '#000000'
+        alignment: center
+        page-header-text: 'Estrazione ID: &P31_ID_ESTRAZIONE.'
+
+      column-headings: 
+        font: Helvetica
+        font-weight: Bold
+        font-size: 10
+        font-color: '#000000'
+        background-color: '#EEEEEE'
+
+      columns: 
+        font: Helvetica
+        font-weight: Normal
+        font-size: 10
+        font-color: '#000000'
+        background-color: '#FFFFFF'
+
+      page-footer: 
+        font: Helvetica
+        font-weight: Normal
+        font-size: 12
+        font-color: '#000000'
+        alignment: center
+
+- # ====== Region: Estrazione ID: &P31_ID_ESTRAZIONE. ==========
+  id: 197572086248427159
+  identification: 
+    name: 'Estrazione ID: &P31_ID_ESTRAZIONE.'
+    type: Interactive Report
+
+  source: 
+    location: Local Database
+    type: SQL Query
+    sql-query: |
+      select * from EXPORTTLR.TBL_HISTORY_DHP where id_estrazione = :P31_ID_ESTRAZIONE
+      --and nvl(id_istanza, 0) = :P31_ID_ISTANZA
+    page-items-to-submit: 
+    - P31_ID_ESTRAZIONE
+
+  layout: 
+    sequence: 90
+    parent-region: No Parent
+    slot: BODY
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Standard
+    template-options: 
+    - '#DEFAULT#'
+    - t-Region--scrollBody
+    render-components: Above Content
+
+  advanced: 
+    region-display-selector: false
+    exclude-title-from-translation: false
+
+  server-side-condition: 
+    type: Rows returned
+    sql-query: |2
+          SELECT 1
+          FROM EXPORTTLR.TBL_HISTORY_DHP
+          WHERE id_estrazione = :P31_ID_ESTRAZIONE;
+
+  server-cache: 
+    caching: Disabled
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    id: 197800081660034990
+    link: 
+      link-column: Exclude Link Column
+
+    pagination: 
+      type: Row Ranges X to Y of Z
+      display-position: Top and Bottom - Right
+
+    performance: 
+      lazy-loading: false
+      maximum-rows-to-process: 1000000
+
+    search-bar: 
+      include-search-bar: true
+      search-field: true
+      finder-drop-down: true
+      reports-select-list: true
+      rows-per-page-selector: false
+
+    actions-menu: 
+      include-actions-menu: true
+      filter: true
+      select-columns: true
+      rows-per-page: true
+      sort: true
+      control-break: true
+      highlight: true
+      compute: true
+      aggregate: true
+      chart: true
+      group-by: true
+      pivot: true
+      flashback: true
+      save-report: true
+      save-public-report: false
+      reset: true
+      help: true
+      download: true
+      subscription: true
+
+    download: 
+      formats: 
+      - CSV
+      - HTML
+      - Excel
+      - PDF
+      send-as-email: true
+
+    heading: 
+      fixed-to: Page
+
+    icon-view: 
+      show: false
+
+    detail-view: 
+      show: false
+
+    saved-reports: 
+    - # ====== Saved Report: Primary Report ========================
+      id: 197976009528252932
+      identification: 
+        name: Primary Report
+        alias: 1909457
+
+    columns: 
+    - # ====== Column: DHP =========================================
+      id: 197800171899034991
+      identification: 
+        column-name: DHP
+        type: Plain Text
+
+      heading: 
+        heading: Dhp
+        alignment: center
+
+      single-row-view: 
+        use-column-heading: true
+
+      layout: 
+        sequence: 10
+        column-alignment: start
+
+      accessibility: 
+        value-identifies-row: false
+
+      source: 
+        primary-key: false
+
+      column-filter: 
+        type: Default Based on Column Type
+
+      enable-users-to: 
+        hide: true
+        sort: true
+        filter: true
+        highlight: true
+        control-break: true
+        aggregate: true
+        compute: true
+        chart: true
+        group-by: true
+        pivot: true
+
+      security: 
+        escape-special-characters: true
+
+    - # ====== Column: SST =========================================
+      id: 197800289072034992
+      identification: 
+        column-name: SST
+        type: Plain Text
+
+      heading: 
+        heading: Sst
+        alignment: center
+
+      single-row-view: 
+        use-column-heading: true
+
+      layout: 
+        sequence: 20
+        column-alignment: start
+
+      accessibility: 
+        value-identifies-row: false
+
+      source: 
+        primary-key: false
+
+      column-filter: 
+        type: Default Based on Column Type
+
+      enable-users-to: 
+        hide: true
+        sort: true
+        filter: true
+        highlight: true
+        control-break: true
+        aggregate: true
+        compute: true
+        chart: true
+        group-by: true
+        pivot: true
+
+      security: 
+        escape-special-characters: true
+
+    - # ====== Column: ITEMID ======================================
+      id: 197800362281034993
+      identification: 
+        column-name: ITEMID
+        type: Plain Text
+
+      heading: 
+        heading: Itemid
+        alignment: center
+
+      single-row-view: 
+        use-column-heading: true
+
+      layout: 
+        sequence: 30
+        column-alignment: end
+
+      accessibility: 
+        value-identifies-row: false
+
+      source: 
+        primary-key: false
+
+      column-filter: 
+        type: Default Based on Column Type
+
+      enable-users-to: 
+        hide: true
+        sort: true
+        filter: true
+        highlight: true
+        control-break: true
+        aggregate: true
+        compute: true
+        chart: true
+        group-by: true
+        pivot: true
+
+      security: 
+        escape-special-characters: true
+
+    - # ====== Column: ITEM ========================================
+      id: 197800488541034994
+      identification: 
+        column-name: ITEM
+        type: Plain Text
+
+      heading: 
+        heading: Item
+        alignment: center
+
+      single-row-view: 
+        use-column-heading: true
+
+      layout: 
+        sequence: 40
+        column-alignment: start
+
+      accessibility: 
+        value-identifies-row: false
+
+      source: 
+        primary-key: false
+
+      column-filter: 
+        type: Default Based on Column Type
+
+      enable-users-to: 
+        hide: true
+        sort: true
+        filter: true
+        highlight: true
+        control-break: true
+        aggregate: true
+        compute: true
+        chart: true
+        group-by: true
+        pivot: true
+
+      security: 
+        escape-special-characters: true
+
+    - # ====== Column: CLOCK =======================================
+      id: 197800534258034995
+      identification: 
+        column-name: CLOCK
+        type: Plain Text
+
+      heading: 
+        heading: Clock
+        alignment: center
+
+      single-row-view: 
+        use-column-heading: true
+
+      layout: 
+        sequence: 50
+        column-alignment: end
+
+      accessibility: 
+        value-identifies-row: false
+
+      source: 
+        primary-key: false
+
+      column-filter: 
+        type: Default Based on Column Type
+
+      enable-users-to: 
+        hide: true
+        sort: true
+        filter: true
+        highlight: true
+        control-break: true
+        aggregate: true
+        compute: true
+        chart: true
+        group-by: true
+        pivot: true
+
+      security: 
+        escape-special-characters: true
+
+    - # ====== Column: DATA ========================================
+      id: 197800635623034996
+      identification: 
+        column-name: DATA
+        type: Plain Text
+
+      heading: 
+        heading: Data
+        alignment: center
+
+      single-row-view: 
+        use-column-heading: true
+
+      layout: 
+        sequence: 60
+        column-alignment: center
+
+      accessibility: 
+        value-identifies-row: false
+
+      source: 
+        primary-key: false
+
+      column-filter: 
+        type: Default Based on Column Type
+        date-ranges: All
+
+      enable-users-to: 
+        hide: true
+        sort: true
+        filter: true
+        highlight: true
+        control-break: true
+        aggregate: true
+        compute: true
+        chart: true
+        group-by: true
+        pivot: true
+
+      security: 
+        escape-special-characters: true
+
+    - # ====== Column: VALUE =======================================
+      id: 197800767742034997
+      identification: 
+        column-name: VALUE
+        type: Plain Text
+
+      heading: 
+        heading: Value
+        alignment: center
+
+      single-row-view: 
+        use-column-heading: true
+
+      layout: 
+        sequence: 70
+        column-alignment: end
+
+      accessibility: 
+        value-identifies-row: false
+
+      source: 
+        primary-key: false
+
+      column-filter: 
+        type: Default Based on Column Type
+
+      enable-users-to: 
+        hide: true
+        sort: true
+        filter: true
+        highlight: true
+        control-break: true
+        aggregate: true
+        compute: true
+        chart: true
+        group-by: true
+        pivot: true
+
+      security: 
+        escape-special-characters: true
+
+    - # ====== Column: USER_NAME ===================================
+      id: 197800906477034998
+      identification: 
+        column-name: USER_NAME
+        type: Plain Text
+
+      heading: 
+        heading: User Name
+        alignment: center
+
+      single-row-view: 
+        use-column-heading: true
+
+      layout: 
+        sequence: 80
+        column-alignment: start
+
+      accessibility: 
+        value-identifies-row: false
+
+      source: 
+        primary-key: false
+
+      column-filter: 
+        type: Default Based on Column Type
+
+      enable-users-to: 
+        hide: true
+        sort: true
+        filter: true
+        highlight: true
+        control-break: true
+        aggregate: true
+        compute: true
+        chart: true
+        group-by: true
+        pivot: true
+
+      security: 
+        escape-special-characters: true
+
+    - # ====== Column: ID_ESTRAZIONE ===============================
+      id: 197801008954034999
+      identification: 
+        column-name: ID_ESTRAZIONE
+        type: Plain Text
+
+      heading: 
+        heading: Id Estrazione
+        alignment: center
+
+      single-row-view: 
+        use-column-heading: true
+
+      layout: 
+        sequence: 90
+        column-alignment: end
+
+      accessibility: 
+        value-identifies-row: false
+
+      source: 
+        primary-key: false
+
+      column-filter: 
+        type: Default Based on Column Type
+
+      enable-users-to: 
+        hide: true
+        sort: true
+        filter: true
+        highlight: true
+        control-break: true
+        aggregate: true
+        compute: true
+        chart: true
+        group-by: true
+        pivot: true
+
+      security: 
+        escape-special-characters: true
+
+    - # ====== Column: ID_ISTANZA ==================================
+      id: 197801026191035000
+      identification: 
+        column-name: ID_ISTANZA
+        type: Plain Text
+
+      heading: 
+        heading: Id Istanza
+        alignment: center
+
+      single-row-view: 
+        use-column-heading: true
+
+      layout: 
+        sequence: 100
+        column-alignment: end
+
+      accessibility: 
+        value-identifies-row: false
+
+      source: 
+        primary-key: false
+
+      column-filter: 
+        type: Default Based on Column Type
+
+      enable-users-to: 
+        hide: true
+        sort: true
+        filter: true
+        highlight: true
+        control-break: true
+        aggregate: true
+        compute: true
+        chart: true
+        group-by: true
+        pivot: true
+
+      security: 
+        escape-special-characters: true
+
+    - # ====== Column: DATA_ESTRAZIONE =============================
+      id: 197801151181035001
+      identification: 
+        column-name: DATA_ESTRAZIONE
+        type: Plain Text
+
+      heading: 
+        heading: Data Estrazione
+        alignment: center
+
+      single-row-view: 
+        use-column-heading: true
+
+      layout: 
+        sequence: 110
+        column-alignment: center
+
+      accessibility: 
+        value-identifies-row: false
+
+      source: 
+        primary-key: false
+
+      column-filter: 
+        type: Default Based on Column Type
+        date-ranges: All
+
+      enable-users-to: 
+        hide: true
+        sort: true
+        filter: true
+        highlight: true
+        control-break: true
+        aggregate: true
+        compute: true
+        chart: true
+        group-by: true
+        pivot: true
+
+      security: 
+        escape-special-characters: true
+
+    - # ====== Column: MATRICOLA ===================================
+      id: 197801251550035002
+      identification: 
+        column-name: MATRICOLA
+        type: Plain Text
+
+      heading: 
+        heading: Matricola
+        alignment: center
+
+      single-row-view: 
+        use-column-heading: true
+
+      layout: 
+        sequence: 120
+        column-alignment: end
+
+      accessibility: 
+        value-identifies-row: false
+
+      source: 
+        primary-key: false
+
+      column-filter: 
+        type: Default Based on Column Type
+
+      enable-users-to: 
+        hide: true
+        sort: true
+        filter: true
+        highlight: true
+        control-break: true
+        aggregate: true
+        compute: true
+        chart: true
+        group-by: true
+        pivot: true
+
+      security: 
+        escape-special-characters: true
+
+    printing: 
+      output: 
+        layout: Default Report Layout
+        view-file-as: Attachment
+
+      page: 
+        size: A4
+        orientation: Landscape
+        units: Millimeters
+        width: 297
+        height: 210
+        border-width: 0.5
+        border-color: '#666666'
+
+      page-header: 
+        font: Helvetica
+        font-weight: Normal
+        font-size: 12
+        font-color: '#000000'
+        alignment: center
+        page-header-text: 'Estrazione ID: &P31_ID_ESTRAZIONE.'
+
+      column-headings: 
+        font: Helvetica
+        font-weight: Bold
+        font-size: 10
+        font-color: '#000000'
+        background-color: '#EEEEEE'
+
+      columns: 
+        font: Helvetica
+        font-weight: Normal
+        font-size: 10
+        font-color: '#000000'
+        background-color: '#FFFFFF'
+
+      page-footer: 
+        font: Helvetica
+        font-weight: Normal
+        font-size: 12
+        font-color: '#000000'
+        alignment: center
+
+- # ====== Region: Estrazione ID: &P31_ID_ESTRAZIONE. ==========
+  id: 197573340887427172
+  identification: 
+    name: 'Estrazione ID: &P31_ID_ESTRAZIONE.'
+    type: Interactive Report
+
+  source: 
+    location: Local Database
+    type: SQL Query
+    sql-query: |
+      select * from EXPORTTLR.TBL_HISTORY_ITEM where id_estrazione = :P31_ID_ESTRAZIONE
+      --and nvl(id_istanza, 0) = :P31_ID_ISTANZA
+    page-items-to-submit: 
+    - P31_ID_ESTRAZIONE
+
+  layout: 
+    sequence: 100
+    parent-region: No Parent
+    slot: BODY
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Standard
+    template-options: 
+    - '#DEFAULT#'
+    - t-Region--scrollBody
+    render-components: Above Content
+
+  advanced: 
+    region-display-selector: false
+    exclude-title-from-translation: false
+
+  server-side-condition: 
+    type: Rows returned
+    sql-query: |2
+          SELECT 1
+          FROM EXPORTTLR.TBL_HISTORY_ITEM
+          WHERE id_estrazione = :P31_ID_ESTRAZIONE;
+
+  server-cache: 
+    caching: Disabled
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    id: 197798860225034978
+    link: 
+      link-column: Exclude Link Column
+
+    appearance: 
+      show-null-values-as: '-'
+
+    pagination: 
+      type: Row Ranges X to Y of Z
+      display-position: Top and Bottom - Right
+
+    performance: 
+      lazy-loading: false
+      maximum-rows-to-process: 1000000
+
+    search-bar: 
+      include-search-bar: true
+      search-field: false
+      reports-select-list: false
+      rows-per-page-selector: false
+
+    actions-menu: 
+      include-actions-menu: true
+      filter: false
+      select-columns: true
+      rows-per-page: false
+      sort: false
+      control-break: false
+      highlight: false
+      compute: false
+      aggregate: false
+      chart: false
+      group-by: false
+      pivot: false
+      flashback: false
+      save-report: false
+      reset: true
+      help: true
+      download: false
+
+    heading: 
+      fixed-to: Page
+
+    icon-view: 
+      show: false
+
+    detail-view: 
+      show: false
+
+    saved-reports: 
+    - # ====== Saved Report: Primary Report ========================
+      id: 197859776129044263
+      identification: 
+        name: Primary Report
+        alias: 1908295
+
+    columns: 
+    - # ====== Column: BCT =========================================
+      id: 197798970657034979
+      identification: 
+        column-name: BCT
+        type: Plain Text
+
+      heading: 
+        heading: Bct
+        alignment: center
+
+      single-row-view: 
+        use-column-heading: true
+
+      layout: 
+        sequence: 10
+        column-alignment: start
+
+      accessibility: 
+        value-identifies-row: false
+
+      source: 
+        primary-key: false
+
+      column-filter: 
+        type: Default Based on Column Type
+
+      enable-users-to: 
+        hide: true
+        sort: true
+        filter: true
+        highlight: true
+        control-break: true
+        aggregate: true
+        compute: true
+        chart: true
+        group-by: true
+        pivot: true
+
+      security: 
+        escape-special-characters: true
+
+    - # ====== Column: SST =========================================
+      id: 197799069852034980
+      identification: 
+        column-name: SST
+        type: Plain Text
+
+      heading: 
+        heading: Sst
+        alignment: center
+
+      single-row-view: 
+        use-column-heading: true
+
+      layout: 
+        sequence: 20
+        column-alignment: start
+
+      accessibility: 
+        value-identifies-row: false
+
+      source: 
+        primary-key: false
+
+      column-filter: 
+        type: Default Based on Column Type
+
+      enable-users-to: 
+        hide: true
+        sort: true
+        filter: true
+        highlight: true
+        control-break: true
+        aggregate: true
+        compute: true
+        chart: true
+        group-by: true
+        pivot: true
+
+      security: 
+        escape-special-characters: true
+
+    - # ====== Column: ITEMID ======================================
+      id: 197799211641034981
+      identification: 
+        column-name: ITEMID
+        type: Plain Text
+
+      heading: 
+        heading: Itemid
+        alignment: center
+
+      single-row-view: 
+        use-column-heading: true
+
+      layout: 
+        sequence: 30
+        column-alignment: end
+
+      accessibility: 
+        value-identifies-row: false
+
+      source: 
+        primary-key: false
+
+      column-filter: 
+        type: Default Based on Column Type
+
+      enable-users-to: 
+        hide: true
+        sort: true
+        filter: true
+        highlight: true
+        control-break: true
+        aggregate: true
+        compute: true
+        chart: true
+        group-by: true
+        pivot: true
+
+      security: 
+        escape-special-characters: true
+
+    - # ====== Column: ITEM ========================================
+      id: 197799274229034982
+      identification: 
+        column-name: ITEM
+        type: Plain Text
+
+      heading: 
+        heading: Item
+        alignment: center
+
+      single-row-view: 
+        use-column-heading: true
+
+      layout: 
+        sequence: 40
+        column-alignment: start
+
+      accessibility: 
+        value-identifies-row: false
+
+      source: 
+        primary-key: false
+
+      column-filter: 
+        type: Default Based on Column Type
+
+      enable-users-to: 
+        hide: true
+        sort: true
+        filter: true
+        highlight: true
+        control-break: true
+        aggregate: true
+        compute: true
+        chart: true
+        group-by: true
+        pivot: true
+
+      security: 
+        escape-special-characters: true
+
+    - # ====== Column: CLOCK =======================================
+      id: 197799423048034983
+      identification: 
+        column-name: CLOCK
+        type: Plain Text
+
+      heading: 
+        heading: Clock
+        alignment: center
+
+      single-row-view: 
+        use-column-heading: true
+
+      layout: 
+        sequence: 50
+        column-alignment: end
+
+      accessibility: 
+        value-identifies-row: false
+
+      source: 
+        primary-key: false
+
+      column-filter: 
+        type: Default Based on Column Type
+
+      enable-users-to: 
+        hide: true
+        sort: true
+        filter: true
+        highlight: true
+        control-break: true
+        aggregate: true
+        compute: true
+        chart: true
+        group-by: true
+        pivot: true
+
+      security: 
+        escape-special-characters: true
+
+    - # ====== Column: DATA ========================================
+      id: 197799426737034984
+      identification: 
+        column-name: DATA
+        type: Plain Text
+
+      heading: 
+        heading: Data
+        alignment: center
+
+      single-row-view: 
+        use-column-heading: true
+
+      layout: 
+        sequence: 60
+        column-alignment: center
+
+      accessibility: 
+        value-identifies-row: false
+
+      source: 
+        primary-key: false
+
+      column-filter: 
+        type: Default Based on Column Type
+        date-ranges: All
+
+      enable-users-to: 
+        hide: true
+        sort: true
+        filter: true
+        highlight: true
+        control-break: true
+        aggregate: true
+        compute: true
+        chart: true
+        group-by: true
+        pivot: true
+
+      security: 
+        escape-special-characters: true
+
+    - # ====== Column: VALUE =======================================
+      id: 197799555561034985
+      identification: 
+        column-name: VALUE
+        type: Plain Text
+
+      heading: 
+        heading: Value
+        alignment: center
+
+      single-row-view: 
+        use-column-heading: true
+
+      layout: 
+        sequence: 70
+        column-alignment: end
+
+      accessibility: 
+        value-identifies-row: false
+
+      source: 
+        primary-key: false
+
+      column-filter: 
+        type: Default Based on Column Type
+
+      enable-users-to: 
+        hide: true
+        sort: true
+        filter: true
+        highlight: true
+        control-break: true
+        aggregate: true
+        compute: true
+        chart: true
+        group-by: true
+        pivot: true
+
+      security: 
+        escape-special-characters: true
+
+    - # ====== Column: USER_NAME ===================================
+      id: 197799718629034986
+      identification: 
+        column-name: USER_NAME
+        type: Plain Text
+
+      heading: 
+        heading: User Name
+        alignment: center
+
+      single-row-view: 
+        use-column-heading: true
+
+      layout: 
+        sequence: 80
+        column-alignment: start
+
+      accessibility: 
+        value-identifies-row: false
+
+      source: 
+        primary-key: false
+
+      column-filter: 
+        type: Default Based on Column Type
+
+      enable-users-to: 
+        hide: true
+        sort: true
+        filter: true
+        highlight: true
+        control-break: true
+        aggregate: true
+        compute: true
+        chart: true
+        group-by: true
+        pivot: true
+
+      security: 
+        escape-special-characters: true
+
+    - # ====== Column: ID_ESTRAZIONE ===============================
+      id: 197799773312034987
+      identification: 
+        column-name: ID_ESTRAZIONE
+        type: Plain Text
+
+      heading: 
+        heading: Id Estrazione
+        alignment: center
+
+      single-row-view: 
+        use-column-heading: true
+
+      layout: 
+        sequence: 90
+        column-alignment: start
+
+      accessibility: 
+        value-identifies-row: false
+
+      source: 
+        primary-key: false
+
+      column-filter: 
+        type: Default Based on Column Type
+
+      enable-users-to: 
+        hide: true
+        sort: true
+        filter: true
+        highlight: true
+        control-break: true
+        aggregate: true
+        compute: true
+        chart: true
+        group-by: true
+        pivot: true
+
+      security: 
+        escape-special-characters: true
+
+    - # ====== Column: ID_ISTANZA ==================================
+      id: 197799868577034988
+      identification: 
+        column-name: ID_ISTANZA
+        type: Plain Text
+
+      heading: 
+        heading: Id Istanza
+        alignment: center
+
+      single-row-view: 
+        use-column-heading: true
+
+      layout: 
+        sequence: 100
+        column-alignment: start
+
+      accessibility: 
+        value-identifies-row: false
+
+      source: 
+        primary-key: false
+
+      column-filter: 
+        type: Default Based on Column Type
+
+      enable-users-to: 
+        hide: true
+        sort: true
+        filter: true
+        highlight: true
+        control-break: true
+        aggregate: true
+        compute: true
+        chart: true
+        group-by: true
+        pivot: true
+
+      security: 
+        escape-special-characters: true
+
+    - # ====== Column: DATA_ESTRAZIONE =============================
+      id: 197800013952034989
+      identification: 
+        column-name: DATA_ESTRAZIONE
+        type: Plain Text
+
+      heading: 
+        heading: Data Estrazione
+        alignment: center
+
+      single-row-view: 
+        use-column-heading: true
+
+      layout: 
+        sequence: 110
+        column-alignment: center
+
+      accessibility: 
+        value-identifies-row: false
+
+      source: 
+        primary-key: false
+
+      column-filter: 
+        type: Default Based on Column Type
+        date-ranges: All
+
+      enable-users-to: 
+        hide: true
+        sort: true
+        filter: true
+        highlight: true
+        control-break: true
+        aggregate: true
+        compute: true
+        chart: true
+        group-by: true
+        pivot: true
+
+      security: 
+        escape-special-characters: true
+
+- # ====== Region: Breadcrumb ==================================
+  id: 197575184521427190
+  identification: 
+    name: Breadcrumb
+    type: Breadcrumb
+
+  source: 
+    breadcrumb: Breadcrumb # 11853987875520682
+
+  layout: 
+    sequence: 10
+    parent-region: No Parent
+    slot: REGION_POSITION_01
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Title Bar
+    template-options: 
+    - '#DEFAULT#'
+    - t-BreadcrumbRegion--useBreadcrumbTitle
+    render-components: Above Content
+
+  advanced: 
+    region-display-selector: true
+    exclude-title-from-translation: false
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    appearance: 
+      breadcrumb-template: Breadcrumb
+      template-options: 
+      - '#DEFAULT#'
+
+page-items: 
+- # ====== Page Item: P31_ID_ESTRAZIONE ========================
+  id: 192556815273178870
+  identification: 
+    name: P31_ID_ESTRAZIONE
+    type: Hidden
+
+  settings: 
+    value-protected: false
+
+  layout: 
+    sequence: 10
+    region: No Parent
+    slot: BODY
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    type: SQL Query (return single value)
+    sql-query: select v('APP_ID_ESTRAZIONE') from dual
+    used: Always, replacing any existing value in session state
+
+  session-state: 
+    data-type: VARCHAR2
+    storage: Per Session (Persistent)
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: false
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P31_ID_ISTANZA ===========================
+  id: 192556924882178871
+  identification: 
+    name: P31_ID_ISTANZA
+    type: Hidden
+
+  settings: 
+    value-protected: false
+
+  layout: 
+    sequence: 20
+    region: No Parent
+    slot: BODY
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    type: Null
+    used: Only when current value in session state is null
+
+  session-state: 
+    data-type: VARCHAR2
+    storage: Per Session (Persistent)
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: false
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P31_MESSAGGIO ============================
+  id: 197574910825427187
+  identification: 
+    name: P31_MESSAGGIO
+    type: Display Only
+
+  label: 
+    label: 'Avviso:'
+    alignment: Left
+
+  settings: 
+    format: Plain Text
+    based-on: Item Value
+    show-line-breaks: true
+    send-on-page-submit: true
+
+  layout: 
+    sequence: 30
+    region: No Parent
+    slot: BODY
+    alignment: Left
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+    label-column-span: Page Template Default
+
+  appearance: 
+    template: Optional - Above
+    template-options: 
+    - '#DEFAULT#'
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    type: SQL Query (return single value)
+    sql-query: "select 'Per l''estrazione ' || :P31_ID_ESTRAZIONE || ' non sono disponibili dati.' from dual"
+    used: Always, replacing any existing value in session state
+
+  session-state: 
+    data-type: VARCHAR2
+    storage: Per Session (Persistent)
+
+  server-side-condition: 
+    type: No Rows returned
+    sql-query: |
+      
+      SELECT 1 FROM EXPORTTLR.TBL_HISTORY_BCT WHERE id_estrazione = :P31_ID_ESTRAZIONE AND ROWNUM = 1 
+      UNION
+      SELECT 1 FROM EXPORTTLR.TBL_HISTORY_DHP WHERE id_estrazione = :P31_ID_ESTRAZIONE AND ROWNUM = 1
+      UNION
+      SELECT 1 FROM EXPORTTLR.TBL_HISTORY_ITEM WHERE id_estrazione = :P31_ID_ESTRAZIONE AND ROWNUM = 1
+      
+      
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P31_MESSAGGIO_2 ==========================
+  id: 197575015445427188
+  identification: 
+    name: P31_MESSAGGIO_2
+    type: Display Only
+
+  label: 
+    label: 'Avviso:'
+    alignment: Left
+
+  settings: 
+    format: Plain Text
+    based-on: Item Value
+    show-line-breaks: true
+    send-on-page-submit: true
+
+  layout: 
+    sequence: 40
+    region: No Parent
+    slot: BODY
+    alignment: Left
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+    label-column-span: Page Template Default
+
+  appearance: 
+    template: Optional - Above
+    template-options: 
+    - '#DEFAULT#'
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    type: Static Value
+    static-value: L'id estrazione non è stato valorizzato
+    used: Always, replacing any existing value in session state
+
+  session-state: 
+    data-type: VARCHAR2
+    storage: Per Session (Persistent)
+
+  server-side-condition: 
+    type: Item is NULL
+    item: P31_ID_ESTRAZIONE
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P31_TITOLO_ESTRAZIONE_BCT ================
+  id: 201330452232564159
+  identification: 
+    name: P31_TITOLO_ESTRAZIONE_BCT
+    type: Display Only
+
+  label: 
+    label: 'Nome Estrazione: '
+    alignment: Left
+
+  settings: 
+    format: Plain Text
+    based-on: Item Value
+    show-line-breaks: true
+    send-on-page-submit: true
+
+  layout: 
+    sequence: 50
+    region: No Parent
+    slot: BODY
+    alignment: Left
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+    label-column-span: Page Template Default
+
+  appearance: 
+    template: Optional - Above
+    template-options: 
+    - '#DEFAULT#'
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    type: SQL Query (return single value)
+    sql-query: 'select nome_estrazione from exporttlr.tbl_parametri_estrazione where id = :P31_ID_ESTRAZIONE'
+    used: Only when current value in session state is null
+
+  session-state: 
+    data-type: VARCHAR2
+    storage: Per Session (Persistent)
+
+  server-side-condition: 
+    type: Rows returned
+    sql-query: |2
+          SELECT 1
+          FROM EXPORTTLR.TBL_HISTORY_BCT
+          WHERE id_estrazione = :P31_ID_ESTRAZIONE;
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P31_TITOLO_ESTRAZIONE_DHP ================
+  id: 201330544910564160
+  identification: 
+    name: P31_TITOLO_ESTRAZIONE_DHP
+    type: Display Only
+
+  label: 
+    label: 'Nome Estrazione: '
+    alignment: Left
+
+  settings: 
+    format: Plain Text
+    based-on: Item Value
+    show-line-breaks: true
+    send-on-page-submit: true
+
+  layout: 
+    sequence: 60
+    region: No Parent
+    slot: BODY
+    alignment: Left
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+    label-column-span: Page Template Default
+
+  appearance: 
+    template: Optional - Above
+    template-options: 
+    - '#DEFAULT#'
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    type: SQL Query (return single value)
+    sql-query: 'select nome_estrazione from exporttlr.tbl_parametri_estrazione_dhp where id = :P31_ID_ESTRAZIONE'
+    used: Only when current value in session state is null
+
+  session-state: 
+    data-type: VARCHAR2
+    storage: Per Session (Persistent)
+
+  server-side-condition: 
+    type: Rows returned
+    sql-query: |2
+          SELECT 1
+          FROM EXPORTTLR.TBL_HISTORY_DHP
+          WHERE id_estrazione = :P31_ID_ESTRAZIONE;
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P31_TITOLO_ESTRAZIONE_ITEM ===============
+  id: 201330663667564161
+  identification: 
+    name: P31_TITOLO_ESTRAZIONE_ITEM
+    type: Display Only
+
+  label: 
+    label: 'Nome Estrazione: '
+    alignment: Left
+
+  settings: 
+    format: Plain Text
+    based-on: Item Value
+    show-line-breaks: true
+    send-on-page-submit: true
+
+  layout: 
+    sequence: 70
+    region: No Parent
+    slot: BODY
+    alignment: Left
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+    label-column-span: Page Template Default
+
+  appearance: 
+    template: Optional - Above
+    template-options: 
+    - '#DEFAULT#'
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    type: SQL Query (return single value)
+    sql-query: 'select nome_estrazione from exporttlr.tbl_parametri_estrazione_item where id = :P31_ID_ESTRAZIONE'
+    used: Only when current value in session state is null
+
+  session-state: 
+    data-type: VARCHAR2
+    storage: Per Session (Persistent)
+
+  server-side-condition: 
+    type: Rows returned
+    sql-query: |2
+          SELECT 1
+          FROM EXPORTTLR.TBL_HISTORY_ITEM
+          WHERE id_estrazione = :P31_ID_ESTRAZIONE;
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+buttons: 
+- # ====== Button: Download_2 ==================================
+  id: 197575384963427192
+  identification: 
+    button-name: Download_2
+    label: Download
+
+  layout: 
+    sequence: 10
+    region: 'Estrazione ID: &P31_ID_ESTRAZIONE.' # 197572086248427159
+    slot: COPY
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    button-template: Text
+    hot: false
+    template-options: 
+    - '#DEFAULT#'
+
+  behavior: 
+    action: Defined by Dynamic Action
+    execute-validations: true
+
+  server-side-condition: 
+    type: Function Body
+    language: PL/SQL
+    pl/sql-function-body: |
+      DECLARE
+      l_bfile    BFILE;
+      l_exists   INTEGER;
+      BEGIN
+          l_bfile := BFILENAME('ESTRAZIONI', 'estrazione_' || :P31_ID_ESTRAZIONE || '.zip');
+          l_exists := DBMS_LOB.fileexists(l_bfile);
+      
+          IF l_exists = 1 THEN
+              return TRUE;
+          ELSE
+              return FALSE;
+          END IF;
+      
+      END;
+
+- # ====== Button: Download_3 ==================================
+  id: 197575468615427193
+  identification: 
+    button-name: Download_3
+    label: Download
+
+  layout: 
+    sequence: 10
+    region: 'Estrazione ID: &P31_ID_ESTRAZIONE.' # 197573340887427172
+    slot: COPY
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    button-template: Text
+    hot: false
+    template-options: 
+    - '#DEFAULT#'
+
+  behavior: 
+    action: Defined by Dynamic Action
+    execute-validations: true
+
+  server-side-condition: 
+    type: Function Body
+    language: PL/SQL
+    pl/sql-function-body: |
+      DECLARE
+      l_bfile    BFILE;
+      l_exists   INTEGER;
+      BEGIN
+          l_bfile := BFILENAME('ESTRAZIONI', 'estrazione_' || :P31_ID_ESTRAZIONE || '.zip');
+          l_exists := DBMS_LOB.fileexists(l_bfile);
+      
+          IF l_exists = 1 THEN
+              return TRUE;
+          ELSE
+              return FALSE;
+          END IF;
+      
+      END;
+
+- # ====== Button: Download_1 ==================================
+  id: 197819032755039167
+  identification: 
+    button-name: Download_1
+    label: Download
+
+  layout: 
+    sequence: 10
+    region: 'Estrazione ID: &P31_ID_ESTRAZIONE.' # 192557020579178872
+    slot: COPY
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    button-template: Text
+    hot: false
+    template-options: 
+    - '#DEFAULT#'
+
+  behavior: 
+    action: Defined by Dynamic Action
+    execute-validations: true
+
+  server-side-condition: 
+    type: Function Body
+    language: PL/SQL
+    pl/sql-function-body: |
+      DECLARE
+      l_bfile    BFILE;
+      l_exists   INTEGER;
+      BEGIN
+          l_bfile := BFILENAME('ESTRAZIONI', 'estrazione_' || :P31_ID_ESTRAZIONE || '.zip');
+          l_exists := DBMS_LOB.fileexists(l_bfile);
+      
+          IF l_exists = 1 THEN
+              return TRUE;
+          ELSE
+              return FALSE;
+          END IF;
+      
+      END;
+
+dynamic-actions: 
+- # ====== Dynamic Action: download 1 ==========================
+  id: 198308462210508659
+  identification: 
+    name: download 1
+
+  execution: 
+    sequence: 10
+    event-scope: Static
+    type: Immediate
+
+  when: 
+    event: Click
+    selection-type: Button
+    button: Download_1 # 197819032755039167
+
+  actions: 
+  - # ====== Action: Execute JavaScript Code =====================
+    id: 198308622425508660
+    identification: 
+      action: Execute JavaScript Code
+
+    settings: 
+      code: |
+        window.location = 'f?p=&APP_ID.:&APP_PAGE_ID.:&SESSION.:APPLICATION_PROCESS=download_estrazione:::P31_ID_ESTRAZIONE:' + $v('P31_ID_ESTRAZIONE');
+        
+
+    execution: 
+      sequence: 10
+      event: download 1 # 198308462210508659
+      fire-when-event-result-is: True
+      fire-on-initialization: false
+
+- # ====== Dynamic Action: download 2 ==========================
+  id: 198308914009508663
+  identification: 
+    name: download 2
+
+  execution: 
+    sequence: 30
+    event-scope: Static
+    type: Immediate
+
+  when: 
+    event: Click
+    selection-type: Button
+    button: Download_2 # 197575384963427192
+
+  actions: 
+  - # ====== Action: Execute JavaScript Code =====================
+    id: 198308773199508662
+    identification: 
+      action: Execute JavaScript Code
+
+    settings: 
+      code: |
+        window.location = 'f?p=&APP_ID.:&APP_PAGE_ID.:&SESSION.:APPLICATION_PROCESS=download_estrazione:::P31_ID_ESTRAZIONE:' + $v('P31_ID_ESTRAZIONE');
+        
+
+    execution: 
+      sequence: 10
+      event: download 2 # 198308914009508663
+      fire-when-event-result-is: True
+      fire-on-initialization: false
+
+- # ====== Dynamic Action: download 3 ==========================
+  id: 198309106060508665
+  identification: 
+    name: download 3
+
+  execution: 
+    sequence: 40
+    event-scope: Static
+    type: Immediate
+
+  when: 
+    event: Click
+    selection-type: Button
+    button: Download_3 # 197575468615427193
+
+  actions: 
+  - # ====== Action: Execute JavaScript Code =====================
+    id: 198309276306508667
+    identification: 
+      action: Execute JavaScript Code
+
+    settings: 
+      code: |
+        window.location = 'f?p=&APP_ID.:&APP_PAGE_ID.:&SESSION.:APPLICATION_PROCESS=download_estrazione:::P31_ID_ESTRAZIONE:' + $v('P31_ID_ESTRAZIONE');
+        
+
+    execution: 
+      sequence: 10
+      event: download 3 # 198309106060508665
+      fire-when-event-result-is: True
+      fire-on-initialization: false
+

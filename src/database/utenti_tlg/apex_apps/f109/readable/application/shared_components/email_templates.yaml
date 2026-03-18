@@ -1,0 +1,33 @@
+---
+- # ====== Email Template: JOBMONITORINGALARM ==================
+  id: 330964010709833641
+  identification: 
+    name: JOBMONITORINGALARM
+    email-subject: 'Allarme Monitoraggio Job #JOB_NAME#'
+
+  html-format: 
+    body: |
+      Buongiorno,<br>
+      il job #JOB_NAME# dello schema #SCHEMA# ha bisogno della tua attenzione.
+      Per visualizzare la pagina di monitoraggio job attivi sul portale unico seguire <a href=https://sactlrdbporprd01/ords/f?p=109:33>questo link.</a><br> 
+      <br>
+      Si ricorda che la pagina di monitoraggio job viene aggiornata ogni 15 minuti durante l'orario lavorativo.
+      <br><br>
+      Il Team SAC_TLR.
+
+  plain-text-format: 
+    content: |
+      Buongiorno,
+      il job #JOB_NAME# dello schema #SCHEMA# ha bisogno della tua attenzione.
+      Per visualizzare la pagina di monitoraggio job attivi sul portale unico andare al link https://sactlrdbporprd01/ords/f?p=109:33
+      
+      Si ricorda che la pagina di monitoraggio job viene aggiornata ogni 15 minuti durante l'orario lavorativo.
+      
+      Il Team SAC_TLR
+
+  advanced: 
+    static-id: JOBMONITORINGALARM
+
+  subscription: 
+    version-number: 1
+

@@ -1,0 +1,34 @@
+---
+- # ====== Application Process: download_estrazione ============
+  id: 198277110571316122
+  identification: 
+    name: download_estrazione
+    type: NATIVE_PLSQL
+
+  source: 
+    location: Local Database
+    language: PL/SQL
+    pl/sql-code: |2
+          DECLARE
+              l_id_estrazione VARCHAR2(100);
+          BEGIN
+              l_id_estrazione := v('P'|| :APP_PAGE_ID ||'_ID_ESTRAZIONE');
+              p_download_estrazione('ESTRAZIONI', 'estrazione_' || l_id_estrazione || '.zip');
+          EXCEPTION
+              WHEN OTHERS THEN
+                  exporttlr.p_log_messaggio('application_process', 1000, 'Errore durante esecuzione di p_download_estrazione: ' || SQLERRM, '');
+          END;
+
+  execution: 
+    sequence: 1
+    point: Ajax Callback
+
+  error: 
+    error-message: Errore nel processo
+
+  security: 
+    authorization-scheme: MODEL.LOV.MUST_NOT_BE_PUBLIC_USER
+
+  subscription: 
+    version-number: 1
+

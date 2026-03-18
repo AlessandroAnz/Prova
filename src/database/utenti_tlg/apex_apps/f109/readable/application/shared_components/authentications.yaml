@@ -1,0 +1,48 @@
+---
+- # ====== Authentication: Application Express Accounts ========
+  id: 11853693021520681
+  identification: 
+    name: Application Express Accounts
+
+  subscription: 
+    version-number: 1
+
+  settings: 
+    type: Oracle APEX Accounts
+
+  session-not-valid: 
+    redirect-to: Login Page
+
+  login-processing: 
+    switch-in-session: false
+
+  real-application-security: 
+    ras-mode: Disabled
+
+- # ====== Authentication: iren-Ldap ===========================
+  id: 12104967364136444
+  identification: 
+    name: iren-Ldap
+
+  subscription: 
+    version-number: 1
+
+  settings: 
+    type: LDAP Directory
+    host: dc00.master.local
+    port: 389
+    use-ssl: No SSL
+    distinguished-name-(dn)-string: master\%LDAP_USER%
+    use-exact-distinguished-name-(dn): true
+    username-escaping: Standard
+
+  session-not-valid: 
+    redirect-to: Login Page
+
+  login-processing: 
+    post-authentication-procedure-name: set_last_login
+    switch-in-session: false
+
+  real-application-security: 
+    ras-mode: Disabled
+

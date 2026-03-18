@@ -1,0 +1,726 @@
+---
+# ====== Page: Visualizza Utenti =============================
+id: 6
+identification: 
+  name: Visualizza Utenti
+  alias: VISUALIZZA-UTENTI
+  title: Visualizza Utenti
+
+appearance: 
+  page-mode: Normal
+  page-template: Theme Default
+  template-options: 
+  - '#DEFAULT#'
+
+navigation-menu: 
+  override-user-interface-level: false
+
+navigation: 
+  cursor-focus: Do not focus cursor
+  warn-on-unsaved-changes: true
+
+security: 
+  authentication: Page Requires Authentication
+  deep-linking: Application Default
+  page-access-protection: Arguments Must Have Checksum
+  form-auto-complete: Off
+  browser-cache: Application Default
+
+session-management: 
+  rejoin-sessions: Application Default
+
+advanced: 
+  enable-duplicate-page-submissions: Yes - Enable page to be re-posted
+  reload-on-submit: Only for Success
+
+server-cache: 
+  caching: Disabled
+
+regions: 
+- # ====== Region: Report 1 ====================================
+  id: 27930883692941097
+  identification: 
+    name: Report 1
+    type: Interactive Report
+
+  source: 
+    location: Local Database
+    type: SQL Query
+    sql-query: |
+      SELECT tau.ID_UTENTE, tau.NOME_UTENTE, tau.ID_PROFILO, tau.ID_IMPRESA, tau.E_MAIL, tau.DATA_FINE_VALIDITA, tau.LAST_LOGIN, tau.LDAP_ACCOUNT, 
+             tau.RUOLO_MONITORAGGIO, tau.LAST_IP, tau.ID_RUOLO_PORTALE,
+             listagg (a.descrizione, '<BR>') WITHIN GROUP (ORDER BY null) aree
+      FROM TBL_ANAG_UTENTI tau 
+      CROSS JOIN table(CAST(MULTISET( SELECT LEVEL FROM dual
+                                      CONNECT BY LEVEL <= regexp_count(tau.ID_AREE, ':') + 1)
+                                      AS sys.odcinumberlist )) x
+      LEFT JOIN tbl_aree  a ON a.id = regexp_substr(tau.ID_AREE, '[^:]+', 1, x.column_value)
+      group BY tau.ID_UTENTE, tau.NOME_UTENTE, tau.ID_PROFILO, tau.ID_IMPRESA, tau.E_MAIL, tau.DATA_FINE_VALIDITA, tau.LAST_LOGIN, tau.LDAP_ACCOUNT, 
+             tau.RUOLO_MONITORAGGIO, tau.LAST_IP, tau.ID_RUOLO_PORTALE
+
+  layout: 
+    sequence: 20
+    parent-region: No Parent
+    slot: BODY
+    start-new-layout: false
+    start-new-row: true
+    column: 1
+    new-column: true
+    column-span: 11
+
+  appearance: 
+    template: Interactive Report
+    template-options: 
+    - '#DEFAULT#'
+    render-components: Above Content
+
+  advanced: 
+    region-display-selector: false
+    exclude-title-from-translation: false
+
+  server-cache: 
+    caching: Disabled
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    id: 27931268873941097
+    link: 
+      link-column: Link to Custom Target
+      target: 
+        url: 'f?p=&APP_ID.:7:&SESSION.::&DEBUG.:RP:P7_ID_UTENTE:\#ID_UTENTE#\'
+        page: 7 # Gestione Utenti
+        clear-cache: RP
+        values: 
+          p7_id_utente: '#ID_UTENTE#'
+
+      link-icon: <span aria-label="Edit"><span class="fa fa-edit" aria-hidden="true" title="Edit"></span></span>
+
+    pagination: 
+      type: Row Ranges X to Y of Z
+      display-position: Bottom - Right
+
+    performance: 
+      lazy-loading: false
+
+    messages: 
+      when-no-data-found: No data found.
+      when-more-data-found: 'The maximum row count for this report is #MAX_ROW_COUNT# rows.  Please apply a filter to reduce the number of records in your query.'
+
+    search-bar: 
+      include-search-bar: true
+      search-field: true
+      finder-drop-down: true
+      reports-select-list: true
+      rows-per-page-selector: false
+
+    actions-menu: 
+      include-actions-menu: true
+      filter: true
+      select-columns: true
+      rows-per-page: true
+      sort: true
+      control-break: true
+      highlight: true
+      compute: true
+      aggregate: true
+      chart: true
+      group-by: true
+      pivot: true
+      flashback: true
+      save-report: true
+      save-public-report: false
+      reset: true
+      help: true
+      download: true
+      subscription: false
+
+    download: 
+      formats: 
+      - CSV
+      - HTML
+      - Excel
+      - PDF
+      send-as-email: true
+
+    heading: 
+      fixed-to: Page
+
+    icon-view: 
+      show: false
+
+    detail-view: 
+      show: false
+
+    saved-reports: 
+    - # ====== Saved Report: Primary Report ========================
+      id: 27936302251942109
+      identification: 
+        name: Primary Report
+        alias: 209060
+
+    columns: 
+    - # ====== Column: LAST_LOGIN ==================================
+      id: 27729690868450399
+      identification: 
+        column-name: LAST_LOGIN
+        type: Plain Text
+
+      heading: 
+        heading: Last Login
+        alignment: center
+
+      single-row-view: 
+        use-column-heading: true
+
+      layout: 
+        sequence: 65
+        column-alignment: center
+
+      accessibility: 
+        value-identifies-row: false
+
+      appearance: 
+        format-mask: 'dd/mm/yyyy hh24:mi:ss'
+
+      source: 
+        primary-key: false
+
+      column-filter: 
+        type: Default Based on Column Type
+        date-ranges: All
+
+      enable-users-to: 
+        hide: true
+        sort: true
+        filter: true
+        highlight: true
+        control-break: true
+        aggregate: true
+        compute: true
+        chart: true
+        group-by: true
+        pivot: true
+
+      security: 
+        escape-special-characters: true
+
+    - # ====== Column: LAST_IP =====================================
+      id: 27729736202450400
+      identification: 
+        column-name: LAST_IP
+        type: Hidden
+
+      heading: 
+        heading: Last Ip
+
+      layout: 
+        sequence: 75
+
+      source: 
+        primary-key: false
+
+      security: 
+        escape-special-characters: true
+
+    - # ====== Column: ID_RUOLO_PORTALE ============================
+      id: 27730152806450404
+      identification: 
+        column-name: ID_RUOLO_PORTALE
+        type: Plain Text (based on List of Values)
+
+      list-of-values: 
+        list-of-values: RUOLI_PORTALE # 28436269546840905
+
+      heading: 
+        heading: Ruolo Portale
+        alignment: center
+
+      single-row-view: 
+        use-column-heading: true
+
+      layout: 
+        sequence: 35
+        column-alignment: center
+
+      accessibility: 
+        value-identifies-row: false
+
+      source: 
+        primary-key: false
+
+      column-filter: 
+        type: Use Named List of Values to Filter Exact Match
+
+      enable-users-to: 
+        hide: true
+        sort: true
+        filter: true
+        highlight: true
+        control-break: true
+        aggregate: true
+        compute: true
+        chart: true
+        group-by: true
+        pivot: true
+
+    - # ====== Column: ID_UTENTE ===================================
+      id: 27931366957941101
+      identification: 
+        column-name: ID_UTENTE
+        type: Hidden
+
+      heading: 
+        heading: Id Utente
+
+      layout: 
+        sequence: 1
+
+      source: 
+        primary-key: false
+
+      security: 
+        escape-special-characters: true
+
+    - # ====== Column: NOME_UTENTE =================================
+      id: 27931712121941105
+      identification: 
+        column-name: NOME_UTENTE
+        type: Plain Text
+
+      heading: 
+        heading: Nome Utente
+        alignment: center
+
+      single-row-view: 
+        use-column-heading: true
+
+      layout: 
+        sequence: 2
+        column-alignment: center
+
+      accessibility: 
+        value-identifies-row: false
+
+      source: 
+        primary-key: false
+
+      column-filter: 
+        type: Default Based on Column Type
+
+      enable-users-to: 
+        hide: true
+        sort: true
+        filter: true
+        highlight: true
+        control-break: true
+        aggregate: true
+        compute: true
+        chart: true
+        group-by: true
+        pivot: true
+
+      security: 
+        escape-special-characters: true
+
+    - # ====== Column: E_MAIL ======================================
+      id: 27932916260941106
+      identification: 
+        column-name: E_MAIL
+        type: Plain Text
+
+      heading: 
+        heading: E Mail
+        alignment: center
+
+      single-row-view: 
+        use-column-heading: true
+
+      layout: 
+        sequence: 5
+        column-alignment: center
+
+      accessibility: 
+        value-identifies-row: false
+
+      source: 
+        primary-key: false
+
+      column-filter: 
+        type: Default Based on Column Type
+
+      enable-users-to: 
+        hide: true
+        sort: true
+        filter: true
+        highlight: true
+        control-break: true
+        aggregate: true
+        compute: true
+        chart: true
+        group-by: true
+        pivot: true
+
+      security: 
+        escape-special-characters: true
+
+    - # ====== Column: LDAP_ACCOUNT ================================
+      id: 27933653990941106
+      identification: 
+        column-name: LDAP_ACCOUNT
+        type: Plain Text
+
+      heading: 
+        heading: Ldap Account
+        alignment: center
+
+      single-row-view: 
+        use-column-heading: true
+
+      layout: 
+        sequence: 25
+        column-alignment: center
+
+      accessibility: 
+        value-identifies-row: false
+
+      source: 
+        primary-key: false
+
+      column-filter: 
+        type: Default Based on Column Type
+
+      enable-users-to: 
+        hide: true
+        sort: true
+        filter: true
+        highlight: true
+        control-break: true
+        aggregate: true
+        compute: true
+        chart: true
+        group-by: true
+        pivot: true
+
+      security: 
+        escape-special-characters: true
+
+    - # ====== Column: RUOLO_MONITORAGGIO ==========================
+      id: 27934056071941107
+      identification: 
+        column-name: RUOLO_MONITORAGGIO
+        type: Plain Text (based on List of Values)
+
+      list-of-values: 
+        list-of-values: RUOLI_MONITORAGGIO # 27946503786000470
+
+      heading: 
+        heading: Ruolo Monitoraggio
+        alignment: center
+
+      single-row-view: 
+        use-column-heading: true
+
+      layout: 
+        sequence: 45
+        column-alignment: center
+
+      accessibility: 
+        value-identifies-row: false
+
+      source: 
+        primary-key: false
+
+      column-filter: 
+        type: Use Named List of Values to Filter Exact Match
+
+      enable-users-to: 
+        hide: true
+        sort: true
+        filter: true
+        highlight: true
+        control-break: true
+        aggregate: true
+        compute: true
+        chart: true
+        group-by: true
+        pivot: true
+
+    - # ====== Column: ID_PROFILO ==================================
+      id: 32422029979447661
+      identification: 
+        column-name: ID_PROFILO
+        type: Hidden
+
+      heading: 
+        heading: Id Profilo
+
+      layout: 
+        sequence: 85
+
+      source: 
+        primary-key: false
+
+      security: 
+        escape-special-characters: true
+
+    - # ====== Column: ID_IMPRESA ==================================
+      id: 32422200121447662
+      identification: 
+        column-name: ID_IMPRESA
+        type: Plain Text (based on List of Values)
+
+      list-of-values: 
+        list-of-values: IMPRESE_LOV # 32841603862157756
+
+      heading: 
+        heading: Nome Impresa
+        alignment: center
+
+      single-row-view: 
+        use-column-heading: true
+
+      layout: 
+        sequence: 95
+        column-alignment: center
+
+      accessibility: 
+        value-identifies-row: false
+
+      source: 
+        primary-key: false
+
+      column-filter: 
+        type: Use Named List of Values to Filter Exact Match
+
+      enable-users-to: 
+        hide: true
+        sort: true
+        filter: true
+        highlight: true
+        control-break: true
+        aggregate: true
+        compute: true
+        chart: true
+        group-by: true
+        pivot: true
+
+    - # ====== Column: DATA_FINE_VALIDITA ==========================
+      id: 32422261211447663
+      identification: 
+        column-name: DATA_FINE_VALIDITA
+        type: Hidden
+
+      heading: 
+        heading: Data Fine Validita
+
+      layout: 
+        sequence: 15
+
+      source: 
+        primary-key: false
+
+      security: 
+        escape-special-characters: true
+
+    - # ====== Column: AREE ========================================
+      id: 32422397577447664
+      identification: 
+        column-name: AREE
+        type: Plain Text
+
+      heading: 
+        heading: Aree
+        alignment: center
+
+      single-row-view: 
+        use-column-heading: true
+
+      layout: 
+        sequence: 55
+        column-alignment: center
+
+      accessibility: 
+        value-identifies-row: false
+
+      source: 
+        primary-key: false
+
+      column-filter: 
+        type: Default Based on Column Type
+
+      enable-users-to: 
+        hide: true
+        sort: true
+        filter: true
+        highlight: true
+        control-break: true
+        aggregate: true
+        compute: true
+        chart: true
+        group-by: true
+        pivot: true
+
+      security: 
+        escape-special-characters: false
+
+    printing: 
+      output: 
+        layout: Default Report Layout
+        view-file-as: Attachment
+
+      page: 
+        size: Letter
+        orientation: Landscape
+        units: Inches
+        width: 11
+        height: 8.5
+        border-width: 0.5
+        border-color: '#666666'
+
+      page-header: 
+        font: Helvetica
+        font-weight: Normal
+        font-size: 12
+        font-color: '#000000'
+        alignment: center
+        page-header-text: Report 1
+
+      column-headings: 
+        font: Helvetica
+        font-weight: Bold
+        font-size: 10
+        font-color: '#000000'
+        background-color: '#EEEEEE'
+
+      columns: 
+        font: Helvetica
+        font-weight: Normal
+        font-size: 10
+        font-color: '#000000'
+        background-color: '#FFFFFF'
+
+      page-footer: 
+        font: Helvetica
+        font-weight: Normal
+        font-size: 12
+        font-color: '#000000'
+        alignment: center
+
+- # ====== Region: Breadcrumb ==================================
+  id: 27934655083941109
+  identification: 
+    name: Breadcrumb
+    type: Breadcrumb
+
+  source: 
+    breadcrumb: Breadcrumb # 11853987875520682
+
+  layout: 
+    sequence: 10
+    parent-region: No Parent
+    slot: REGION_POSITION_01
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Title Bar
+    template-options: 
+    - '#DEFAULT#'
+    - t-BreadcrumbRegion--compactTitle
+    - t-BreadcrumbRegion--useBreadcrumbTitle
+    render-components: Above Content
+
+  advanced: 
+    region-display-selector: false
+    exclude-title-from-translation: false
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    appearance: 
+      breadcrumb-template: Breadcrumb
+      template-options: 
+      - '#DEFAULT#'
+
+- # ====== Region: GUIDA ALL'USO ===============================
+  id: 80338077323603179
+  identification: 
+    name: GUIDA ALL'USO
+    type: Static Content
+
+  source: 
+    html-code: |
+      Il report mostra l'elenco degli Utenti registrati all'interno del Portale Unico.<br>
+      Per creare un nuovo utente, fare clic sul pulsante <b>Crea Utente</b>.<br>
+      Per visualizzare, modificare o eliminare un utente, cliccare il pulsante presente nella prima colonna.
+
+  layout: 
+    sequence: 10
+    parent-region: No Parent
+    slot: BODY
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: 6
+
+  appearance: 
+    template: Collapsible
+    template-options: 
+    - '#DEFAULT#'
+    - t-Region--hideShowIconsMath
+    - is-collapsed
+    - t-Region--scrollBody
+    render-components: Above Content
+
+  advanced: 
+    region-display-selector: true
+    exclude-title-from-translation: false
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    settings: 
+      output-as: HTML
+      expand-shortcuts: false
+
+buttons: 
+- # ====== Button: CREATE ======================================
+  id: 27935908977941111
+  identification: 
+    button-name: CREATE
+    label: Crea Utente
+
+  layout: 
+    sequence: 30
+    region: Report 1 # 27930883692941097
+    slot: RIGHT_OF_IR_SEARCH_BAR
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    button-template: Text
+    hot: true
+    template-options: 
+    - '#DEFAULT#'
+    - t-Button--primary
+
+  behavior: 
+    action: Redirect to Page in this Application
+    target: 
+      url: 'f?p=&APP_ID.:7:&SESSION.::&DEBUG.:7'
+      page: 7 # Gestione Utenti
+      clear-cache: 7
+
+    warn-on-unsaved-changes: Do Not Check
+

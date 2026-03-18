@@ -1,0 +1,1492 @@
+---
+# ====== Page: Gestione Utenti ===============================
+id: 7
+identification: 
+  name: Gestione Utenti
+  alias: GESTIONE-UTENTI
+  title: Gestione Utenti
+
+appearance: 
+  page-mode: Normal
+  page-template: Theme Default
+  template-options: 
+  - '#DEFAULT#'
+
+navigation-menu: 
+  override-user-interface-level: false
+
+navigation: 
+  cursor-focus: Do not focus cursor
+  warn-on-unsaved-changes: true
+
+security: 
+  authentication: Page Requires Authentication
+  deep-linking: Application Default
+  page-access-protection: Arguments Must Have Checksum
+  form-auto-complete: Off
+  browser-cache: Application Default
+
+session-management: 
+  rejoin-sessions: Application Default
+
+advanced: 
+  enable-duplicate-page-submissions: Yes - Enable page to be re-posted
+  reload-on-submit: Only for Success
+
+server-cache: 
+  caching: Disabled
+
+regions: 
+- # ====== Region: Gestione Utenti =============================
+  id: 27921685922941086
+  identification: 
+    name: Gestione Utenti
+    type: Form
+
+  source: 
+    location: Local Database
+    type: Table / View
+    table-owner: Parsing Schema
+    table-name: TBL_ANAG_UTENTI
+    include-rowid-column: false
+
+  layout: 
+    sequence: 10
+    parent-region: No Parent
+    slot: BODY
+    start-new-layout: false
+    start-new-row: true
+    column: 2
+    new-column: true
+    column-span: 7
+
+  appearance: 
+    template: Standard
+    template-options: 
+    - '#DEFAULT#'
+    - t-Region--scrollBody
+    render-components: Above Content
+
+  advanced: 
+    region-display-selector: false
+    exclude-title-from-translation: false
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    edit: 
+      enabled: true
+      allowed-operations: 
+      - Add Row
+      - Update Row
+      - Delete Row
+      lost-update-type: Row Values
+
+- # ====== Region: Breadcrumb ==================================
+  id: 27935302855941111
+  identification: 
+    name: Breadcrumb
+    type: Breadcrumb
+
+  source: 
+    breadcrumb: Breadcrumb # 11853987875520682
+
+  layout: 
+    sequence: 10
+    parent-region: No Parent
+    slot: REGION_POSITION_01
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Title Bar
+    template-options: 
+    - '#DEFAULT#'
+    - t-BreadcrumbRegion--compactTitle
+    - t-BreadcrumbRegion--useBreadcrumbTitle
+    render-components: Above Content
+
+  advanced: 
+    region-display-selector: false
+    exclude-title-from-translation: false
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    appearance: 
+      breadcrumb-template: Breadcrumb
+      template-options: 
+      - '#DEFAULT#'
+
+page-items: 
+- # ====== Page Item: P7_LAST_LOGIN ============================
+  id: 27730536306450408
+  identification: 
+    name: P7_LAST_LOGIN
+    type: Display Only
+
+  label: 
+    label: Last Login
+    alignment: Left
+
+  settings: 
+    format: Plain Text
+    based-on: Item Value
+    show-line-breaks: true
+    send-on-page-submit: true
+
+  layout: 
+    sequence: 140
+    region: Gestione Utenti # 27921685922941086
+    slot: BODY
+    alignment: Left
+    start-new-layout: false
+    start-new-row: false
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+    label-column-span: Page Template Default
+
+  appearance: 
+    template: Optional - Floating
+    template-options: 
+    - '#DEFAULT#'
+    format-mask: 'dd/mm/yyyy hh24:mi:ss'
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    form-region: Gestione Utenti # 27921685922941086
+    column: LAST_LOGIN
+    data-type: TIMESTAMP
+    query-only: false
+    primary-key: false
+
+  session-state: 
+    data-type: VARCHAR2
+    storage: Per Request (Memory Only)
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P7_ID_UTENTE =============================
+  id: 27922110061941087
+  identification: 
+    name: P7_ID_UTENTE
+    type: Hidden
+
+  settings: 
+    value-protected: true
+
+  layout: 
+    sequence: 10
+    region: Gestione Utenti # 27921685922941086
+    slot: BODY
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    form-region: Gestione Utenti # 27921685922941086
+    column: ID_UTENTE
+    data-type: NUMBER
+    query-only: false
+    primary-key: true
+
+  session-state: 
+    data-type: VARCHAR2
+    storage: Per Request (Memory Only)
+
+  security: 
+    session-state-protection: Checksum Required - Session Level
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P7_NOME_UTENTE ===========================
+  id: 27922439053941088
+  identification: 
+    name: P7_NOME_UTENTE
+    type: Text Field
+
+  label: 
+    label: Nome Utente
+    alignment: Left
+
+  settings: 
+    subtype: Text
+    trim-spaces: None
+    text-case: NO CHANGE
+    submit-when-enter-pressed: false
+    disabled: false
+
+  layout: 
+    sequence: 20
+    region: Gestione Utenti # 27921685922941086
+    slot: BODY
+    alignment: Left
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+    label-column-span: Page Template Default
+
+  appearance: 
+    template: Required - Floating
+    template-options: 
+    - '#DEFAULT#'
+    width: 32
+
+  validation: 
+    value-required: false
+    maximum-length: 50
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    form-region: Gestione Utenti # 27921685922941086
+    column: NOME_UTENTE
+    data-type: VARCHAR2
+    query-only: false
+    primary-key: false
+
+  session-state: 
+    storage: Per Request (Memory Only)
+
+  quick-picks: 
+    show-quick-picks: false
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P7_E_MAIL ================================
+  id: 27923632500941089
+  identification: 
+    name: P7_E_MAIL
+    type: Text Field
+
+  label: 
+    label: E Mail
+    alignment: Left
+
+  settings: 
+    subtype: E-Mail
+    trim-spaces: Leading and Trailing
+    text-case: NO CHANGE
+    submit-when-enter-pressed: false
+    disabled: false
+
+  layout: 
+    sequence: 60
+    region: Gestione Utenti # 27921685922941086
+    slot: BODY
+    alignment: Left
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+    label-column-span: Page Template Default
+
+  appearance: 
+    template: Optional - Floating
+    template-options: 
+    - '#DEFAULT#'
+    width: 60
+
+  validation: 
+    value-required: false
+    maximum-length: 100
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    form-region: Gestione Utenti # 27921685922941086
+    column: E_MAIL
+    data-type: VARCHAR2
+    query-only: false
+    primary-key: false
+
+  session-state: 
+    storage: Per Request (Memory Only)
+
+  quick-picks: 
+    show-quick-picks: false
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P7_LDAP_ACCOUNT ==========================
+  id: 27924433936941090
+  identification: 
+    name: P7_LDAP_ACCOUNT
+    type: Text Field
+
+  label: 
+    label: Ldap Account
+    alignment: Left
+
+  settings: 
+    subtype: Text
+    trim-spaces: Leading and Trailing
+    text-case: NO CHANGE
+    submit-when-enter-pressed: false
+    disabled: false
+
+  layout: 
+    sequence: 30
+    region: Gestione Utenti # 27921685922941086
+    slot: BODY
+    alignment: Left
+    start-new-layout: false
+    start-new-row: false
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+    label-column-span: Page Template Default
+
+  appearance: 
+    template: Required - Floating
+    template-options: 
+    - '#DEFAULT#'
+    width: 60
+
+  validation: 
+    value-required: false
+    maximum-length: 100
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    form-region: Gestione Utenti # 27921685922941086
+    column: LDAP_ACCOUNT
+    data-type: VARCHAR2
+    query-only: false
+    primary-key: false
+
+  session-state: 
+    storage: Per Request (Memory Only)
+
+  quick-picks: 
+    show-quick-picks: false
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P7_RUOLO_MONITORAGGIO ====================
+  id: 27924876282941091
+  identification: 
+    name: P7_RUOLO_MONITORAGGIO
+    type: Select List
+
+  label: 
+    label: Ruolo Monitoraggio
+    alignment: Left
+
+  settings: 
+    page-action-on-selection: None
+
+  multiple-values: 
+    type: No
+
+  layout: 
+    sequence: 90
+    region: Gestione Utenti # 27921685922941086
+    slot: BODY
+    alignment: Left
+    start-new-layout: false
+    start-new-row: false
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+    label-column-span: Page Template Default
+
+  appearance: 
+    template: Required - Floating
+    template-options: 
+    - '#DEFAULT#'
+    height: 1
+
+  validation: 
+    value-required: false
+
+  list-of-values: 
+    type: Shared Component
+    list-of-values: RUOLI_MONITORAGGIO # 27946503786000470
+    display-extra-values: false
+    display-null-value: false
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    form-region: Gestione Utenti # 27921685922941086
+    column: RUOLO_MONITORAGGIO
+    data-type: NUMBER
+    query-only: false
+    primary-key: false
+
+  session-state: 
+    storage: Per Request (Memory Only)
+
+  quick-picks: 
+    show-quick-picks: false
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P7_LAST_IP ===============================
+  id: 28436665704845759
+  identification: 
+    name: P7_LAST_IP
+    type: Display Only
+
+  label: 
+    label: Last Ip
+    alignment: Left
+
+  settings: 
+    format: Plain Text
+    based-on: Item Value
+    show-line-breaks: true
+    send-on-page-submit: true
+
+  layout: 
+    sequence: 150
+    region: Gestione Utenti # 27921685922941086
+    slot: BODY
+    alignment: Left
+    start-new-layout: false
+    start-new-row: false
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+    label-column-span: Page Template Default
+
+  appearance: 
+    template: Optional - Floating
+    template-options: 
+    - '#DEFAULT#'
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    form-region: Gestione Utenti # 27921685922941086
+    column: LAST_IP
+    data-type: VARCHAR2
+    query-only: false
+    primary-key: false
+
+  session-state: 
+    data-type: VARCHAR2
+    storage: Per Request (Memory Only)
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P7_ID_RUOLO_PORTALE ======================
+  id: 28436819446845760
+  identification: 
+    name: P7_ID_RUOLO_PORTALE
+    type: Select List
+
+  label: 
+    label: Ruolo Portale
+    alignment: Left
+
+  settings: 
+    page-action-on-selection: None
+
+  multiple-values: 
+    type: No
+
+  layout: 
+    sequence: 80
+    region: Gestione Utenti # 27921685922941086
+    slot: BODY
+    alignment: Left
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+    label-column-span: Page Template Default
+
+  appearance: 
+    template: Required - Floating
+    template-options: 
+    - '#DEFAULT#'
+    height: 1
+
+  validation: 
+    value-required: false
+
+  list-of-values: 
+    type: Shared Component
+    list-of-values: RUOLI_PORTALE # 28436269546840905
+    display-extra-values: true
+    display-null-value: true
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    form-region: Gestione Utenti # 27921685922941086
+    column: ID_RUOLO_PORTALE
+    data-type: NUMBER
+    query-only: false
+    primary-key: false
+
+  session-state: 
+    storage: Per Request (Memory Only)
+
+  quick-picks: 
+    show-quick-picks: false
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P7_USER_NAME =============================
+  id: 28441399865845806
+  identification: 
+    name: P7_USER_NAME
+    type: Text Field
+
+  label: 
+    label: User Name
+    alignment: Left
+
+  settings: 
+    subtype: Text
+    trim-spaces: Leading and Trailing
+    text-case: NO CHANGE
+    submit-when-enter-pressed: false
+    disabled: false
+
+  layout: 
+    sequence: 40
+    region: Gestione Utenti # 27921685922941086
+    slot: BODY
+    alignment: Left
+    start-new-layout: false
+    start-new-row: false
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+    label-column-span: Page Template Default
+
+  appearance: 
+    template: Optional - Floating
+    template-options: 
+    - '#DEFAULT#'
+    width: 30
+
+  validation: 
+    value-required: false
+    maximum-length: 100
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    form-region: Gestione Utenti # 27921685922941086
+    column: USER_NAME
+    data-type: VARCHAR2
+    query-only: false
+    primary-key: false
+
+  session-state: 
+    storage: Per Request (Memory Only)
+
+  quick-picks: 
+    show-quick-picks: false
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P7_ID_PROFILO ============================
+  id: 28441444332845807
+  identification: 
+    name: P7_ID_PROFILO
+    type: Hidden
+
+  settings: 
+    value-protected: true
+
+  layout: 
+    sequence: 160
+    region: Gestione Utenti # 27921685922941086
+    slot: BODY
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    form-region: Gestione Utenti # 27921685922941086
+    column: ID_PROFILO
+    data-type: NUMBER
+    query-only: false
+    primary-key: false
+
+  session-state: 
+    data-type: VARCHAR2
+    storage: Per Request (Memory Only)
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P7_ID_IMPRESA ============================
+  id: 28441614262845808
+  identification: 
+    name: P7_ID_IMPRESA
+    type: Popup LOV
+
+  label: 
+    label: Impresa
+    alignment: Left
+
+  settings: 
+    display-as: Inline Popup
+    initial-fetch: Automatic
+    manual-entry: false
+    search-as-you-type: false
+
+  multiple-values: 
+    type: No
+
+  layout: 
+    sequence: 100
+    region: Gestione Utenti # 27921685922941086
+    slot: BODY
+    alignment: Left
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+    label-column-span: Page Template Default
+
+  appearance: 
+    template: Optional - Floating
+    template-options: 
+    - '#DEFAULT#'
+    width: 30
+
+  validation: 
+    value-required: false
+
+  list-of-values: 
+    type: Shared Component
+    list-of-values: IMPRESE_LOV # 32841603862157756
+    display-extra-values: true
+    display-null-value: true
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    form-region: Gestione Utenti # 27921685922941086
+    column: ID_IMPRESA
+    data-type: NUMBER
+    query-only: false
+    primary-key: false
+
+  session-state: 
+    storage: Per Request (Memory Only)
+
+  quick-picks: 
+    show-quick-picks: false
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P7_DATA_FINE_VALIDITA ====================
+  id: 32421899966447659
+  identification: 
+    name: P7_DATA_FINE_VALIDITA
+    type: Date Picker
+
+  label: 
+    label: Data Fine Validita
+    alignment: Left
+
+  settings: 
+    show-time: false
+    display-as: Popup
+    minimum-date: None
+    maximum-date: None
+    multiple-months: No
+    use-defaults: true
+
+  layout: 
+    sequence: 130
+    region: Gestione Utenti # 27921685922941086
+    slot: BODY
+    alignment: Left
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+    label-column-span: Page Template Default
+
+  appearance: 
+    template: Optional - Floating
+    template-options: 
+    - '#DEFAULT#'
+    width: 30
+
+  validation: 
+    value-required: false
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    form-region: Gestione Utenti # 27921685922941086
+    column: DATA_FINE_VALIDITA
+    data-type: DATE
+    query-only: false
+    primary-key: false
+
+  session-state: 
+    storage: Per Request (Memory Only)
+
+  quick-picks: 
+    show-quick-picks: false
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P7_ID_AREE ===============================
+  id: 32421950187447660
+  identification: 
+    name: P7_ID_AREE
+    type: Popup LOV
+
+  label: 
+    label: Aree
+    alignment: Left
+
+  settings: 
+    display-as: Inline Popup
+    initial-fetch: Automatic
+    manual-entry: false
+    search-as-you-type: false
+
+  multiple-values: 
+    type: Delimited List
+    separator: ':'
+
+  layout: 
+    sequence: 110
+    region: Gestione Utenti # 27921685922941086
+    slot: BODY
+    alignment: Left
+    start-new-layout: false
+    start-new-row: false
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+    label-column-span: Page Template Default
+
+  appearance: 
+    template: Optional - Floating
+    template-options: 
+    - '#DEFAULT#'
+    width: 30
+
+  validation: 
+    value-required: false
+    maximum-length: 100
+
+  list-of-values: 
+    type: SQL Query
+    sql-query: select  descrizione d, id r from utenti_tlg.tbl_aree
+    display-extra-values: true
+    display-null-value: true
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    form-region: Gestione Utenti # 27921685922941086
+    column: ID_AREE
+    data-type: VARCHAR2
+    query-only: false
+    primary-key: false
+
+  session-state: 
+    storage: Per Request (Memory Only)
+
+  quick-picks: 
+    show-quick-picks: false
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P7_COPYUSER ==============================
+  id: 147940189468246694
+  identification: 
+    name: P7_COPYUSER
+    type: Popup LOV
+
+  label: 
+    label: 'Copia permessi da utente: '
+    alignment: Left
+
+  settings: 
+    display-as: Inline Popup
+    initial-fetch: Automatic
+    manual-entry: false
+    search-as-you-type: false
+
+  multiple-values: 
+    type: No
+
+  layout: 
+    sequence: 170
+    region: Gestione Utenti # 27921685922941086
+    slot: BODY
+    alignment: Left
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: 7
+    label-column-span: 3
+
+  appearance: 
+    template: Optional
+    template-options: 
+    - '#DEFAULT#'
+    width: 30
+
+  validation: 
+    value-required: false
+    maximum-length: 100
+
+  list-of-values: 
+    type: Shared Component
+    list-of-values: COPYUSER_LOV # 148929127297337517
+    display-extra-values: true
+    display-null-value: true
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    form-region: Gestione Utenti # 27921685922941086
+    column: COPIATO_DA
+    data-type: VARCHAR2
+    query-only: false
+    primary-key: false
+
+  session-state: 
+    storage: Per Request (Memory Only)
+
+  quick-picks: 
+    show-quick-picks: false
+
+  server-side-condition: 
+    type: Item is NULL
+    item: P7_ID_UTENTE
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: false
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P7_ID_AREE_UTENTE_COPIATO ================
+  id: 147941462154246707
+  identification: 
+    name: P7_ID_AREE_UTENTE_COPIATO
+    type: Hidden
+
+  settings: 
+    value-protected: false
+
+  layout: 
+    sequence: 180
+    region: Gestione Utenti # 27921685922941086
+    slot: BODY
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    type: SQL Query (return single value)
+    sql-query: 'select id_aree from tbl_anag_utenti where id_utente = :P7_COPYUSER'
+    used: Only when current value in session state is null
+
+  session-state: 
+    data-type: VARCHAR2
+    storage: Per Session (Persistent)
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+buttons: 
+- # ====== Button: CANCEL ======================================
+  id: 27927663893941093
+  identification: 
+    button-name: CANCEL
+    label: Cancel
+
+  layout: 
+    sequence: 10
+    region: Gestione Utenti # 27921685922941086
+    slot: CLOSE
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    button-template: Text
+    hot: false
+    template-options: 
+    - '#DEFAULT#'
+
+  behavior: 
+    action: Redirect to URL
+    target: 'javascript:history.go(-1)'
+    execute-validations: true
+    warn-on-unsaved-changes: Do Not Check
+
+- # ====== Button: DELETE ======================================
+  id: 27928247212941094
+  identification: 
+    button-name: DELETE
+    label: Delete
+
+  layout: 
+    sequence: 20
+    region: Gestione Utenti # 27921685922941086
+    slot: DELETE
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    button-template: Text
+    hot: false
+    template-options: 
+    - '#DEFAULT#'
+
+  behavior: 
+    action: Submit Page
+    execute-validations: false
+    show-processing: false
+    warn-on-unsaved-changes: Do Not Check
+    database-action: SQL DELETE action
+
+  confirmation: 
+    message: '&APP_TEXT$DELETE_MSG!RAW.'
+    style: Danger
+
+  server-side-condition: 
+    type: Item is NOT NULL
+    item: P7_ID_UTENTE
+
+- # ====== Button: SAVE ========================================
+  id: 27928693922941094
+  identification: 
+    button-name: SAVE
+    label: Apply Changes
+
+  layout: 
+    sequence: 30
+    region: Gestione Utenti # 27921685922941086
+    slot: CHANGE
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    button-template: Text
+    hot: true
+    template-options: 
+    - '#DEFAULT#'
+
+  behavior: 
+    action: Submit Page
+    execute-validations: true
+    show-processing: false
+    warn-on-unsaved-changes: Do Not Check
+    database-action: SQL UPDATE action
+
+  server-side-condition: 
+    type: Item is NOT NULL
+    item: P7_ID_UTENTE
+
+- # ====== Button: CREATE ======================================
+  id: 27929038830941095
+  identification: 
+    button-name: CREATE
+    label: Create
+
+  layout: 
+    sequence: 40
+    region: Gestione Utenti # 27921685922941086
+    slot: CREATE
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    button-template: Text
+    hot: true
+    template-options: 
+    - '#DEFAULT#'
+
+  behavior: 
+    action: Submit Page
+    execute-validations: true
+    show-processing: false
+    warn-on-unsaved-changes: Do Not Check
+    database-action: SQL INSERT action
+
+  server-side-condition: 
+    type: Item is NULL
+    item: P7_ID_UTENTE
+
+dynamic-actions: 
+- # ====== Dynamic Action: New =================================
+  id: 147940282507246695
+  identification: 
+    name: New
+
+  execution: 
+    sequence: 10
+    event-scope: Static
+    type: Immediate
+
+  when: 
+    event: Change
+    selection-type: Item(s)
+    item(s): 
+    - P7_COPYUSER
+
+  actions: 
+  - # ====== Action: Execute Server-side Code ====================
+    id: 147940399640246696
+    identification: 
+      action: Execute Server-side Code
+
+    settings: 
+      language: PE.PROPERTY.SOURCE_SNIPPET_LANG.LOV.PLSQL.D
+      pl/sql-code: null;
+      items-to-submit: 
+      - P7_COPYUSER
+
+    execution: 
+      sequence: 10
+      event: New # 147940282507246695
+      fire-when-event-result-is: True
+      fire-on-initialization: false
+      stop-execution-on-error: true
+      wait-for-result: true
+
+  - # ====== Action: Set Value ===================================
+    id: 147940773397246700
+    identification: 
+      action: Set Value
+
+    settings: 
+      set-type: SQL Statement
+      sql-statement: 'select id_ruolo_portale from tbl_anag_utenti where id_utente = :P7_COPYUSER'
+      items-to-submit: 
+      - P7_COPYUSER
+      escape-special-characters: true
+      suppress-change-event: false
+
+    affected-elements: 
+      selection-type: Item(s)
+      item(s): 
+      - P7_ID_RUOLO_PORTALE
+
+    execution: 
+      sequence: 20
+      event: New # 147940282507246695
+      fire-when-event-result-is: True
+      fire-on-initialization: true
+      stop-execution-on-error: true
+      wait-for-result: true
+
+  - # ====== Action: Set Value ===================================
+    id: 147940921404246701
+    identification: 
+      action: Set Value
+
+    settings: 
+      set-type: SQL Statement
+      sql-statement: 'select ruolo_monitoraggio from tbl_anag_utenti where id_utente = :P7_COPYUSER'
+      items-to-submit: 
+      - P7_COPYUSER
+      escape-special-characters: true
+      suppress-change-event: false
+
+    affected-elements: 
+      selection-type: Item(s)
+      item(s): 
+      - P7_RUOLO_MONITORAGGIO
+
+    execution: 
+      sequence: 30
+      event: New # 147940282507246695
+      fire-when-event-result-is: True
+      fire-on-initialization: true
+      stop-execution-on-error: true
+      wait-for-result: true
+
+  - # ====== Action: Set Value ===================================
+    id: 147940967989246702
+    identification: 
+      action: Set Value
+
+    settings: 
+      set-type: SQL Statement
+      sql-statement: 'select id_impresa from tbl_anag_utenti where id_utente = :P7_COPYUSER'
+      items-to-submit: 
+      - P7_COPYUSER
+      escape-special-characters: true
+      suppress-change-event: false
+
+    affected-elements: 
+      selection-type: Item(s)
+      item(s): 
+      - P7_ID_IMPRESA
+
+    execution: 
+      sequence: 40
+      event: New # 147940282507246695
+      fire-when-event-result-is: True
+      fire-on-initialization: true
+      stop-execution-on-error: true
+      wait-for-result: true
+
+  - # ====== Action: Set Value ===================================
+    id: 147941036374246703
+    identification: 
+      action: Set Value
+
+    settings: 
+      set-type: SQL Statement
+      sql-statement: |
+        select id_aree from tbl_anag_utenti where id_utente = :P7_COPYUSER
+        
+      items-to-submit: 
+      - P7_COPYUSER
+      escape-special-characters: true
+      suppress-change-event: false
+
+    affected-elements: 
+      selection-type: Item(s)
+      item(s): 
+      - P7_ID_AREE_UTENTE_COPIATO
+
+    execution: 
+      sequence: 50
+      event: New # 147940282507246695
+      fire-when-event-result-is: True
+      fire-on-initialization: true
+      stop-execution-on-error: true
+      wait-for-result: true
+
+  - # ====== Action: Execute JavaScript Code =====================
+    id: 147941621269246708
+    identification: 
+      action: Execute JavaScript Code
+
+    settings: 
+      code: |
+        var itemValue = $v('P7_ID_AREE_UTENTE_COPIATO');
+        var ids = itemValue.split(':');
+        var areas = [];
+        
+        for (var i = 0; i < ids.length; i++) {
+            if (ids[i] === '1') {
+                areas.push('TORINO');
+            } else if (ids[i] === '2') {
+                areas.push('GENOVA');
+            } else if (ids[i] === '3') {
+                areas.push('EMILIA');
+            } else if (ids[i] === '4') {
+                areas.push('DOGLIANI');
+            }
+        }
+        
+        $s('P7_ID_AREE', ids, areas);
+        
+
+    execution: 
+      sequence: 60
+      event: New # 147940282507246695
+      fire-when-event-result-is: True
+      fire-on-initialization: false
+
+- # ====== Dynamic Action: New_1 ===============================
+  id: 147941182767246704
+  identification: 
+    name: New_1
+
+  execution: 
+    sequence: 20
+    event-scope: Static
+    type: Immediate
+
+  when: 
+    event: Change
+    selection-type: Item(s)
+    item(s): 
+    - P7_ID_AREE
+
+  actions: 
+  - # ====== Action: Execute Server-side Code ====================
+    id: 147941233556246705
+    identification: 
+      action: Execute Server-side Code
+
+    settings: 
+      language: PE.PROPERTY.SOURCE_SNIPPET_LANG.LOV.PLSQL.D
+      pl/sql-code: null;
+      items-to-submit: 
+      - P7_ID_AREE
+
+    execution: 
+      sequence: 10
+      event: New_1 # 147941182767246704
+      fire-when-event-result-is: True
+      fire-on-initialization: false
+      stop-execution-on-error: true
+      wait-for-result: true
+
+validations: 
+- # ====== Validation: check_nome_utente =======================
+  id: 32422569211447666
+  identification: 
+    name: check_nome_utente
+
+  execution: 
+    sequence: 10
+
+  validation: 
+    type: Expression
+    language: PL/SQL
+    pl/sql-expression: ':P7_NOME_UTENTE is not null'
+    always-execute: false
+
+  error: 
+    error-message: Inserire un Nome Utente
+    display-location: Inline with Field and in Notification
+    associated-item: P7_NOME_UTENTE # 27922439053941088
+
+- # ====== Validation: check_ldap_account ======================
+  id: 32422682535447667
+  identification: 
+    name: check_ldap_account
+
+  execution: 
+    sequence: 20
+
+  validation: 
+    type: Expression
+    language: PL/SQL
+    pl/sql-expression: ':P7_LDAP_ACCOUNT is not null'
+    always-execute: false
+
+  error: 
+    error-message: Inserire un account LDAP valido
+    display-location: Inline with Field and in Notification
+    associated-item: P7_LDAP_ACCOUNT # 27924433936941090
+
+- # ====== Validation: check_ruolo_portale =====================
+  id: 32422777687447668
+  identification: 
+    name: check_ruolo_portale
+
+  execution: 
+    sequence: 40
+
+  validation: 
+    type: Expression
+    language: PL/SQL
+    pl/sql-expression: ':P7_ID_RUOLO_PORTALE is not null'
+    always-execute: false
+
+  error: 
+    error-message: Selezionare un Ruolo Portale
+    display-location: Inline with Field and in Notification
+    associated-item: P7_ID_RUOLO_PORTALE # 28436819446845760
+
+- # ====== Validation: Ldap Account Check ======================
+  id: 147608879466954263
+  identification: 
+    name: Ldap Account Check
+
+  execution: 
+    sequence: 30
+
+  validation: 
+    type: No Rows returned
+    sql-query: 'select null from tbl_anag_utenti where ldap_account = upper(:P7_LDAP_ACCOUNT)'
+    always-execute: false
+
+  error: 
+    error-message: LDAP Account già inserito in anagrafica
+    display-location: Inline with Field and in Notification
+    associated-item: P7_LDAP_ACCOUNT # 27924433936941090
+
+  server-side-condition: 
+    type: Item is NULL
+    item: P7_ID_UTENTE
+
+processes: 
+- # ====== Process: Initialize form Gestione Utenti ============
+  id: 27929834085941095
+  identification: 
+    name: Initialize form Gestione Utenti
+    type: Form - Initialization
+    execution-chain: None
+    form-region: Gestione Utenti # 27921685922941086
+
+  execution: 
+    sequence: 10
+    point: Before Header
+    run-process: Once Per Page Visit (default)
+
+- # ====== Process: Process form Gestione Utenti ===============
+  id: 27930313645941095
+  identification: 
+    name: Process form Gestione Utenti
+    type: Form - Automatic Row Processing (DML)
+    execution-chain: None
+    form-region: Gestione Utenti # 27921685922941086
+
+  settings: 
+    target-type: Region Source
+    prevent-lost-updates: true
+    lock-row: Yes
+    return-primary-key(s)-after-insert: true
+
+  execution: 
+    sequence: 10
+    point: Processing
+    run-process: Once Per Page Visit (default)
+
+  error: 
+    display-location: Inline in Notification
+
+- # ====== Process: delete from utenti profili applicazioni ====
+  id: 147940453387246697
+  identification: 
+    name: delete from utenti profili applicazioni
+    type: Execute Code
+    execution-chain: None
+
+  source: 
+    location: Local Database
+    language: PL/SQL
+    pl/sql-code: |
+      delete from tbl_utenti_profili_applicazioni where id_utente = :P7_ID_UTENTE;
+      delete from monitoraggio_tlg.users_groups_new where userid = :P7_ID_UTENTE;
+
+  execution: 
+    sequence: 30
+    point: Processing
+    run-process: Once Per Page Visit (default)
+
+  error: 
+    display-location: Inline in Notification
+
+  server-side-condition: 
+    when-button-pressed: DELETE # 27928247212941094
+
+- # ====== Process: Copy users groups ==========================
+  id: 162246616948373563
+  identification: 
+    name: Copy users groups
+    type: Execute Code
+    execution-chain: None
+
+  source: 
+    location: Local Database
+    language: PL/SQL
+    pl/sql-code: |
+      BEGIN
+          FOR rec IN (SELECT * FROM monitoraggio_tlg.users_groups_new WHERE userid = :P7_COPYUSER)
+          LOOP
+              INSERT INTO monitoraggio_tlg.users_groups_new (usrgrpid,userid)
+              VALUES (rec.usrgrpid,:P7_ID_UTENTE);
+          END LOOP;
+      END;
+
+  execution: 
+    sequence: 20
+    point: Processing
+    run-process: Once Per Page Visit (default)
+
+  error: 
+    display-location: Inline in Notification
+
+branches: 
+- # ====== Branch: Go To Page 6 ================================
+  id: 27929388526941095
+  identification: 
+    name: Go To Page 6
+
+  execution: 
+    sequence: 1
+    point: After Processing
+
+  behavior: 
+    type: Page or URL (Redirect)
+    target: 
+      url: 'f?p=&APP_ID.:6:&SESSION.::&DEBUG.:Y,::&success_msg=#SUCCESS_MSG#'
+      page: 6 # Visualizza Utenti
+      clear-cache: Y
+

@@ -1,0 +1,335 @@
+---
+# ====== Application: Home - Portale Unico ===================
+id: 109
+identification: 
+  name: Home - Portale Unico
+  alias: HOME-PORTALE-UNICO
+  version: Release 1.0
+  application-group: SAC_TLR # 5073899284644948
+
+row-search: 
+  tokenize: false
+  text-query-function: None
+
+availability: 
+  status: Available with Developer Toolbar
+  build-status: Run and Build Application
+
+error-handling: 
+  default-display-location: Inline with Field and in Notification
+
+report-printing: 
+  type: Native Printing
+
+advanced: 
+  friendly-urls: true
+  allow-feedback: true
+  logging: true
+  debugging: true
+  compatibility-mode: 21.2 to 24.1
+  accessible-read-only-items: false
+  pass-ecid: N
+  favicon-html: <link rel="icon" sizes="32x32" href="#WORKSPACE_FILES#faviconIren.png">
+
+authentication: 
+  public-user: APEX_PUBLIC_USER
+  authentication-scheme: Application Express Accounts # 11853693021520681
+
+authorization: 
+  authorization-scheme: MODEL.LOV.MUST_NOT_BE_PUBLIC_USER
+  run-on-public-pages: true
+  run-on-background-job: true
+  source-for-role-or-group-schemes: Access Control User Role Assignments
+
+session-management: 
+  rejoin-sessions: Disabled
+  session-timeout-url: '/ords/f?p=109:9999:&SESSION.:::::'
+  session-timeout-warning: 7200
+
+session-state-protection: 
+  enabled: true
+
+security: 
+  deep-linking: Enabled
+  browser-cache: Disabled
+  embed-in-frames: Deny
+  referrer-policy: strict-origin
+  html-escaping-mode: Extended
+  runtime-api-usage: 
+  - Modify This Application
+
+database-session: 
+  parsing-schema: UTENTI_TLG
+
+globalization: 
+  primary-language: Italian (Italy) (it)
+  document-direction: Left-To-Right
+  language-derived-from: Application Primary Language
+  automatic-time-zone: false
+  automatic-csv-encoding: true
+
+application-format-masks: 
+  date: DS
+  timestamp: DS
+  timestamp-time-zone: DS
+
+character-value-comparison: 
+  behavior: Database session NLS setting (default)
+
+logo: 
+  type: Image and Text
+  image-url: '#WORKSPACE_FILES#Logo-Iren-nuovo.jpg'
+  text: '<span style="font-size: 18pt; font-weight: bold; color: #ffffff">&nbsp; HOME - PORTALE UNICO</span>'
+
+progressive-web-app: 
+  enable: true
+  installable: true
+  display: Standalone
+  screen-orientation: Any
+  ios-status-bar-style: Default
+  enable-push-notifications: false
+
+navigation: 
+  home-url: 
+    url: 'f?p=&APP_ID.:1:&SESSION.'
+    page: 1 # Home
+
+  login-url: 
+    url: 'f?p=&APP_ID.:LOGIN:&APP_SESSION.::&DEBUG.:::'
+    page: LOGIN
+
+navigation-menu: 
+  list-template: Side Navigation Menu
+  template-options: 
+  - js-navCollapsed--default
+  - t-TreeNav--styleA
+  list-position: Side
+  list: Navigation Menu # 11854436487520684
+
+navigation-bar: 
+  implementation: List
+  list: Navigation Bar # 12041629876520870
+  list-template: Navigation Bar
+  template-options: 
+  - '#DEFAULT#'
+
+javascript: 
+  include-jquery-migrate: false
+
+css: 
+  file-urls: 
+  - '#WORKSPACE_FILES#CSS_File1.css'
+  - '#APP_FILES#app-icon.css?version=#APP_VERSION#'
+
+attributes: 
+  theme: Universal Theme # 42
+  global-page: 0
+  enable-end-users-to-choose-theme-style: true
+  add-"built-with-apex"-to-footer: false
+  auto-dismiss-success-messages: false
+
+substitutions: 
+- # ====== Substitution: APP_NAME ==============================
+  id: 1
+  identification: 
+    name: APP_NAME
+
+  value: 
+    static-value: Home - Portale Unico
+
+component-settings: 
+- # ====== Component Setting: NATIVE_MAP_REGION ================
+  id: 7757948779525984
+  identification: 
+    name: NATIVE_MAP_REGION
+    type: Region
+
+  subscription: 
+    version-number: 1
+
+- # ====== Component Setting: NATIVE_SELECT_MANY ===============
+  id: 8448025452543783
+  identification: 
+    name: NATIVE_SELECT_MANY
+    type: Item
+
+  settings: 
+    attribute-1: separated
+
+  subscription: 
+    version-number: 15984533851128
+
+- # ====== Component Setting: NATIVE_GEOCODING =================
+  id: 8449082589543783
+  identification: 
+    name: NATIVE_GEOCODING
+    type: Process
+
+  settings: 
+    attribute-1: RELAX_HOUSE_NUMBER
+
+  subscription: 
+    version-number: 15984533851131
+
+- # ====== Component Setting: NATIVE_OPEN_AI_ASSISTANT =========
+  id: 8450115463543783
+  identification: 
+    name: NATIVE_OPEN_AI_ASSISTANT
+    type: Dynamic Action
+
+  subscription: 
+    version-number: 15984533851133
+
+- # ====== Component Setting: NATIVE_ADFBC =====================
+  id: 8451109390543783
+  identification: 
+    name: NATIVE_ADFBC
+    type: REST Data Source
+
+  subscription: 
+    version-number: 15984533851134
+
+- # ====== Component Setting: NATIVE_DISPLAY_SELECTOR ==========
+  id: 11850338677520677
+  identification: 
+    name: NATIVE_DISPLAY_SELECTOR
+    type: Region
+
+  subscription: 
+    version-number: 1
+
+- # ====== Component Setting: NATIVE_GEOCODED_ADDRESS ==========
+  id: 11850671117520678
+  identification: 
+    name: NATIVE_GEOCODED_ADDRESS
+    type: Item
+
+  settings: 
+    attribute-1: RELAX_HOUSE_NUMBER
+    attribute-2: N
+    attribute-3: 'POPUP:ITEM'
+    attribute-4: default
+    attribute-6: LIST
+
+  subscription: 
+    version-number: 1
+
+- # ====== Component Setting: NATIVE_DATE_PICKER_APEX ==========
+  id: 11850948170520678
+  identification: 
+    name: NATIVE_DATE_PICKER_APEX
+    type: Item
+
+  settings: 
+    attribute-1: 'MONTH-PICKER:YEAR-PICKER'
+    attribute-2: VISIBLE
+    attribute-3: 15
+    attribute-4: FOCUS
+
+  subscription: 
+    version-number: 1
+
+- # ====== Component Setting: NATIVE_SINGLE_CHECKBOX ===========
+  id: 11851302434520679
+  identification: 
+    name: NATIVE_SINGLE_CHECKBOX
+    type: Item
+
+  settings: 
+    attribute-1: Y
+    attribute-2: N
+
+  subscription: 
+    version-number: 1
+
+- # ====== Component Setting: NATIVE_IR ========================
+  id: 11851620698520679
+  identification: 
+    name: NATIVE_IR
+    type: Region
+
+  subscription: 
+    version-number: 1
+
+- # ====== Component Setting: NATIVE_COLOR_PICKER ==============
+  id: 11852489078520679
+  identification: 
+    name: NATIVE_COLOR_PICKER
+    type: Item
+
+  settings: 
+    attribute-1: FULL
+    attribute-2: POPUP
+
+  subscription: 
+    version-number: 1
+
+- # ====== Component Setting: NATIVE_STAR_RATING ===============
+  id: 11852824751520679
+  identification: 
+    name: NATIVE_STAR_RATING
+    type: Item
+
+  settings: 
+    attribute-1: fa-star
+    attribute-4: '#VALUE#'
+
+  subscription: 
+    version-number: 1
+
+- # ====== Component Setting: NATIVE_YES_NO ====================
+  id: 11853075917520680
+  identification: 
+    name: NATIVE_YES_NO
+    type: Item
+
+  settings: 
+    attribute-1: Y
+    attribute-3: N
+    attribute-5: SWITCH_CB
+
+  subscription: 
+    version-number: 1
+
+application-settings: 
+- # ====== Application Setting: FEEDBACK_ATTACHMENTS_YN ========
+  id: 12047133429520910
+  identification: 
+    name: FEEDBACK_ATTACHMENTS_YN
+
+  value: 
+    value: Y
+    required: false
+
+  advanced: 
+    valid-values: Y, N
+    on-upgrade-keep-value: true
+
+  subscription: 
+    version-number: 1
+
+  configuration: 
+    build-option: 'Feature: Feedback' # 12043723868520888
+
+- # ====== Application Setting: ACCESS_CONTROL_SCOPE ===========
+  id: 12047455900520911
+  identification: 
+    name: ACCESS_CONTROL_SCOPE
+
+  value: 
+    value: ACL_ONLY
+    required: false
+
+  advanced: 
+    valid-values: ACL_ONLY, ALL_USERS
+    on-upgrade-keep-value: true
+
+  subscription: 
+    version-number: 1
+
+  configuration: 
+    build-option: 'Feature: Access Control' # 12043484259520888
+
+  comments: 
+    comments: The default access level given to authenticated users who are not in the access control list
+

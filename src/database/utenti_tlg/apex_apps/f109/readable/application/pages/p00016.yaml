@@ -1,0 +1,472 @@
+---
+# ====== Page: Gruppi Utenti =================================
+id: 16
+identification: 
+  name: Gruppi Utenti
+  alias: GRUPPI-UTENTI
+  title: Gruppi Utenti
+
+appearance: 
+  page-mode: Normal
+  page-template: Theme Default
+  template-options: 
+  - '#DEFAULT#'
+
+navigation-menu: 
+  override-user-interface-level: false
+
+navigation: 
+  cursor-focus: Do not focus cursor
+  warn-on-unsaved-changes: true
+
+css: 
+  inline: |
+    .a-IRR-toolbar {
+        background: whitesmoke;
+    }
+
+security: 
+  authentication: Page Requires Authentication
+  deep-linking: Application Default
+  page-access-protection: Arguments Must Have Checksum
+  form-auto-complete: Off
+  browser-cache: Application Default
+
+session-management: 
+  rejoin-sessions: Application Default
+
+advanced: 
+  enable-duplicate-page-submissions: Yes - Enable page to be re-posted
+  reload-on-submit: Only for Success
+
+server-cache: 
+  caching: Disabled
+
+regions: 
+- # ====== Region: GUIDA ALL'USO ===============================
+  id: 47516279530603115
+  identification: 
+    name: GUIDA ALL'USO
+    type: Static Content
+
+  source: 
+    html-code: |
+      Il report mostra l'elenco dei Gruppi Utenti presenti all'interno della sezione Monitoraggio TLG
+      e il dettaglio degli utenti assegnati a ciascun gruppo.<br>
+      Per creare un nuovo gruppo di utenti, fare clic sul pulsante <b>Crea Gruppo</b>.<br>
+      Per visualizzare o modificare Gruppi e utenti di ciascun gruppo, cliccare il Link presente all'interno della colonna corrispondente.
+
+  layout: 
+    sequence: 10
+    parent-region: No Parent
+    slot: BODY
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: 6
+
+  appearance: 
+    template: Collapsible
+    template-options: 
+    - '#DEFAULT#'
+    - t-Region--hideShowIconsMath
+    - is-collapsed
+    - t-Region--scrollBody
+    render-components: Above Content
+
+  advanced: 
+    region-display-selector: true
+    exclude-title-from-translation: false
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    settings: 
+      output-as: HTML
+      expand-shortcuts: false
+
+- # ====== Region: Breadcrumb ==================================
+  id: 54805698953828317
+  identification: 
+    name: Breadcrumb
+    type: Breadcrumb
+
+  source: 
+    breadcrumb: Breadcrumb # 11853987875520682
+
+  layout: 
+    sequence: 10
+    parent-region: No Parent
+    slot: REGION_POSITION_01
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Title Bar
+    template-options: 
+    - '#DEFAULT#'
+    - t-BreadcrumbRegion--compactTitle
+    - t-BreadcrumbRegion--useBreadcrumbTitle
+    render-components: Above Content
+
+  advanced: 
+    region-display-selector: false
+    exclude-title-from-translation: false
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    appearance: 
+      breadcrumb-template: Breadcrumb
+      template-options: 
+      - '#DEFAULT#'
+
+- # ====== Region: Elenco Gruppi Utenti ========================
+  id: 54806258401828320
+  identification: 
+    name: Elenco Gruppi Utenti
+    type: Interactive Report
+
+  source: 
+    location: Local Database
+    type: SQL Query
+    sql-query: |
+      SELECT usrgrpid, name, count(nome_utente) tot_utenti, 
+      replace(rtrim(ltrim(replace(JSON_ARRAYAGG(nome_utente order by nome_utente returning clob),'"',''),'['), ']'),',',', ') "Elenco Utenti"
+      FROM (
+      SELECT u.usrgrpid usrgrpid, u.name name,
+      upper(tau.nome_utente) 
+      --'<a class=uoh href=portaleunico/r/monitoraggio-tlg/scheda-utente?P36_ID_UTENTE='||tau.ID_UTENTE||'&session='||APEX_CUSTOM_AUTH.GET_SESSION_ID||'>'||upper(tau.nome_utente) ||'</a>'
+      nome_utente, 
+      tau.ID_UTENTE
+      FROM monitoraggio_tlg.USRGRP u 
+           LEFT OUTER JOIN monitoraggio_tlg.USERS_GROUPS_NEW  ug ON u.usrgrpid = ug.USRGRPID 
+           LEFT OUTER JOIN utenti_tlg.TBL_ANAG_UTENTI tau ON ug.USERID = tau.ID_UTENTE
+      )
+      GROUP BY usrgrpid, name
+      ;
+
+  layout: 
+    sequence: 20
+    parent-region: No Parent
+    slot: BODY
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Standard
+    template-options: 
+    - '#DEFAULT#'
+    - t-Region--scrollBody
+    render-components: Above Content
+
+  advanced: 
+    region-display-selector: false
+    exclude-title-from-translation: false
+
+  server-cache: 
+    caching: Disabled
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    id: 54806323555828320
+    link: 
+      link-column: Exclude Link Column
+
+    pagination: 
+      type: Row Ranges X to Y
+      display-position: Bottom - Right
+
+    performance: 
+      lazy-loading: false
+
+    messages: 
+      when-no-data-found: No data found.
+      when-more-data-found: 'The maximum row count for this report is #MAX_ROW_COUNT# rows.  Please apply a filter to reduce the number of records in your query.'
+
+    search-bar: 
+      include-search-bar: true
+      search-field: true
+      finder-drop-down: true
+      reports-select-list: true
+      rows-per-page-selector: false
+
+    actions-menu: 
+      include-actions-menu: true
+      filter: true
+      select-columns: true
+      rows-per-page: true
+      sort: true
+      control-break: true
+      highlight: true
+      compute: true
+      aggregate: true
+      chart: true
+      group-by: true
+      pivot: true
+      flashback: true
+      save-report: true
+      save-public-report: false
+      reset: true
+      help: true
+      download: true
+      subscription: false
+
+    download: 
+      formats: 
+      - CSV
+      - HTML
+      - Excel
+      - PDF
+      send-as-email: true
+
+    heading: 
+      fixed-to: Page
+
+    icon-view: 
+      show: false
+
+    detail-view: 
+      show: false
+
+    saved-reports: 
+    - # ====== Saved Report: Primary Report ========================
+      id: 54808009741828909
+      identification: 
+        name: Primary Report
+        alias: 267773
+
+    columns: 
+    - # ====== Column: USRGRPID ====================================
+      id: 28032146435650987
+      identification: 
+        column-name: USRGRPID
+        type: Hidden
+
+      heading: 
+        heading: Usrgrpid
+
+      layout: 
+        sequence: 12
+
+      source: 
+        primary-key: false
+
+      security: 
+        escape-special-characters: true
+
+    - # ====== Column: Elenco Utenti ===============================
+      id: 28032555724650988
+      identification: 
+        column-name: Elenco Utenti
+        type: Rich Text
+
+      heading: 
+        heading: Elenco Utenti
+        alignment: center
+
+      single-row-view: 
+        use-column-heading: true
+
+      layout: 
+        sequence: 22
+        column-alignment: start
+
+      settings: 
+        format: HTML
+
+      source: 
+        primary-key: false
+
+      enable-users-to: 
+        hide: true
+        filter: true
+        highlight: true
+
+    - # ====== Column: TOT_UTENTI ==================================
+      id: 28032930931650989
+      identification: 
+        column-name: TOT_UTENTI
+        type: Link
+
+      heading: 
+        heading: '#'
+        alignment: center
+
+      single-row-view: 
+        use-column-heading: true
+
+      layout: 
+        sequence: 32
+        column-alignment: center
+
+      accessibility: 
+        value-identifies-row: false
+
+      link: 
+        target: 
+          url: 'f?p=&APP_ID.:18:&SESSION.::&DEBUG.::P18_USRGRPID:#USRGRPID#'
+          page: 18 # Elenco Utenti
+          values: 
+            p18_usrgrpid: '#USRGRPID#'
+
+        link-text: 'Utenti: #TOT_UTENTI#'
+
+      source: 
+        primary-key: false
+
+      column-filter: 
+        type: Default Based on Column Type
+
+      enable-users-to: 
+        hide: true
+        sort: true
+        filter: true
+        highlight: true
+        control-break: true
+        aggregate: true
+        compute: true
+        chart: true
+        group-by: true
+        pivot: true
+
+      security: 
+        escape-special-characters: true
+
+    - # ====== Column: NAME ========================================
+      id: 28033380456650989
+      identification: 
+        column-name: NAME
+        type: Link
+
+      heading: 
+        heading: Name
+        alignment: start
+
+      single-row-view: 
+        use-column-heading: true
+
+      layout: 
+        sequence: 1
+        column-alignment: start
+
+      accessibility: 
+        value-identifies-row: false
+
+      link: 
+        target: 
+          url: 'f?p=&APP_ID.:17:&SESSION.::&DEBUG.:RP,:P17_USRGRPID:#USRGRPID#'
+          page: 17 # Crea/Modifica Gruppo
+          clear-cache: RP
+          values: 
+            p17_usrgrpid: '#USRGRPID#'
+
+        link-text: '#NAME#'
+
+      source: 
+        primary-key: false
+
+      column-filter: 
+        type: Default Based on Column Type
+
+      enable-users-to: 
+        hide: true
+        sort: true
+        filter: true
+        highlight: true
+        control-break: true
+        aggregate: true
+        compute: true
+        chart: true
+        group-by: true
+        pivot: true
+
+      security: 
+        escape-special-characters: true
+
+    printing: 
+      output: 
+        layout: Default Report Layout
+        view-file-as: Attachment
+
+      page: 
+        size: Letter
+        orientation: Landscape
+        units: Inches
+        width: 11
+        height: 8.5
+        border-width: 0.5
+        border-color: '#666666'
+
+      page-header: 
+        font: Helvetica
+        font-weight: Normal
+        font-size: 12
+        font-color: '#000000'
+        alignment: center
+        page-header-text: Elenco Gruppi Utenti
+
+      column-headings: 
+        font: Helvetica
+        font-weight: Bold
+        font-size: 10
+        font-color: '#000000'
+        background-color: '#EEEEEE'
+
+      columns: 
+        font: Helvetica
+        font-weight: Normal
+        font-size: 10
+        font-color: '#000000'
+        background-color: '#FFFFFF'
+
+      page-footer: 
+        font: Helvetica
+        font-weight: Normal
+        font-size: 12
+        font-color: '#000000'
+        alignment: center
+
+buttons: 
+- # ====== Button: NuovoGruppo =================================
+  id: 28034088726650993
+  identification: 
+    button-name: NuovoGruppo
+    label: Crea Gruppo
+
+  layout: 
+    sequence: 10
+    region: Elenco Gruppi Utenti # 54806258401828320
+    slot: RIGHT_OF_IR_SEARCH_BAR
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    button-template: Text
+    hot: true
+    template-options: 
+    - '#DEFAULT#'
+    - t-Button--primary
+
+  behavior: 
+    action: Redirect to Page in this Application
+    target: 
+      url: 'f?p=&APP_ID.:17:&SESSION.::&DEBUG.:::'
+      page: 17 # Crea/Modifica Gruppo
+
+    warn-on-unsaved-changes: Do Not Check
+

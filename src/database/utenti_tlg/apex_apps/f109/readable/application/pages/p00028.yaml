@@ -1,0 +1,1623 @@
+---
+# ====== Page: Elenco Utenti =================================
+id: 28
+identification: 
+  name: Elenco Utenti
+  alias: ELENCO-UTENTI1
+  title: Elenco Utenti
+
+appearance: 
+  page-mode: Normal
+  page-template: Theme Default
+  template-options: 
+  - '#DEFAULT#'
+
+navigation-menu: 
+  override-user-interface-level: false
+
+navigation: 
+  cursor-focus: Do not focus cursor
+  warn-on-unsaved-changes: false
+
+css: 
+  inline: |
+    /*.t-Button {
+      background-color: grey;
+    }*/
+    
+    .a-IG-header {
+        background: whitesmoke;
+    }
+
+security: 
+  authorization-scheme: CHECK_APPLICATION_PAGE1 # 28932075339284631
+  authentication: Page Requires Authentication
+  deep-linking: Application Default
+  page-access-protection: Unrestricted
+  form-auto-complete: Off
+  browser-cache: Application Default
+
+session-management: 
+  rejoin-sessions: Application Default
+
+advanced: 
+  enable-duplicate-page-submissions: Yes - Enable page to be re-posted
+  reload-on-submit: Only for Success
+
+server-cache: 
+  caching: Disabled
+
+regions: 
+- # ====== Region: Permessi ====================================
+  id: 48782010491753723
+  identification: 
+    name: Permessi
+    type: Interactive Grid
+
+  source: 
+    location: Local Database
+    type: SQL Query
+    sql-query: |
+      SELECT g.NAME, g.groupid
+      FROM monitoraggio_tlg.usrgrp ug INNER JOIN monitoraggio_tlg.RIGHTS r ON ug.USRGRPID = r.GROUPID 
+      INNER JOIN monitoraggio_tlg.GROUPS g ON g.GROUPID = r.ID 
+      WHERE ug.USRGRPID = :P28_USRGRPID
+
+  layout: 
+    sequence: 50
+    parent-region: No Parent
+    slot: BODY
+    start-new-layout: false
+    start-new-row: false
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Standard
+    template-options: 
+    - '#DEFAULT#'
+    - t-Region--scrollBody
+    render-components: Above Content
+
+  advanced: 
+    static-id: IG_PERMESSI
+    region-display-selector: true
+    exclude-title-from-translation: false
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    id: 48782154568753724
+    edit: 
+      enabled: true
+      lost-update-type: Row Values
+
+    performance: 
+      lazy-loading: false
+
+    appearance: 
+      select-first-row: false
+      fixed-row-height: true
+
+    pagination: 
+      type: Page
+      show-total-count: true
+
+    toolbar: 
+      show: true
+      controls: 
+      - Search Field
+      - Actions Menu
+
+    enable-users-to: 
+      save-public-report: false
+      flashback: true
+      define-chart-view: true
+      download: true
+
+    download: 
+      formats: 
+      - CSV
+      - HTML
+      - Excel
+      - PDF
+      send-as-email: true
+
+    heading: 
+      fixed-to: Page
+
+    icon-view: 
+      show: false
+
+    detail-view: 
+      show: false
+
+    saved-reports: 
+    - # ====== Saved Report: Primary Report ========================
+      id: 48881133399367727
+      identification: 
+        name: Primary Report
+        alias: 199671
+
+  columns: 
+  - # ====== Column: NAME ========================================
+    id: 48782275417753725
+    identification: 
+      column-name: NAME
+      type: Text Field
+
+    heading: 
+      heading: Name
+      alignment: start
+
+    settings: 
+      trim-spaces: Leading and Trailing
+      text-case: NO CHANGE
+
+    layout: 
+      sequence: 30
+      column-alignment: start
+      stretch: Use Report Setting
+
+    accessibility: 
+      value-identifies-row: false
+
+    validation: 
+      value-required: false
+      maximum-length: 64
+
+    source: 
+      type: Database Column
+      database-column: NAME
+      data-type: VARCHAR2
+      query-only: false
+      primary-key: false
+
+    default: 
+      duplicate-copies-existing-value: true
+
+    column-filter: 
+      enabled: true
+      performance-impacting-operators: 
+      - Contains
+      - Starts With
+      - Case Insensitive
+      - Regular Expression
+      text-case: Mixed
+      lov-type: Distinct Column
+      exact-match: true
+
+    export-/-printing: 
+      include-in-export-/-print: true
+
+    enable-users-to: 
+      sort: true
+      control-break/aggregate: true
+      hide: true
+
+  - # ====== Column: APEX$ROW_SELECTOR ===========================
+    id: 48782443021753727
+    identification: 
+      column-name: APEX$ROW_SELECTOR
+      type: Row Selector
+
+    settings: 
+      enable-multi-select: true
+      show-select-all: true
+      hide-control: false
+
+    layout: 
+      sequence: 10
+
+  - # ====== Column: GROUPID =====================================
+    id: 48783666136753739
+    identification: 
+      column-name: GROUPID
+      type: Hidden
+
+    settings: 
+      value-protected: true
+
+    layout: 
+      sequence: 40
+
+    accessibility: 
+      value-identifies-row: false
+
+    source: 
+      type: Database Column
+      database-column: GROUPID
+      data-type: NUMBER
+      query-only: false
+      primary-key: true
+
+    default: 
+      duplicate-copies-existing-value: true
+
+    session-state: 
+      data-type: VARCHAR2
+
+    export-/-printing: 
+      include-in-export-/-print: false
+
+    enable-users-to: 
+      sort: false
+
+  printing: 
+    page: 
+      size: A4
+      orientation: Landscape
+      units: Millimeters
+      width: 297
+      height: 210
+      border-width: 0.5
+      border-color: '#666666'
+
+    page-header: 
+      font: Helvetica
+      font-weight: Normal
+      font-size: 12
+      font-color: '#000000'
+      alignment: center
+      page-header-text: Permessi
+
+    column-headings: 
+      font: Helvetica
+      font-weight: Bold
+      font-size: 10
+      font-color: '#000000'
+      background-color: '#EEEEEE'
+
+    columns: 
+      font: Helvetica
+      font-weight: Normal
+      font-size: 10
+      font-color: '#000000'
+      background-color: '#FFFFFF'
+
+    page-footer: 
+      font: Helvetica
+      font-weight: Normal
+      font-size: 12
+      font-color: '#000000'
+      alignment: center
+
+- # ====== Region: Breadcrumb ==================================
+  id: 55703129641592675
+  identification: 
+    name: Breadcrumb
+    type: Breadcrumb
+
+  source: 
+    breadcrumb: Breadcrumb # 11853987875520682
+
+  layout: 
+    sequence: 10
+    parent-region: No Parent
+    slot: REGION_POSITION_01
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Title Bar
+    template-options: 
+    - '#DEFAULT#'
+    - t-BreadcrumbRegion--compactTitle
+    - t-BreadcrumbRegion--useBreadcrumbTitle
+    render-components: Above Content
+
+  advanced: 
+    region-display-selector: false
+    exclude-title-from-translation: false
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    appearance: 
+      breadcrumb-template: Breadcrumb
+      template-options: 
+      - '#DEFAULT#'
+
+- # ====== Region: Utenti ======================================
+  id: 55703764978592676
+  identification: 
+    name: Utenti
+    type: Interactive Grid
+
+  source: 
+    location: Local Database
+    type: SQL Query
+    sql-query: |
+      select tau.id_utente USERID,
+             tau.ldap_account,
+             upper(tau.nome_utente) nome_utente,
+             tau.last_login,
+             tau.last_ip,
+             --SURNAME,
+             ug.usrgrpid,
+             g.name GROUPNAME,
+             nvl(tau.ruolo_monitoraggio, 1)
+             --,
+             --TYPE,
+             --ATTEMPT_FAILED,
+             --ATTEMPT_IP,
+             --ATTEMPT_CLOCK
+        from  UTENTI_TLG.TBL_ANAG_UTENTI tau inner join monitoraggio_tlg.USERS_GROUPS_NEW  ug on tau.id_utente = ug.userid
+             inner join monitoraggio_tlg.usrgrp g on g.usrgrpid = ug.usrgrpid
+      where g.usrgrpid = nvl(:P28_USRGRPID,g.usrgrpid)  --or 1 = 1
+      --order by upper(tau.nome_utente)
+    page-items-to-submit: 
+    - P28_USRGRPID
+
+  layout: 
+    sequence: 40
+    parent-region: No Parent
+    slot: BODY
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: 7
+
+  appearance: 
+    template: Standard
+    template-options: 
+    - '#DEFAULT#'
+    - t-Region--scrollBody
+    render-components: Above Content
+
+  advanced: 
+    static-id: IG_USRID
+    region-display-selector: false
+    exclude-title-from-translation: false
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    id: 48780448793753707
+    edit: 
+      enabled: true
+      lost-update-type: Row Values
+
+    performance: 
+      lazy-loading: false
+
+    appearance: 
+      select-first-row: false
+      fixed-row-height: true
+
+    pagination: 
+      type: Page
+      show-total-count: true
+
+    toolbar: 
+      show: true
+      controls: 
+      - Search Field
+      - Actions Menu
+
+    enable-users-to: 
+      save-public-report: false
+      flashback: true
+      define-chart-view: true
+      download: true
+
+    download: 
+      formats: 
+      - CSV
+      - HTML
+      - Excel
+      - PDF
+      send-as-email: true
+
+    heading: 
+      fixed-to: Page
+
+    icon-view: 
+      show: false
+
+    detail-view: 
+      show: false
+
+    saved-reports: 
+    - # ====== Saved Report: Primary Report ========================
+      id: 48833533771545202
+      identification: 
+        name: Primary Report
+        alias: 199195
+
+  columns: 
+  - # ====== Column: USERID ======================================
+    id: 48780519178753708
+    identification: 
+      column-name: USERID
+      type: Number Field
+
+    heading: 
+      heading: Userid
+      alignment: end
+
+    settings: 
+      number-alignment: End
+      virtual-keyboard: Text
+
+    layout: 
+      sequence: 30
+      column-alignment: end
+      stretch: Use Report Setting
+
+    accessibility: 
+      value-identifies-row: false
+
+    validation: 
+      value-required: true
+
+    source: 
+      type: Database Column
+      database-column: USERID
+      data-type: NUMBER
+      query-only: false
+      primary-key: true
+
+    default: 
+      duplicate-copies-existing-value: true
+
+    column-filter: 
+      enabled: true
+      lov-type: None
+
+    export-/-printing: 
+      include-in-export-/-print: true
+
+    enable-users-to: 
+      sort: true
+      control-break/aggregate: true
+      hide: true
+
+  - # ====== Column: LDAP_ACCOUNT ================================
+    id: 48780644147753709
+    identification: 
+      column-name: LDAP_ACCOUNT
+      type: Textarea
+
+    heading: 
+      heading: Ldap Account
+      alignment: start
+
+    settings: 
+      resizable: true
+      auto-height: false
+      character-counter: false
+      trim-spaces: Leading and Trailing
+
+    layout: 
+      sequence: 40
+      column-alignment: start
+      stretch: Use Report Setting
+
+    accessibility: 
+      value-identifies-row: false
+
+    validation: 
+      value-required: false
+      maximum-length: 100
+
+    source: 
+      type: Database Column
+      database-column: LDAP_ACCOUNT
+      data-type: VARCHAR2
+      query-only: false
+      primary-key: false
+
+    default: 
+      duplicate-copies-existing-value: true
+
+    session-state: 
+      data-type: VARCHAR2
+
+    column-filter: 
+      enabled: true
+      performance-impacting-operators: 
+      - Contains
+      - Starts With
+      - Case Insensitive
+      - Regular Expression
+      text-case: Mixed
+      lov-type: None
+
+    export-/-printing: 
+      include-in-export-/-print: true
+
+    enable-users-to: 
+      sort: false
+      hide: true
+
+  - # ====== Column: NOME_UTENTE =================================
+    id: 48780735421753710
+    identification: 
+      column-name: NOME_UTENTE
+      type: Text Field
+
+    heading: 
+      heading: Nome Utente
+      alignment: start
+
+    settings: 
+      trim-spaces: Leading and Trailing
+      text-case: NO CHANGE
+
+    layout: 
+      sequence: 50
+      column-alignment: start
+      stretch: Use Report Setting
+
+    accessibility: 
+      value-identifies-row: false
+
+    validation: 
+      value-required: false
+      maximum-length: 50
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:7:&SESSION.::&DEBUG.::P7_ID_UTENTE:&USERID.'
+        page: 7 # Gestione Utenti
+        values: 
+          p7_id_utente: '&USERID.'
+
+      link-text: '&NOME_UTENTE.'
+
+    source: 
+      type: Database Column
+      database-column: NOME_UTENTE
+      data-type: VARCHAR2
+      query-only: false
+      primary-key: false
+
+    default: 
+      duplicate-copies-existing-value: true
+
+    column-filter: 
+      enabled: true
+      performance-impacting-operators: 
+      - Contains
+      - Starts With
+      - Case Insensitive
+      - Regular Expression
+      text-case: Mixed
+      lov-type: Distinct Column
+      exact-match: true
+
+    export-/-printing: 
+      include-in-export-/-print: true
+
+    enable-users-to: 
+      sort: true
+      control-break/aggregate: true
+      hide: true
+
+  - # ====== Column: LAST_LOGIN ==================================
+    id: 48780794906753711
+    identification: 
+      column-name: LAST_LOGIN
+      type: Date Picker
+
+    heading: 
+      heading: Last Login
+      alignment: center
+
+    settings: 
+      show-time: true
+      display-as: Popup
+      minimum-date: None
+      maximum-date: None
+      multiple-months: No
+      use-defaults: true
+
+    layout: 
+      sequence: 60
+      column-alignment: center
+      stretch: Use Report Setting
+
+    accessibility: 
+      value-identifies-row: false
+
+    appearance: 
+      format-mask: 'dd/mm/yyyy hh24:mi:ss'
+
+    validation: 
+      value-required: false
+
+    source: 
+      type: Database Column
+      database-column: LAST_LOGIN
+      data-type: TIMESTAMP
+      query-only: true
+      primary-key: false
+
+    column-filter: 
+      enabled: true
+      lov-type: Distinct Column
+      date-ranges: All
+
+    export-/-printing: 
+      include-in-export-/-print: true
+
+    enable-users-to: 
+      sort: true
+      control-break/aggregate: true
+      hide: true
+
+  - # ====== Column: USRGRPID ====================================
+    id: 48781048194753713
+    identification: 
+      column-name: USRGRPID
+      type: Number Field
+
+    heading: 
+      heading: Usrgrpid
+      alignment: end
+
+    settings: 
+      number-alignment: End
+      virtual-keyboard: Text
+
+    layout: 
+      sequence: 80
+      column-alignment: end
+      stretch: Use Report Setting
+
+    accessibility: 
+      value-identifies-row: false
+
+    validation: 
+      value-required: true
+
+    source: 
+      type: Database Column
+      database-column: USRGRPID
+      data-type: NUMBER
+      query-only: false
+      primary-key: false
+
+    default: 
+      duplicate-copies-existing-value: true
+
+    column-filter: 
+      enabled: true
+      lov-type: None
+
+    export-/-printing: 
+      include-in-export-/-print: true
+
+    enable-users-to: 
+      sort: true
+      control-break/aggregate: true
+      hide: true
+
+  - # ====== Column: GROUPNAME ===================================
+    id: 48781177599753714
+    identification: 
+      column-name: GROUPNAME
+      type: Text Field
+
+    heading: 
+      heading: Nome Gruppo
+      alignment: start
+
+    settings: 
+      trim-spaces: Leading and Trailing
+      text-case: NO CHANGE
+
+    layout: 
+      sequence: 90
+      column-alignment: start
+      stretch: Use Report Setting
+
+    accessibility: 
+      value-identifies-row: false
+
+    validation: 
+      value-required: true
+      maximum-length: 64
+
+    source: 
+      type: Database Column
+      database-column: GROUPNAME
+      data-type: VARCHAR2
+      query-only: false
+      primary-key: false
+
+    default: 
+      duplicate-copies-existing-value: true
+
+    column-filter: 
+      enabled: true
+      performance-impacting-operators: 
+      - Contains
+      - Starts With
+      - Case Insensitive
+      - Regular Expression
+      text-case: Mixed
+      lov-type: Distinct Column
+      exact-match: true
+
+    export-/-printing: 
+      include-in-export-/-print: true
+
+    enable-users-to: 
+      sort: true
+      control-break/aggregate: true
+      hide: true
+
+  - # ====== Column: APEX$ROW_SELECTOR ===========================
+    id: 48781358512753716
+    identification: 
+      column-name: APEX$ROW_SELECTOR
+      type: Row Selector
+
+    settings: 
+      enable-multi-select: true
+      show-select-all: true
+      hide-control: false
+
+    layout: 
+      sequence: 10
+
+  - # ====== Column: NVL(TAU.RUOLO_MONITORAGGIO,1)--,--TYPE,--ATTE
+    id: 48783798064753741
+    identification: 
+      column-name: NVL(TAU.RUOLO_MONITORAGGIO,1)--,--TYPE,--ATTEMPT_FAILED,--ATTEMPT_IP,--ATTEMPT_CLOCK
+      type: Select List
+
+    heading: 
+      heading: Ruolo Monitoraggio
+      alignment: start
+
+    layout: 
+      sequence: 100
+      column-alignment: start
+      stretch: Use Report Setting
+
+    accessibility: 
+      value-identifies-row: false
+
+    validation: 
+      value-required: false
+
+    list-of-values: 
+      type: Shared Component
+      list-of-values: ZBX_TIPO_UTENTE1 # 28930587571284623
+      display-extra-values: false
+      display-null-value: false
+
+    source: 
+      type: Database Column
+      database-column: NVL(TAU.RUOLO_MONITORAGGIO,1)--,--TYPE,--ATTEMPT_FAILED,--ATTEMPT_IP,--ATTEMPT_CLOCK
+      data-type: NUMBER
+      query-only: false
+      primary-key: false
+
+    default: 
+      duplicate-copies-existing-value: true
+
+    column-filter: 
+      enabled: true
+      performance-impacting-operators: 
+      - Contains
+      - Starts With
+      - Case Insensitive
+      - Regular Expression
+      text-case: Mixed
+      lov-type: Use List of Values
+      exact-match: true
+
+    export-/-printing: 
+      include-in-export-/-print: true
+
+    enable-users-to: 
+      sort: true
+      control-break/aggregate: true
+      hide: true
+
+  - # ====== Column: LAST_IP =====================================
+    id: 49611381141283218
+    identification: 
+      column-name: LAST_IP
+      type: Textarea
+
+    heading: 
+      heading: Last Ip
+      alignment: start
+
+    settings: 
+      resizable: true
+      auto-height: false
+      character-counter: false
+      trim-spaces: Leading and Trailing
+
+    layout: 
+      sequence: 110
+      column-alignment: start
+      stretch: Use Report Setting
+
+    accessibility: 
+      value-identifies-row: false
+
+    validation: 
+      value-required: false
+      maximum-length: 100
+
+    source: 
+      type: Database Column
+      database-column: LAST_IP
+      data-type: VARCHAR2
+      query-only: false
+      primary-key: false
+
+    default: 
+      duplicate-copies-existing-value: true
+
+    session-state: 
+      data-type: VARCHAR2
+
+    column-filter: 
+      enabled: true
+      performance-impacting-operators: 
+      - Contains
+      - Starts With
+      - Case Insensitive
+      - Regular Expression
+      text-case: Mixed
+      lov-type: None
+
+    export-/-printing: 
+      include-in-export-/-print: true
+
+    enable-users-to: 
+      sort: false
+      hide: true
+
+  printing: 
+    page: 
+      size: A4
+      orientation: Landscape
+      units: Millimeters
+      width: 297
+      height: 210
+      border-width: 0.5
+      border-color: '#666666'
+
+    page-header: 
+      font: Helvetica
+      font-weight: Normal
+      font-size: 12
+      font-color: '#000000'
+      alignment: center
+      page-header-text: Utenti
+
+    column-headings: 
+      font: Helvetica
+      font-weight: Bold
+      font-size: 10
+      font-color: '#000000'
+      background-color: '#EEEEEE'
+
+    columns: 
+      font: Helvetica
+      font-weight: Normal
+      font-size: 10
+      font-color: '#000000'
+      background-color: '#FFFFFF'
+
+    page-footer: 
+      font: Helvetica
+      font-weight: Normal
+      font-size: 12
+      font-color: '#000000'
+      alignment: center
+
+- # ====== Region: GUIDA ALL'USO ===============================
+  id: 80338189521603180
+  identification: 
+    name: GUIDA ALL'USO
+    type: Static Content
+
+  source: 
+    html-code: |
+      Dopo aver selezionato un gruppo utenti, è possibile aggiungere o eliminare utenti al gruppo tramite i pulsanti
+      <b>Aggiungi Utente<b> e <b>Elimina Utente<b>.<br>
+      Per ciascun gruppo utenti, è possibile inoltre aggiungere o eliminare gruppi di sottostazioni tramite i pulsanti <b>Disassocia Host Group<b> e <b>Associa Host Group<b>.
+
+  layout: 
+    sequence: 10
+    parent-region: No Parent
+    slot: BODY
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: 6
+
+  appearance: 
+    template: Collapsible
+    template-options: 
+    - '#DEFAULT#'
+    - t-Region--hideShowIconsMath
+    - is-collapsed
+    - t-Region--scrollBody
+    render-components: Above Content
+
+  advanced: 
+    region-display-selector: true
+    exclude-title-from-translation: false
+
+  server-side-condition: 
+    type: Never
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    settings: 
+      output-as: HTML
+      expand-shortcuts: false
+
+page-items: 
+- # ====== Page Item: P28_USRGRPID =============================
+  id: 28924006076284615
+  identification: 
+    name: P28_USRGRPID
+    type: Popup LOV
+
+  label: 
+    label: 'Gruppo Utenti:'
+    alignment: Left
+
+  settings: 
+    display-as: Inline Popup
+    initial-fetch: Automatic
+    manual-entry: false
+    search-as-you-type: true
+    minimum-characters: No minimum (0)
+
+  multiple-values: 
+    type: No
+
+  layout: 
+    sequence: 20
+    region: No Parent
+    slot: BODY
+    alignment: Left
+    start-new-layout: false
+    start-new-row: true
+    column: 1
+    new-column: true
+    column-span: 4
+    label-column-span: 1
+
+  appearance: 
+    template: Optional
+    template-options: 
+    - '#DEFAULT#'
+    width: 30
+
+  validation: 
+    value-required: false
+
+  list-of-values: 
+    type: Shared Component
+    list-of-values: GRUPPI_UTENTE # 28082184098784305
+    display-extra-values: true
+    display-null-value: true
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    type: Null
+    used: Only when current value in session state is null
+
+  session-state: 
+    storage: Per Session (Persistent)
+
+  quick-picks: 
+    show-quick-picks: false
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: false
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P28_SELECTED_ROWS ========================
+  id: 28924366966284616
+  identification: 
+    name: P28_SELECTED_ROWS
+    type: Hidden
+
+  settings: 
+    value-protected: false
+
+  layout: 
+    sequence: 30
+    region: No Parent
+    slot: BODY
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    type: Null
+    used: Only when current value in session state is null
+
+  session-state: 
+    data-type: VARCHAR2
+    storage: Per Session (Persistent)
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+buttons: 
+- # ====== Button: NoAction ====================================
+  id: 28438298200845775
+  identification: 
+    button-name: NoAction
+    label: Elenco dei Gruppi Host associati al Gruppo di Utenti
+
+  layout: 
+    sequence: 20
+    region: Permessi # 48782010491753723
+    slot: PREVIOUS
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    button-template: Text
+    hot: false
+    template-options: 
+    - '#DEFAULT#'
+
+  behavior: 
+    action: Defined by Dynamic Action
+    execute-validations: false
+
+- # ====== Button: EliminaGroup ================================
+  id: 28916866963284609
+  identification: 
+    button-name: EliminaGroup
+    label: Disassocia<br>Host Group
+
+  layout: 
+    sequence: 20
+    region: Permessi # 48782010491753723
+    slot: NEXT
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    button-template: Text
+    hot: true
+    template-options: 
+    - '#DEFAULT#'
+    - t-Button--primary
+    - t-Button--padBottom
+
+  behavior: 
+    action: Defined by Dynamic Action
+    execute-validations: true
+
+- # ====== Button: AggiungiGroup ===============================
+  id: 28917292815284609
+  identification: 
+    button-name: AggiungiGroup
+    label: Associa<br>Host Group
+
+  layout: 
+    sequence: 30
+    region: Permessi # 48782010491753723
+    slot: NEXT
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    button-template: Text
+    hot: true
+    template-options: 
+    - '#DEFAULT#'
+    - t-Button--primary
+    - t-Button--padBottom
+
+  behavior: 
+    action: Redirect to Page in this Application
+    target: 
+      url: 'f?p=&APP_ID.:30:&SESSION.::&DEBUG.:RP,30:P30_USRGRPID:&P28_USRGRPID.'
+      page: 30 # Aggiungi BCT o Gruppo
+      clear-cache: RP,30
+      values: 
+        p30_usrgrpid: '&P28_USRGRPID.'
+
+    warn-on-unsaved-changes: Do Not Check
+
+- # ====== Button: Aggiungiutente ==============================
+  id: 28922620179284613
+  identification: 
+    button-name: Aggiungiutente
+    label: Aggiungi Utente
+
+  layout: 
+    sequence: 20
+    region: Utenti # 55703764978592676
+    slot: NEXT
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    button-template: Text
+    hot: true
+    template-options: 
+    - '#DEFAULT#'
+    - t-Button--primary
+    - t-Button--padBottom
+
+  behavior: 
+    action: Redirect to Page in this Application
+    target: 
+      url: 'f?p=&APP_ID.:29:&SESSION.::&DEBUG.:RR,29:P29_USRGRPID:&P28_USRGRPID.'
+      page: 29 # Aggiungi Utente
+      clear-cache: RR,29
+      values: 
+        p29_usrgrpid: '&P28_USRGRPID.'
+
+    warn-on-unsaved-changes: Do Not Check
+
+- # ====== Button: EliminaUtente ===============================
+  id: 28922982715284613
+  identification: 
+    button-name: EliminaUtente
+    label: Elimina Utente
+
+  layout: 
+    sequence: 10
+    region: Utenti # 55703764978592676
+    slot: NEXT
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    button-template: Text
+    hot: true
+    template-options: 
+    - '#DEFAULT#'
+    - t-Button--primary
+    - t-Button--padBottom
+
+  behavior: 
+    action: Defined by Dynamic Action
+    execute-validations: true
+
+dynamic-actions: 
+- # ====== Dynamic Action: New =================================
+  id: 28438357737845776
+  identification: 
+    name: New
+
+  execution: 
+    sequence: 60
+    event-scope: Static
+    type: Immediate
+
+  when: 
+    event: Click
+    selection-type: Button
+    button: NoAction # 28438298200845775
+
+  actions: 
+  - # ====== Action: Disable =====================================
+    id: 28438431029845777
+    identification: 
+      action: Disable
+
+    affected-elements: 
+      selection-type: Button
+      button: NoAction # 28438298200845775
+
+    execution: 
+      sequence: 10
+      event: New # 28438357737845776
+      fire-when-event-result-is: True
+      fire-on-initialization: true
+
+- # ====== Dynamic Action: DA_DeleteUser =======================
+  id: 28925538493284618
+  identification: 
+    name: DA_DeleteUser
+
+  execution: 
+    sequence: 30
+    event-scope: Static
+    type: Immediate
+
+  when: 
+    event: Click
+    selection-type: Button
+    button: EliminaUtente # 28922982715284613
+
+  actions: 
+  - # ====== Action: Execute JavaScript Code =====================
+    id: 28926119775284620
+    identification: 
+      action: Execute JavaScript Code
+
+    settings: 
+      code: |
+        // Clear previous selections, if any
+        $s("P28_SELECTED_ROWS", "");
+        // IG static id is defined as emp
+        var gridView = apex.region("IG_USRID").widget().interactiveGrid("getViews").grid;
+        var records = gridView.getSelectedRecords();
+        var empNo;
+        
+        // define empty JSON object to hold selected rows
+        var selRecords = {
+        	"rows": []
+        };
+        
+        var selRecordsJSON;
+        
+        if (records.length > 0) {
+        	if (confirm("Vuoi togliere gli utenti selezionati dal gruppo?")) {
+        		$.each(records, function(i, r) {
+        			// employee number defined as PK for IG
+        			empNo = gridView.model.getRecordId(r);
+        			// you can also get other columns values using below code
+        			// ENAME is column name in IG query
+        			//empName = gridView.model.getValue(r, "ENAME");
+        			// Push selected rows into an array
+        			selRecords.rows.push({
+        				"usrID": empNo
+        			});
+        		});
+        		// convert JSON into string
+        		selRecordsJSON = JSON.stringify(selRecords);
+        		console.log(selRecordsJSON);
+        		apex.page.submit({
+        			request: "EliminaUtente",
+        			set: {
+        				"P28_SELECTED_ROWS": selRecordsJSON
+        			},
+        			showWait: true
+        		});
+        	}
+        } else {
+        	alert("Please select at least one user.");
+        }
+
+    execution: 
+      sequence: 10
+      event: DA_DeleteUser # 28925538493284618
+      fire-when-event-result-is: True
+      fire-on-initialization: false
+
+- # ====== Dynamic Action: Change ==============================
+  id: 28926485986284620
+  identification: 
+    name: Change
+
+  execution: 
+    sequence: 10
+    event-scope: Static
+    type: Immediate
+
+  when: 
+    event: Change
+    selection-type: Item(s)
+    item(s): 
+    - P28_USRGRPID
+
+  actions: 
+  - # ====== Action: Refresh =====================================
+    id: 28927009618284620
+    identification: 
+      action: Refresh
+
+    affected-elements: 
+      selection-type: Region
+      region: Utenti # 55703764978592676
+
+    execution: 
+      sequence: 20
+      event: Change # 28926485986284620
+      fire-when-event-result-is: True
+      fire-on-initialization: false
+
+    server-side-condition: 
+      type: Never
+
+  - # ====== Action: Refresh =====================================
+    id: 28927451614284621
+    identification: 
+      action: Refresh
+
+    affected-elements: 
+      selection-type: Region
+      region: Permessi # 48782010491753723
+
+    execution: 
+      sequence: 30
+      event: Change # 28926485986284620
+      fire-when-event-result-is: True
+      fire-on-initialization: false
+
+    server-side-condition: 
+      type: Never
+
+  - # ====== Action: Submit Page =================================
+    id: 84721118564970369
+    identification: 
+      action: Submit Page
+
+    settings: 
+      show-processing: true
+
+    execution: 
+      sequence: 10
+      event: Change # 28926485986284620
+      fire-when-event-result-is: True
+      fire-on-initialization: false
+
+- # ====== Dynamic Action: OnCloseDialogUtenti =================
+  id: 28927907929284621
+  identification: 
+    name: OnCloseDialogUtenti
+
+  execution: 
+    sequence: 20
+    event-scope: Static
+    type: Immediate
+
+  when: 
+    event: Dialog Closed
+    selection-type: Region
+    region: Utenti # 55703764978592676
+
+  actions: 
+  - # ====== Action: Refresh =====================================
+    id: 28928360011284621
+    identification: 
+      action: Refresh
+
+    affected-elements: 
+      selection-type: Region
+      region: Utenti # 55703764978592676
+
+    execution: 
+      sequence: 10
+      event: OnCloseDialogUtenti # 28927907929284621
+      fire-when-event-result-is: True
+      fire-on-initialization: false
+
+- # ====== Dynamic Action: onCloseDialogBCT ====================
+  id: 28928791928284621
+  identification: 
+    name: onCloseDialogBCT
+
+  execution: 
+    sequence: 40
+    event-scope: Static
+    type: Immediate
+
+  when: 
+    event: Dialog Closed
+    selection-type: Region
+    region: Permessi # 48782010491753723
+
+  actions: 
+  - # ====== Action: Refresh =====================================
+    id: 28929238777284621
+    identification: 
+      action: Refresh
+
+    affected-elements: 
+      selection-type: Region
+      region: Permessi # 48782010491753723
+
+    execution: 
+      sequence: 10
+      event: onCloseDialogBCT # 28928791928284621
+      fire-when-event-result-is: True
+      fire-on-initialization: false
+
+- # ====== Dynamic Action: DA_DeleteBCT ========================
+  id: 28929713090284621
+  identification: 
+    name: DA_DeleteBCT
+
+  execution: 
+    sequence: 50
+    event-scope: Static
+    type: Immediate
+
+  when: 
+    event: Click
+    selection-type: Button
+    button: EliminaGroup # 28916866963284609
+
+  actions: 
+  - # ====== Action: Execute JavaScript Code =====================
+    id: 28930200651284621
+    identification: 
+      action: Execute JavaScript Code
+
+    settings: 
+      code: |
+        // Clear previous selections, if any
+        $s("P28_SELECTED_ROWS", "");
+        // IG static id is defined as emp
+        var gridView = apex.region("IG_PERMESSI").widget().interactiveGrid("getViews").grid;
+        var records = gridView.getSelectedRecords();
+        var empNo;
+        
+        // define empty JSON object to hold selected rows
+        var selRecords = {
+        	"rows": []
+        };
+        
+        var selRecordsJSON;
+        
+        if (records.length > 0) {
+        	if (confirm("Vuoi togliere i baricentri selezionati dal gruppo?")) {
+        		$.each(records, function(i, r) {
+        			// employee number defined as PK for IG
+        			empNo = gridView.model.getRecordId(r);
+        			// you can also get other columns values using below code
+        			// ENAME is column name in IG query
+        			//empName = gridView.model.getValue(r, "ENAME");
+        			// Push selected rows into an array
+        			selRecords.rows.push({
+        				"grpID": empNo
+        			});
+        		});
+        		// convert JSON into string
+        		selRecordsJSON = JSON.stringify(selRecords);
+        		console.log(selRecordsJSON);
+        		apex.page.submit({
+        			request: "EliminaGroup",
+        			set: {
+        				"P28_SELECTED_ROWS": selRecordsJSON
+        			},
+        			showWait: true
+        		});
+        	}
+        } else {
+        	alert("Please select at least one group.");
+        }
+
+    execution: 
+      sequence: 10
+      event: DA_DeleteBCT # 28929713090284621
+      fire-when-event-result-is: True
+      fire-on-initialization: false
+
+processes: 
+- # ====== Process: DeleteUserFromGroup ========================
+  id: 28924775110284617
+  identification: 
+    name: DeleteUserFromGroup
+    type: Execute Code
+    execution-chain: None
+
+  source: 
+    location: Local Database
+    language: PL/SQL
+    pl/sql-code: |
+      DECLARE
+          l_userid    utenti_tlg.tbl_anag_utenti.id_utente%type;
+          l_values    apex_json.t_values;
+          l_row_count PLS_INTEGER;
+      BEGIN
+          apex_debug.message('inside process Delete User From Group');
+          -- parse text to JSON
+          apex_json.parse(p_values => l_values, p_source => :P28_SELECTED_ROWS);
+          apex_debug.message('In process: '|| :P28_SELECTED_ROWS);
+          -- get number of rows selected
+          l_row_count := apex_json.get_count(p_path => 'rows', p_values => l_values);
+          apex_debug.message('In process - count: '|| l_row_count);
+          -- loop through the selected rows
+          FOR i IN 1..l_row_count LOOP
+              -- get Primary Key value from JSON data
+              l_userid := null;
+              -- if primary key column type is not a number type, then remove TO_NUMBER part
+              l_userid := TO_NUMBER(apex_json.get_varchar2(p_path => 'rows[%d].usrID', p0 => i, p_values => l_values));
+              apex_debug.message('l_userid: ' || l_userid);
+              -- update employee commission
+              DELETE FROM monitoraggio_tlg.USERS_GROUPS_NEW  WHERE usrgrpid = :P28_USRGRPID AND userid = l_userid;
+          END LOOP;
+      END;
+
+  execution: 
+    sequence: 20
+    point: Processing
+    run-process: Once Per Page Visit (default)
+
+  success-message: 
+    success-message: Utente/i dissociato/i dal gruppo
+
+  error: 
+    display-location: Inline in Notification
+
+  server-side-condition: 
+    when-button-pressed: EliminaUtente # 28922982715284613
+
+- # ====== Process: DeleteBctFromGroup =========================
+  id: 28925153748284618
+  identification: 
+    name: DeleteBctFromGroup
+    type: Execute Code
+    execution-chain: None
+
+  source: 
+    location: Local Database
+    language: PL/SQL
+    pl/sql-code: |
+      DECLARE
+          l_grpid     number;
+          l_values    apex_json.t_values;
+          l_row_count PLS_INTEGER;
+      BEGIN
+          apex_debug.message('inside process Delete Bct From Group');
+          -- parse text to JSON
+          apex_json.parse(p_values => l_values, p_source => :P28_SELECTED_ROWS);
+          apex_debug.message('In process: '|| :P28_SELECTED_ROWS);
+          -- get number of rows selected
+          l_row_count := apex_json.get_count(p_path => 'rows', p_values => l_values);
+          apex_debug.message('In process - count: '|| l_row_count);
+          -- loop through the selected rows
+          FOR i IN 1..l_row_count LOOP
+              -- get Primary Key value from JSON data
+              l_grpid := null;
+              -- if primary key column type is not a number type, then remove TO_NUMBER part
+              l_grpid := TO_NUMBER(apex_json.get_varchar2(p_path => 'rows[%d].grpID', p0 => i, p_values => l_values));
+              apex_debug.message('l_grpid: ' || l_grpid);
+              -- update employee commission
+              DELETE FROM monitoraggio_tlg.rights  WHERE groupid = :P28_USRGRPID AND id = l_grpid;
+          END LOOP;
+      END;
+
+  execution: 
+    sequence: 30
+    point: Processing
+    run-process: Once Per Page Visit (default)
+
+  success-message: 
+    success-message: Baricentro/i dissociato/i dal gruppo
+
+  error: 
+    display-location: Inline in Notification
+
+  server-side-condition: 
+    when-button-pressed: EliminaGroup # 28916866963284609
+

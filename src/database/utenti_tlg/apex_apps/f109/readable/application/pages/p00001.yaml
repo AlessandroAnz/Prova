@@ -1,0 +1,951 @@
+---
+# ====== Page: Home ==========================================
+id: 1
+identification: 
+  name: Home
+  alias: HOME
+  title: Home - Portale Unico
+
+appearance: 
+  page-mode: Normal
+  page-template: Theme Default
+  template-options: 
+  - '#DEFAULT#'
+
+navigation-menu: 
+  override-user-interface-level: false
+
+navigation: 
+  cursor-focus: Do not focus cursor
+  warn-on-unsaved-changes: true
+
+css: 
+  inline: |
+    /*.t-Header-controlsIcon,.t-Header-controlsIcon:after,.t-Header-controlsIcon:before {
+    background-color: black;
+    }*/
+    
+    /*.t-Region-headerItems.t-Region-headerItems--title {
+    background-color: whitesmoke;
+    }*/
+
+security: 
+  authentication: Page Requires Authentication
+  deep-linking: Application Default
+  page-access-protection: Arguments Must Have Checksum
+  form-auto-complete: Off
+  browser-cache: Application Default
+
+session-management: 
+  rejoin-sessions: Application Default
+
+advanced: 
+  enable-duplicate-page-submissions: Yes - Enable page to be re-posted
+  reload-on-submit: Only for Success
+
+server-cache: 
+  caching: Disabled
+
+regions: 
+- # ====== Region: Home - Portale Unico ========================
+  id: 12054251293520954
+  identification: 
+    name: Home - Portale Unico
+    type: Breadcrumb
+
+  source: 
+    breadcrumb: Breadcrumb # 11853987875520682
+
+  layout: 
+    sequence: 10
+    parent-region: No Parent
+    slot: REGION_POSITION_01
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Hero
+    template-options: 
+    - '#DEFAULT#'
+    - t-HeroRegion--featured
+    - t-HeroRegion--hideIcon
+    - t-Form--labelsAbove
+    icon: app-icon
+    render-components: Below Content
+
+  advanced: 
+    region-display-selector: false
+    exclude-title-from-translation: false
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    appearance: 
+      breadcrumb-template: Breadcrumb
+      template-options: 
+      - '#DEFAULT#'
+
+- # ====== Region: Localizzazione Quadri =======================
+  id: 13134069446777171
+  identification: 
+    name: Localizzazione Quadri
+    type: Map
+
+  source: 
+    location: Local Database
+    type: SQL Query
+    sql-query: |
+      select --'prova' as host, 45.07110771 as latitude, 76.48112869 as longitude   from dual
+      sede, latitude, longitude
+      /*, i.description || ': ' || lastvalue as lastvalue, case when lastvalue < 20 then 'red' 
+                                                 when lastvalue < 25 then 'yellow'
+                                                 else 'blue'
+                                            end color
+      */
+      from monitoraggio_tlg.v_zbx_hosts h 
+           --inner join monitoraggio_tlg.hosts_profiles_ext hp on h.hostid = hp.hostid
+           inner join aes_tlr.v_zbx_imprese hp on substr(h.host,1,16) = hp.sede
+      --     inner join monitoraggio_tlg.items i on i.hostid = h.hostid and key_ = 'SIE255_02_04'
+      where nvl(hp.latitude, 0) != 0
+      and nvl(:P1_AREAGEO, h.areaid) = h.areaid
+      --and rownum < 2
+      
+      /*
+      select host, latitude, longitude 
+      from monitoraggio_tlg.v_zbx_hosts h 
+           inner join monitoraggio_tlg.hosts_profiles_ext hp on h.hostid = hp.hostid
+      where hp.latitude is not null
+      and nvl(:P1_AREAGEO, h.areaid) = h.areaid
+      */
+
+  layout: 
+    sequence: 20
+    parent-region: <h2> Dashboard Sistema SAC TLR</h2><h4> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &P1_C1.  </h4> # 13134551855777176
+    slot: SUB_REGIONS
+    start-new-layout: false
+    start-new-row: false
+    column: 8
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Standard
+    template-options: 
+    - '#DEFAULT#'
+    - js-showMaximizeButton
+    - t-Region--scrollBody
+    render-components: Above Content
+
+  advanced: 
+    static-id: tlrMap
+    region-display-selector: false
+    exclude-title-from-translation: false
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    id: 13134165587777172
+    map: 
+      background: Default
+      height: 640
+
+    controls: 
+      navigation-bar: Zoom and Compass
+      navigation-bar-position: End
+      options: 
+      - Mousewheel Zoom
+      - Rectangle Zoom
+      - Scale Bar
+      - Infinite Map
+
+    initial-position-and-zoom: 
+      type: Based on Spatial Results
+
+    legend: 
+      show: true
+      position: End
+
+    attributes: 
+      messages-position: Below
+      unit-system: Metric
+
+    performance: 
+      lazy-loading: true
+
+    layers: 
+    - # ====== Layer: SST ==========================================
+      id: 13134244759777173
+      identification: 
+        name: SST
+        layer-type: Points
+
+      layout: 
+        sequence: 10
+
+      source: 
+        location: Region Source
+        use-spatial-index: false
+
+      column-mapping: 
+        geometry-column-data-type: Longitude/Latitude
+        longitude-column: LONGITUDE
+        latitude-column: LATITUDE
+        primary-key-column: SEDE
+
+      point-objects: 
+        style: SVG
+        shape: Default
+
+      point-clustering: 
+        enable: false
+
+      tooltip: 
+        advanced-formatting: false
+        column: SEDE
+
+      info-window: 
+        advanced-formatting: false
+        title-column: SEDE
+
+      legend: 
+        show: true
+        enable-to-hide: true
+
+- # ====== Region: <h2> Dashboard Sistema SAC TLR</h2><h4> &nbsp
+  id: 13134551855777176
+  identification: 
+    name: <h2> Dashboard Sistema SAC TLR</h2><h4> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &P1_C1.  </h4>
+    type: Static Content
+
+  layout: 
+    sequence: 40
+    parent-region: No Parent
+    slot: BODY
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Standard
+    template-options: 
+    - '#DEFAULT#'
+    - t-Region--noPadding
+    - t-Region--accent6
+    - t-Region--noUI
+    - t-Region--scrollBody
+    - margin-top-none
+    - margin-bottom-none
+    render-components: Above Content
+
+  advanced: 
+    region-display-selector: true
+    exclude-title-from-translation: false
+
+  security: 
+    authorization-scheme: CHECK_DITTE_ESTERNE # 51791914820359514
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    settings: 
+      output-as: HTML
+      expand-shortcuts: false
+
+- # ====== Region: Quadri attivati =============================
+  id: 13134816504777178
+  identification: 
+    name: Quadri attivati
+    type: List
+
+  source: 
+    list: QuadriAttivati # 14112610393347462
+
+  layout: 
+    sequence: 10
+    parent-region: <h2> Dashboard Sistema SAC TLR</h2><h4> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &P1_C1.  </h4> # 13134551855777176
+    slot: SUB_REGIONS
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Standard
+    template-options: 
+    - '#DEFAULT#'
+    - t-Region--noPadding
+    - t-Region--scrollBody
+    render-components: Above Content
+
+  advanced: 
+    region-display-selector: false
+    exclude-title-from-translation: false
+
+  server-cache: 
+    caching: Disabled
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    appearance: 
+      list-template: Badge List
+      template-options: 
+      - '#DEFAULT#'
+      - t-BadgeList--circular
+      - t-BadgeList--cols
+      - t-BadgeList--large
+
+- # ====== Region: Quadri con anomalie trasmissive (>48H) ======
+  id: 13134867586777179
+  identification: 
+    name: Quadri con anomalie trasmissive (>48H)
+    type: List
+
+  source: 
+    list: QuadriAnomali # 14029650737886206
+
+  layout: 
+    sequence: 30
+    parent-region: Quadri attivati # 13134816504777178
+    slot: SUB_REGIONS
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Standard
+    template-options: 
+    - '#DEFAULT#'
+    - t-Region--noPadding
+    - t-Region--scrollBody
+    render-components: Above Content
+
+  advanced: 
+    region-display-selector: false
+    exclude-title-from-translation: false
+
+  server-cache: 
+    caching: Disabled
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    appearance: 
+      list-template: Badge List
+      template-options: 
+      - '#DEFAULT#'
+      - t-BadgeList--circular
+      - t-BadgeList--cols
+      - t-BadgeList--large
+
+- # ====== Region: Tipologia Quadri Anno Precedente ============
+  id: 13135012982777180
+  identification: 
+    name: Tipologia Quadri Anno Precedente
+    type: Chart
+
+  source: 
+    location: Local Database
+    type: SQL Query
+    sql-query: |
+      select count(*), tipo_quadro
+      from aes_tlr.v_stat_installazione_all si 
+           inner join utenti_tlg.TBL_AREA_LOCALITA al ON substr(si.nome_sst, 4,2) = al.LOCALITA_BREVE
+           inner join utenti_tlg.TBL_AREE a on a.id = al.id_area
+      where to_char(data_inst_quadro,'yyyy') = to_char(add_months(sysdate,-12),'yyyy')
+      and   nvl(:P1_AREAGEO, a.id) = a.id
+      group by tipo_quadro
+      order by 2;
+
+  layout: 
+    sequence: 10
+    parent-region: Quadri attivati # 13134816504777178
+    slot: SUB_REGIONS
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Standard
+    template-options: 
+    - '#DEFAULT#'
+    - t-Region--noPadding
+    - t-Region--scrollBody
+    render-components: Above Content
+
+  advanced: 
+    region-display-selector: false
+    exclude-title-from-translation: false
+
+  security: 
+    escape-special-characters: true
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    id: 13135098753777181
+    chart: 
+      type: Pie
+
+    layout: 
+      height: 300
+
+    data-cursor: 
+      cursor: Automatic
+      behavior: Automatic
+      dim-on-hover: true
+
+    settings: 
+      pie-selection-effect: Highlight
+
+    value: 
+      pie-chart-other-threshold: 0
+      format: Decimal
+      decimal-places: 0
+      format-scaling: None
+
+    animation: 
+      on-display: Zoom
+      on-data-change: Slide to Left
+
+    tooltip: 
+      show: true
+      show-series-name: true
+      show-value: true
+
+    legend: 
+      show: true
+      position: Automatic
+      hide-and-show-behavior: Rescale
+
+    series: 
+    - # ====== Series: New =========================================
+      id: 13135198681777182
+      identification: 
+        name: New
+
+      execution: 
+        sequence: 10
+
+      source: 
+        location: Region Source
+
+      column-mapping: 
+        series-name: TIPO_QUADRO
+        label: TIPO_QUADRO
+        value-aggregation: Sum
+        value: COUNT(*)
+        custom-tooltip: COUNT(*)
+        custom-column: TIPO_QUADRO
+
+      link: 
+        type: Redirect to Page in this Application
+        target: 
+          url: 'f?p=&APP_ID.:3:&SESSION.::&DEBUG.::P3_ANNO,P3_AREAGEO,P3_TIPOQUADRO:precedente,&P1_AREAGEO.,&TIPO_QUADRO.'
+          page: 3 # TipologiaQuadri
+          values: 
+            p3_anno: precedente
+            p3_areageo: '&P1_AREAGEO.'
+            p3_tipoquadro: '&TIPO_QUADRO.'
+
+      label: 
+        show: true
+        position: Outside Slice
+        display-as: Label - Percentage ( Value )
+
+- # ====== Region: Tipologia Quadri Anno Corrente ==============
+  id: 13135429628777185
+  identification: 
+    name: Tipologia Quadri Anno Corrente
+    type: Chart
+
+  source: 
+    location: Local Database
+    type: SQL Query
+    sql-query: |
+      select count(*), tipo_quadro
+      from aes_tlr.v_stat_installazione_all si 
+           inner join utenti_tlg.TBL_AREA_LOCALITA al ON substr(si.nome_sst, 4,2) = al.LOCALITA_BREVE
+           inner join utenti_tlg.TBL_AREE a on a.id = al.id_area
+      where to_char(data_inst_quadro,'yyyy') = to_char(sysdate,'yyyy')
+      and   nvl(:P1_AREAGEO, a.id) = a.id
+      group by tipo_quadro
+      order by 2
+
+  layout: 
+    sequence: 20
+    parent-region: Quadri attivati # 13134816504777178
+    slot: SUB_REGIONS
+    start-new-layout: false
+    start-new-row: false
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Standard
+    template-options: 
+    - '#DEFAULT#'
+    - t-Region--noPadding
+    - t-Region--scrollBody
+    render-components: Above Content
+
+  advanced: 
+    region-display-selector: false
+    exclude-title-from-translation: false
+
+  security: 
+    escape-special-characters: true
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    id: 13135551215777186
+    chart: 
+      type: Pie
+
+    layout: 
+      height: 300
+
+    data-cursor: 
+      cursor: Automatic
+      behavior: Automatic
+      dim-on-hover: true
+
+    settings: 
+      pie-selection-effect: Highlight
+
+    value: 
+      pie-chart-other-threshold: 0
+      format: Decimal
+      decimal-places: 0
+      format-scaling: None
+
+    animation: 
+      on-display: Zoom
+      on-data-change: Slide to Left
+
+    tooltip: 
+      show: true
+      show-series-name: true
+      show-value: true
+
+    legend: 
+      show: true
+      position: Automatic
+      hide-and-show-behavior: Rescale
+
+    series: 
+    - # ====== Series: New =========================================
+      id: 13135714314777187
+      identification: 
+        name: New
+
+      execution: 
+        sequence: 10
+
+      source: 
+        location: Region Source
+
+      column-mapping: 
+        series-name: TIPO_QUADRO
+        label: TIPO_QUADRO
+        value-aggregation: Sum
+        value: COUNT(*)
+        custom-tooltip: COUNT(*)
+        custom-column: TIPO_QUADRO
+
+      link: 
+        type: Redirect to Page in this Application
+        target: 
+          url: 'f?p=&APP_ID.:3:&SESSION.::&DEBUG.::P3_ANNO,P3_AREAGEO,P3_TIPOQUADRO:corrente,&P1_AREAGEO.,&TIPO_QUADRO.'
+          page: 3 # TipologiaQuadri
+          values: 
+            p3_anno: corrente
+            p3_areageo: '&P1_AREAGEO.'
+            p3_tipoquadro: '&TIPO_QUADRO.'
+
+      label: 
+        show: true
+        position: Outside Slice
+        display-as: Label - Percentage ( Value )
+
+- # ====== Region: Quadri On/off line ==========================
+  id: 13135816788777188
+  identification: 
+    name: Quadri On/off line
+    type: List
+
+  source: 
+    list: QuadriOnOff # 14128047185074911
+
+  layout: 
+    sequence: 40
+    parent-region: Quadri attivati # 13134816504777178
+    slot: SUB_REGIONS
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Standard
+    template-options: 
+    - '#DEFAULT#'
+    - t-Region--scrollBody
+    render-components: Above Content
+
+  advanced: 
+    region-display-selector: false
+    exclude-title-from-translation: false
+
+  server-cache: 
+    caching: Disabled
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    appearance: 
+      list-template: Badge List
+      template-options: 
+      - '#DEFAULT#'
+      - t-BadgeList--circular
+      - t-BadgeList--cols t-BadgeList--4cols
+      - t-BadgeList--large
+
+page-items: 
+- # ====== Page Item: P1_NEW ===================================
+  id: 13611595404125206
+  identification: 
+    name: P1_NEW
+    type: Hidden
+
+  settings: 
+    value-protected: true
+
+  layout: 
+    sequence: 20
+    region: No Parent
+    slot: BODY
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    type: Static Value
+    static-value: '&APP_USER.'
+    used: Only when current value in session state is null
+
+  session-state: 
+    data-type: VARCHAR2
+    storage: Per Session (Persistent)
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P1_C1 ====================================
+  id: 23272163255937560
+  identification: 
+    name: P1_C1
+    type: Hidden
+
+  settings: 
+    value-protected: true
+
+  layout: 
+    sequence: 30
+    region: No Parent
+    slot: BODY
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    type: Null
+    used: Only when current value in session state is null
+
+  session-state: 
+    data-type: VARCHAR2
+    storage: Per Session (Persistent)
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P1_AREAGEO ===============================
+  id: 23272253114937561
+  identification: 
+    name: P1_AREAGEO
+    type: Select List
+
+  label: 
+    label: '<a style="background:#ffff00; font-weight:bold;">Area geografica</a>'
+    alignment: Left
+
+  settings: 
+    page-action-on-selection: Submit Page
+    execute-validations: true
+
+  multiple-values: 
+    type: No
+
+  layout: 
+    sequence: 10
+    region: <h2> Dashboard Sistema SAC TLR</h2><h4> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &P1_C1.  </h4> # 13134551855777176
+    slot: BODY
+    alignment: Left
+    start-new-layout: false
+    start-new-row: true
+    column: 1
+    new-column: true
+    column-span: Automatic
+    label-column-span: 1
+
+  appearance: 
+    template: Optional
+    template-options: 
+    - '#DEFAULT#'
+    height: 1
+
+  validation: 
+    value-required: false
+
+  list-of-values: 
+    type: Shared Component
+    list-of-values: AREEGEO # 23440116036901904
+    display-extra-values: true
+    display-null-value: true
+    null-display-value: Tutte
+
+  advanced: 
+    option-html-attributes: 
+    - '"labelStyle":"background-color:#FFFFFF;'
+    - 'color:red;"'
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    type: Null
+    used: Only when current value in session state is null
+
+  session-state: 
+    storage: Per Session (Persistent)
+
+  quick-picks: 
+    show-quick-picks: false
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P1_NEW_1 =================================
+  id: 28437923654845771
+  identification: 
+    name: P1_NEW_1
+    type: Display Only
+
+  label: 
+    label: PAGE ID
+    alignment: Left
+
+  settings: 
+    format: Plain Text
+    based-on: Item Value
+    show-line-breaks: true
+    send-on-page-submit: true
+
+  layout: 
+    sequence: 10
+    region: No Parent
+    slot: BODY
+    alignment: Left
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+    label-column-span: Page Template Default
+
+  appearance: 
+    template: Optional - Floating
+    template-options: 
+    - '#DEFAULT#'
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    type: Static Value
+    static-value: '&APP_PAGE_ID.'
+    used: Only when current value in session state is null
+
+  session-state: 
+    data-type: VARCHAR2
+    storage: Per Session (Persistent)
+
+  server-side-condition: 
+    type: Never
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+buttons: 
+- # ====== Button: Reset =======================================
+  id: 136875547854086359
+  identification: 
+    button-name: Reset
+    label: Reset
+
+  layout: 
+    sequence: 10
+    region: Localizzazione Quadri # 13134069446777171
+    slot: BODY
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+    alignment: Left center
+
+  appearance: 
+    button-template: Text
+    hot: false
+    template-options: 
+    - '#DEFAULT#'
+
+  behavior: 
+    action: Defined by Dynamic Action
+    execute-validations: true
+
+dynamic-actions: 
+- # ====== Dynamic Action: set_profilo_impresa =================
+  id: 24672296463309163
+  identification: 
+    name: set_profilo_impresa
+
+  execution: 
+    sequence: 10
+    event-scope: Static
+
+  when: 
+    event: Page Load
+
+  actions: 
+  - # ====== Action: Execute Server-side Code ====================
+    id: 24672379524309164
+    identification: 
+      action: Execute Server-side Code
+
+    settings: 
+      language: PE.PROPERTY.SOURCE_SNIPPET_LANG.LOV.PLSQL.D
+      pl/sql-code: |
+        DECLARE
+        V_IMPRESA  VARCHAR2(50);
+        V_PROFILO  VARCHAR2(50);
+        V_ID_IMPRESA integer;
+        
+        BEGIN
+        SELECT pkg_user_utilities.f_calcola_nome_impresa(:APP_USER) INTO V_IMPRESA from dual;
+        :G_IMPRESA := V_IMPRESA;
+        SELECT pkg_user_utilities.f_calcola_profilo(:APP_USER) INTO V_PROFILO from dual;
+        :G_PROFILO := V_PROFILO;
+        SELECT pkg_user_utilities.f_calcola_id_impresa(:APP_USER) into V_ID_IMPRESA from dual;
+        :G_ID_IMPRESA := V_ID_IMPRESA;
+        END;
+
+    execution: 
+      sequence: 10
+      event: set_profilo_impresa # 24672296463309163
+      fire-when-event-result-is: True
+      fire-on-initialization: false
+      stop-execution-on-error: true
+      wait-for-result: true
+
+- # ====== Dynamic Action: onClickResetMap =====================
+  id: 136875662437086360
+  identification: 
+    name: onClickResetMap
+
+  execution: 
+    sequence: 20
+    event-scope: Static
+    type: Immediate
+
+  when: 
+    event: Click
+    selection-type: Button
+    button: Reset # 136875547854086359
+
+  actions: 
+  - # ====== Action: Execute JavaScript Code =====================
+    id: 136875752548086361
+    identification: 
+      action: Execute JavaScript Code
+
+    settings: 
+      code: apex.region( "tlrMap" ).reset();
+
+    execution: 
+      sequence: 10
+      event: onClickResetMap # 136875662437086360
+      fire-when-event-result-is: True
+      fire-on-initialization: false
+
+computations: 
+- # ====== Computation: P1_C1 ==================================
+  id: 23272099535937559
+  identification: 
+    item-name: P1_C1
+
+  execution: 
+    sequence: 10
+    point: Before Regions
+
+  computation: 
+    type: Function Body
+    language: PL/SQL
+    pl/sql-function-body: |
+      declare
+        lastclock integer;
+        giorno date;
+        oggi varchar2(200);
+      begin
+        SELECT max("range_start_integer") into lastclock FROM "timescaledb_information"."chunks"@pglink where "hypertable_name" = 'history';
+        select max(clock) into lastclock from monitoraggio_tlg.v_zbx_history where clock > lastclock;
+        select aes_tlr.pkg_functions.f_timestamp_tz(lastclock) into giorno from dual;
+        select 'Ultimo dato dal campo: ' || to_char(giorno, 'dd-mon-yyyy') || ' alle ore ' || to_char(giorno, 'HH24:MI:SS') into oggi from dual;
+      
+        --htp.p('&nbsp;');
+        --htp.center('<p>' || oggi);
+        --htp.p('&nbsp;');
+        return oggi;
+      end;
+      
+
+  server-side-condition: 
+    type: Never
+

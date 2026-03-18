@@ -1,0 +1,1707 @@
+---
+- # ====== List: Navigation Menu ===============================
+  id: 11854436487520684
+  identification: 
+    name: Navigation Menu
+
+  subscription: 
+    version-number: 383621867
+
+  source: 
+    type: Static Values
+
+  entries: 
+  - # ====== Entry: DEMO =========================================
+    id: 7409939036678169
+    label: 
+      label: DEMO
+
+    icon: 
+      image/icon-css-classes: fa-file-o
+
+    layout: 
+      sequence: 110
+
+    is-current: 
+      type: Pages
+      pages: 
+      - 36
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:36:&APP_SESSION.::&DEBUG.:::'
+        page: 36 # DEMO
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: false
+
+  - # ====== Entry: Workflow Teleletture =========================
+    id: 8493804824455683
+    label: 
+      label: Workflow Teleletture
+
+    icon: 
+      image/icon-css-classes: fa-american-sign-language-interpreting
+
+    layout: 
+      sequence: 10055
+
+    is-current: 
+      type: Target Page
+
+    link: 
+      target: 
+        url: 'f?p=107:1:&SESSION.::&DEBUG.:RP:::'
+        app: 107
+        page: 1
+        clear-cache: RP
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: false
+
+    server-side-condition: 
+      type: Function Body
+      language: PL/SQL
+      pl/sql-function-body: "return :APP_USER in ('E00005100','E00009238', 'ALESSANDRO01');"
+
+  - # ====== Entry: Home - Portale Unico =========================
+    id: 12053404076520948
+    label: 
+      label: Home - Portale Unico
+
+    icon: 
+      image/icon-css-classes: fa-home
+
+    layout: 
+      sequence: 10
+
+    is-current: 
+      type: Target Page
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:1:&SESSION.::&DEBUG.::::'
+        page: 1 # Home
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: false
+
+  - # ====== Entry: Administration ===============================
+    id: 12203700122521462
+    label: 
+      label: Administration
+
+    icon: 
+      image/icon-css-classes: fa-user-wrench
+
+    layout: 
+      sequence: 10000
+
+    is-current: 
+      type: Target Page
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:10000:&SESSION.::&DEBUG.::::'
+        page: 10000 # Administration
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: false
+
+    server-side-condition: 
+      type: Never
+
+    security: 
+      authorization-scheme: CHECK_APPLICATION # 28411814942165785
+
+  - # ====== Entry: Installazioni Quadri TLR =====================
+    id: 12225169696789842
+    label: 
+      label: Installazioni Quadri TLR
+
+    icon: 
+      image/icon-css-classes: fa-server-pointer
+
+    layout: 
+      sequence: 20
+
+    is-current: 
+      type: Target Page
+
+    link: 
+      target: 
+        url: 'f?p=101:1:&SESSION.:::::'
+        app: 101
+        page: 1
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: false
+
+    server-side-condition: 
+      type: Function Body
+      language: PL/SQL
+      pl/sql-function-body: 'return utenti_tlg.check_applicazione(:APP_USER, 101);'
+
+  - # ====== Entry: Letture Contatori  ===========================
+    id: 12912388221599884
+    label: 
+      label: 'Letture Contatori '
+
+    icon: 
+      image/icon-css-classes: fa-clipboard-edit
+
+    layout: 
+      sequence: 30
+
+    is-current: 
+      type: Target Page
+
+    link: 
+      target: 
+        url: 'f?p=102:1:&SESSION.:::::'
+        app: 102
+        page: 1
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: false
+
+    server-side-condition: 
+      type: Function Body
+      language: PL/SQL
+      pl/sql-function-body: 'return utenti_tlg.check_applicazione(:APP_USER, 102);'
+
+  - # ====== Entry: Gestione Comandi =============================
+    id: 12912868791610071
+    label: 
+      label: Gestione Comandi
+
+    layout: 
+      sequence: 40
+
+    is-current: 
+      type: Target Page
+
+    link: 
+      target: 
+        url: 'f?p=110:1:&SESSION.:::::'
+        app: 110
+        page: 1
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: false
+
+    server-side-condition: 
+      type: Function Body
+      language: PL/SQL
+      pl/sql-function-body: 'return utenti_tlg.check_applicazione(:APP_USER, 110);'
+
+  - # ====== Entry: Portale Manutenzioni TLG =====================
+    id: 12913388558614358
+    label: 
+      label: Portale Manutenzioni TLG
+
+    icon: 
+      image/icon-css-classes: fa-folder-wrench
+
+    layout: 
+      sequence: 50
+
+    is-current: 
+      type: Target Page
+
+    link: 
+      target: 
+        url: 'f?p=200:1:&SESSION.:::::'
+        app: 200
+        page: 1
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: false
+
+    server-side-condition: 
+      type: Function Body
+      language: PL/SQL
+      pl/sql-function-body: 'return utenti_tlg.check_applicazione(:APP_USER, 200);'
+
+  - # ====== Entry: Report =======================================
+    id: 12914676964664280
+    label: 
+      label: Report
+
+    icon: 
+      image/icon-css-classes: fa-table-search
+
+    layout: 
+      sequence: 60
+
+    is-current: 
+      type: Target Page
+
+    user-defined-attributes: 
+      translatable: false
+
+    server-side-condition: 
+      type: Function Body
+      language: PL/SQL
+      pl/sql-function-body: 'return utenti_tlg.check_applicazione(:APP_USER, 0);'
+
+  - # ====== Entry: Sinottici ====================================
+    id: 12914934829667653
+    label: 
+      label: Sinottici
+
+    icon: 
+      image/icon-css-classes: fa-box-plot-chart
+
+    layout: 
+      sequence: 70
+
+    is-current: 
+      type: Target Page
+
+    link: 
+      target: 
+        url: 'f?p=117:1:&SESSION.:::::'
+        app: 117
+        page: 1
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: false
+
+    server-side-condition: 
+      type: Function Body
+      language: PL/SQL
+      pl/sql-function-body: 'return utenti_tlg.check_applicazione(:APP_USER, 0);'
+
+  - # ====== Entry: Grafici e Dati SST ===========================
+    id: 22272497381972972
+    label: 
+      label: Grafici e Dati SST
+
+    icon: 
+      image/icon-css-classes: fa-line-chart
+
+    layout: 
+      sequence: 80
+
+    is-current: 
+      type: Target Page
+
+    link: 
+      target: 
+        url: 'f?p=300:1:&SESSION.:::::'
+        app: 300
+        page: 1
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: false
+
+    server-side-condition: 
+      type: Function Body
+      language: PL/SQL
+      pl/sql-function-body: 'return utenti_tlg.check_applicazione(:APP_USER, 300);'
+
+  - # ====== Entry: Estrazione Dati ==============================
+    id: 23823230916335946
+    label: 
+      label: Estrazione Dati
+
+    icon: 
+      image/icon-css-classes: fa-cart-arrow-down
+
+    layout: 
+      sequence: 55
+
+    is-current: 
+      type: Target Page
+
+    link: 
+      target: 
+        url: 'f?p=108:1:&SESSION.:::::'
+        app: 108
+        page: 1
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: false
+
+    server-side-condition: 
+      type: Function Body
+      language: PL/SQL
+      pl/sql-function-body: 'return utenti_tlg.check_applicazione(:APP_USER, 108);'
+
+  - # ====== Entry: Configurazione ===============================
+    id: 27912432003901355
+    label: 
+      label: Configurazione
+
+    icon: 
+      image/icon-css-classes: fa-tools
+
+    layout: 
+      sequence: 90
+
+    is-current: 
+      type: Pages
+      pages: 
+      - 15
+      - 6
+      - 7
+      - 11
+      - 12
+      - 9
+      - 10
+      - 13
+      - 14
+      - 16
+      - 17
+      - 18
+      - 21
+      - 19
+      - 8
+      - 20
+      - 22
+      - 23
+      - 24
+      - 25
+      - 26
+      - 28
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:15:&SESSION.::&DEBUG.:RP:::'
+        page: 15 # Menu Configurazione
+        clear-cache: RP
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: false
+
+    server-side-condition: 
+      type: Function Body
+      language: PL/SQL
+      pl/sql-function-body: 'return UTENTI_TLG.IS_ROLE_ADMIN(:APP_USER);'
+
+  - # ====== Entry: Control Room =================================
+    id: 327067166199655018
+    label: 
+      label: Control Room
+
+    icon: 
+      image/icon-css-classes: fa-server-check
+
+    layout: 
+      sequence: 100
+
+    is-current: 
+      type: Pages
+      pages: 
+      - 32
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:32:&SESSION.::&DEBUG.:RP:::'
+        page: 32 # Menu Control Room
+        clear-cache: RP
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: false
+
+    server-side-condition: 
+      type: Function Body
+      language: PL/SQL
+      pl/sql-function-body: 'return UTENTI_TLG.IS_ROLE_ADMIN(:APP_USER);'
+
+  - # ====== Entry: Allarmi SST ==================================
+    id: 347872189550768739
+    label: 
+      label: Allarmi SST
+
+    icon: 
+      image/icon-css-classes: fa-exclamation-triangle-o
+
+    layout: 
+      sequence: 95
+
+    is-current: 
+      type: Target Page
+
+    link: 
+      target: 
+        url: 'f?p=110:1000:&SESSION.::&DEBUG.:RP:::'
+        app: 110
+        page: 1000
+        clear-cache: RP
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: false
+
+    security: 
+      authorization-scheme: AUT_TAB_ALLARMI # 347795054657669006
+
+  - # ====== Entry: Dashboard Allarmi ============================
+    id: 347890448613835289
+    label: 
+      label: Dashboard Allarmi
+
+    layout: 
+      sequence: 10010
+      parent-entry: Allarmi SST # 347872189550768739
+
+    is-current: 
+      type: Pages
+      pages: 
+      - 1005
+
+    link: 
+      target: 
+        url: 'f?p=110:1005:&SESSION.::&DEBUG.:RP:::'
+        app: 110
+        page: 1005
+        clear-cache: RP
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: false
+
+    security: 
+      authorization-scheme: AUT_TAB_ALLARMI # 347795054657669006
+
+  - # ====== Entry: Consultazione Allarmi ========================
+    id: 347894764459849885
+    label: 
+      label: Consultazione Allarmi
+
+    layout: 
+      sequence: 10020
+      parent-entry: Allarmi SST # 347872189550768739
+
+    is-current: 
+      type: Pages
+      pages: 
+      - 1010
+
+    link: 
+      target: 
+        url: 'f?p=110:1010:&SESSION.::&DEBUG.:RP:::'
+        app: 110
+        page: 1010
+        clear-cache: RP
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: false
+
+    security: 
+      authorization-scheme: AUT_TAB_ALLARMI # 347795054657669006
+
+  - # ====== Entry: Gestione Allarmi =============================
+    id: 347896375997852733
+    label: 
+      label: Gestione Allarmi
+
+    layout: 
+      sequence: 10030
+      parent-entry: Allarmi SST # 347872189550768739
+
+    is-current: 
+      type: Pages
+      pages: 
+      - 1030
+
+    link: 
+      target: 
+        url: 'f?p=110:1030:&SESSION.::&DEBUG.:RP:::'
+        app: 110
+        page: 1030
+        clear-cache: RP
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: false
+
+    security: 
+      authorization-scheme: AUT_TAB_ALLARMI # 347795054657669006
+
+  - # ====== Entry: Blocco Allarmi ===============================
+    id: 347896933335857298
+    label: 
+      label: Blocco Allarmi
+
+    layout: 
+      sequence: 10040
+      parent-entry: Allarmi SST # 347872189550768739
+
+    is-current: 
+      type: Pages
+      pages: 
+      - 1015
+
+    link: 
+      target: 
+        url: 'f?p=110:1015:&SESSION.::&DEBUG.:RP:::'
+        app: 110
+        page: 1015
+        clear-cache: RP
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: false
+
+    security: 
+      authorization-scheme: AUT_TAB_ALLARMI # 347795054657669006
+
+  - # ====== Entry: Lista Assistenti Gestori =====================
+    id: 348526322748613119
+    label: 
+      label: Lista Assistenti Gestori
+
+    layout: 
+      sequence: 10045
+      parent-entry: Allarmi SST # 347872189550768739
+
+    is-current: 
+      type: Pages
+      pages: 
+      - 1080
+
+    link: 
+      target: 
+        url: 'f?p=110:1080:&SESSION.::&DEBUG.:RP:::'
+        app: 110
+        page: 1080
+        clear-cache: RP
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: false
+
+    security: 
+      authorization-scheme: AUT_TAB_ALLARMI # 347795054657669006
+
+- # ====== List: Navigation Bar ================================
+  id: 12041629876520870
+  identification: 
+    name: Navigation Bar
+
+  subscription: 
+    version-number: 1
+
+  source: 
+    type: Static Values
+
+  entries: 
+  - # ====== Entry: Install App ==================================
+    id: 12199873021521460
+    label: 
+      label: Install App
+
+    icon: 
+      image/icon-css-classes: fa-cloud-download
+
+    layout: 
+      sequence: 10
+
+    is-current: 
+      type: Never
+
+    link: 
+      target: '#'
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: false
+      2.: a-pwaInstall
+
+  - # ====== Entry: Feedback =====================================
+    id: 12200305791521460
+    label: 
+      label: Feedback
+
+    icon: 
+      image/icon-css-classes: fa-comment-o
+
+    layout: 
+      sequence: 20
+
+    is-current: 
+      type: Target Page
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:10050:&SESSION.::&DEBUG.:RP,10050:P10050_PAGE_ID:&APP_PAGE_ID.:'
+        page: 10050 # Feedback
+        clear-cache: RP,10050
+        values: 
+          p10050_page_id: '&APP_PAGE_ID.'
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: false
+      2.: icon-only
+
+    configuration: 
+      build-option: 'Feature: Feedback' # 12043723868520888
+
+  - # ====== Entry: About ========================================
+    id: 12200605432521460
+    label: 
+      label: About
+
+    icon: 
+      image/icon-css-classes: fa-question-circle-o
+
+    layout: 
+      sequence: 30
+
+    is-current: 
+      type: Target Page
+
+    user-defined-attributes: 
+      translatable: false
+      2.: icon-only
+
+    configuration: 
+      build-option: 'Feature: About Page' # 12044171557520889
+
+  - # ====== Entry: Page Help ====================================
+    id: 12201077886521461
+    label: 
+      label: Page Help
+
+    icon: 
+      image/icon-css-classes: fa-question-circle-o
+
+    layout: 
+      sequence: 40
+      parent-entry: About # 12200605432521460
+
+    is-current: 
+      type: Target Page
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:10061:&SESSION.::&DEBUG.::P10061_PAGE_ID:&APP_PAGE_ID.:'
+        page: 10061 # Help
+        values: 
+          p10061_page_id: '&APP_PAGE_ID.'
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: false
+      2.: icon-only
+
+    configuration: 
+      build-option: 'Feature: About Page' # 12044171557520889
+
+  - # ====== Entry: --- ==========================================
+    id: 12201473030521461
+    label: 
+      label: '---'
+
+    layout: 
+      sequence: 50
+      parent-entry: About # 12200605432521460
+
+    is-current: 
+      type: Target Page
+
+    link: 
+      target: separator
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: false
+
+  - # ====== Entry: About Page ===================================
+    id: 12201855982521461
+    label: 
+      label: About Page
+
+    icon: 
+      image/icon-css-classes: fa-info-circle-o
+
+    layout: 
+      sequence: 60
+      parent-entry: About # 12200605432521460
+
+    is-current: 
+      type: Target Page
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:10060:&SESSION.::&DEBUG.:10060'
+        page: 10060 # About
+        clear-cache: 10060
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: false
+
+    configuration: 
+      build-option: 'Feature: About Page' # 12044171557520889
+
+  - # ====== Entry: &APP_USER. ===================================
+    id: 12202149991521461
+    label: 
+      label: '&APP_USER.'
+
+    icon: 
+      image/icon-css-classes: fa-user
+
+    layout: 
+      sequence: 70
+
+    is-current: 
+      type: Target Page
+
+    link: 
+      target: '#'
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: false
+      2.: has-username
+
+  - # ====== Entry: --- ==========================================
+    id: 12202638754521462
+    label: 
+      label: '---'
+
+    layout: 
+      sequence: 80
+      parent-entry: '&APP_USER.' # 12202149991521461
+
+    is-current: 
+      type: Target Page
+
+    link: 
+      target: separator
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: false
+
+  - # ====== Entry: Sign Out =====================================
+    id: 12203046384521462
+    label: 
+      label: Sign Out
+
+    icon: 
+      image/icon-css-classes: fa-sign-out
+
+    layout: 
+      sequence: 90
+      parent-entry: '&APP_USER.' # 12202149991521461
+
+    is-current: 
+      type: Target Page
+
+    link: 
+      target: '&LOGOUT_URL.'
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: false
+
+- # ====== List: Application Configuration =====================
+  id: 12204819171521465
+  identification: 
+    name: Application Configuration
+
+  subscription: 
+    version-number: 1
+
+  source: 
+    type: Static Values
+
+  configuration: 
+    build-option: 'Feature: Configuration Options' # 12043895998520889
+
+  entries: 
+  - # ====== Entry: Configuration Options ========================
+    id: 12205201998521466
+    label: 
+      label: Configuration Options
+
+    icon: 
+      image/icon-css-classes: fa-sliders
+
+    layout: 
+      sequence: 10
+
+    is-current: 
+      type: Target Page
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:10010:&SESSION.::&DEBUG.:10010:::'
+        page: 10010 # Configuration Options
+        clear-cache: 10010
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: false
+      1.: Enable or disable application features
+
+    configuration: 
+      build-option: 'Feature: Configuration Options' # 12043895998520889
+
+- # ====== List: User Interface ================================
+  id: 12205521060521466
+  identification: 
+    name: User Interface
+
+  subscription: 
+    version-number: 1
+
+  source: 
+    type: Static Values
+
+  configuration: 
+    build-option: 'Feature: Theme Style Selection' # 12044244093520889
+
+  entries: 
+  - # ====== Entry: Theme Style Selection ========================
+    id: 12205895935521466
+    label: 
+      label: Theme Style Selection
+
+    icon: 
+      image/icon-css-classes: fa-paint-brush
+
+    layout: 
+      sequence: 10
+
+    is-current: 
+      type: Target Page
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:10020:&SESSION.::&DEBUG.:10020:::'
+        page: 10020 # Application Appearance
+        clear-cache: 10020
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: false
+      1.: Set the default application look and feel
+
+    configuration: 
+      build-option: 'Feature: Theme Style Selection' # 12044244093520889
+
+- # ====== List: Activity Reports ==============================
+  id: 12206219705521467
+  identification: 
+    name: Activity Reports
+
+  subscription: 
+    version-number: 1
+
+  source: 
+    type: Static Values
+
+  configuration: 
+    build-option: 'Feature: Activity Reporting' # 12043567728520888
+
+  entries: 
+  - # ====== Entry: Dashboard ====================================
+    id: 12206560480521467
+    label: 
+      label: Dashboard
+
+    icon: 
+      image/icon-css-classes: fa-area-chart
+
+    layout: 
+      sequence: 10
+
+    is-current: 
+      type: Target Page
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:10030:&SESSION.::&DEBUG.:10030:::'
+        page: 10030 # Activity Dashboard
+        clear-cache: 10030
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: false
+      1.: View application activity metrics
+
+  - # ====== Entry: Top Users ====================================
+    id: 12206986226521467
+    label: 
+      label: Top Users
+
+    icon: 
+      image/icon-css-classes: fa-user-chart
+
+    layout: 
+      sequence: 20
+
+    is-current: 
+      type: Target Page
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:10031:&SESSION.::&DEBUG.:10031:::'
+        page: 10031 # Top Users
+        clear-cache: 10031
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: false
+      1.: Report of page views aggregated by user
+
+  - # ====== Entry: Application Error Log ========================
+    id: 12207287478521467
+    label: 
+      label: Application Error Log
+
+    icon: 
+      image/icon-css-classes: fa-exclamation
+
+    layout: 
+      sequence: 30
+
+    is-current: 
+      type: Target Page
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:10032:&SESSION.::&DEBUG.:10032:::'
+        page: 10032 # Application Error Log
+        clear-cache: 10032
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: false
+      1.: Report of errors logged by this application
+
+  - # ====== Entry: Page Performance =============================
+    id: 12207688461521468
+    label: 
+      label: Page Performance
+
+    icon: 
+      image/icon-css-classes: fa-file-chart
+
+    layout: 
+      sequence: 40
+
+    is-current: 
+      type: Target Page
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:10033:&SESSION.::&DEBUG.:10033:::'
+        page: 10033 # Page Performance
+        clear-cache: 10033
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: false
+      1.: Report of activity and performance by application page
+
+  - # ====== Entry: Page Views ===================================
+    id: 12208033994521468
+    label: 
+      label: Page Views
+
+    icon: 
+      image/icon-css-classes: fa-file-search
+
+    layout: 
+      sequence: 50
+
+    is-current: 
+      type: Target Page
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:10034:&SESSION.::&DEBUG.:RR,10034:::'
+        page: 10034 # Page Views
+        clear-cache: RR,10034
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: false
+      1.: Report of each page view by user including date of access and elapsed time
+
+  - # ====== Entry: Automations Log ==============================
+    id: 12208478112521468
+    label: 
+      label: Automations Log
+
+    icon: 
+      image/icon-css-classes: fa-gears
+
+    layout: 
+      sequence: 60
+
+    is-current: 
+      type: Target Page
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:10035:&SESSION.::&DEBUG.:RR,10035:::'
+        page: 10035 # Automations Log
+        clear-cache: RR,10035
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: false
+      1.: Report of automation executions and messages logged by this application
+
+    server-side-condition: 
+      type: Rows returned
+      sql-query: |
+        select 1
+        from apex_appl_automations a, apex_automation_log l
+        where a.automation_id = l.automation_id
+        and l.application_id = :APP_ID
+
+- # ====== List: Access Control ================================
+  id: 12208734213521469
+  identification: 
+    name: Access Control
+
+  subscription: 
+    version-number: 1
+
+  source: 
+    type: Static Values
+
+  configuration: 
+    build-option: 'Feature: Access Control' # 12043484259520888
+
+  entries: 
+  - # ====== Entry: Users ========================================
+    id: 12209177051521469
+    label: 
+      label: Users
+
+    icon: 
+      image/icon-css-classes: fa-users
+
+    layout: 
+      sequence: 10
+
+    is-current: 
+      type: Target Page
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:10041:&SESSION.::&DEBUG.:RP:::'
+        page: 10041 # Manage User Access
+        clear-cache: RP
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: false
+      1.: Change access control settings and disable access control
+
+  - # ====== Entry: Access Control ===============================
+    id: 12209551625521469
+    label: 
+      label: Access Control
+
+    icon: 
+      image/icon-css-classes: fa-key
+
+    layout: 
+      sequence: 20
+
+    is-current: 
+      type: Target Page
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:10040:&SESSION.::&DEBUG.::::'
+        page: 10040 # Configure Access Control
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: false
+      1.: Set level of access for authenticated users of this application
+
+- # ====== List: Feedback ======================================
+  id: 12209879860521469
+  identification: 
+    name: Feedback
+
+  subscription: 
+    version-number: 1
+
+  source: 
+    type: Static Values
+
+  configuration: 
+    build-option: 'Feature: Feedback' # 12043723868520888
+
+  entries: 
+  - # ====== Entry: User Feedback ================================
+    id: 12210298914521470
+    label: 
+      label: User Feedback
+
+    icon: 
+      image/icon-css-classes: fa-comment-o
+
+    layout: 
+      sequence: 10
+
+    is-current: 
+      type: Target Page
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:10053:&SESSION.::&DEBUG.:10053:::'
+        page: 10053 # Manage Feedback
+        clear-cache: 10053
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: false
+      1.: Report of all feedback submitted by application users
+
+- # ====== List: QuadriAnomali =================================
+  id: 14029650737886206
+  identification: 
+    name: QuadriAnomali
+
+  subscription: 
+    version-number: 1
+
+  source: 
+    type: SQL Query
+    sql-query: |
+      select lvl, label, 
+             apex_util.prepare_url(p_url => 'f?p='||v('APP_ID')||':4:'||v('SESSION')||'::NO::P4_AREAGEO,P4_ANOMALIA:'||v('P1_AREAGEO')||','||label) as target,
+          attribute1, attribute2, attribute3, attribute4,
+          attribute5, attribute6, attribute7
+      from (
+      select null as lvl,'Contatori' label, '#' as target,
+             null attribute1, null attribute2, null attribute3, null attribute4, 
+             count(*) attribute5, null attribute6, null attribute7, 'A' orderby 
+      from aes_tlr.tbl_stat_installazione si
+           INNER JOIN utenti_tlg.TBL_AREA_LOCALITA al ON substr(si.nome_sst, 4,2) = al.LOCALITA_BREVE
+           inner join utenti_tlg.TBL_aree a on al.id_area = a.id
+      where gprs= 'Si'
+      and nvl(:P1_AREAGEO, a.id) = a.id
+      and sysdate-nvl(lastclock_kam,sysdate)>2 
+      and sysdate-nvl(lastclock_hyd,sysdate)>2 
+      and sysdate-nvl(lastclock_uh50,sysdate)>2
+      union
+      select null as lvl,'Regolatori' label, '#' as target,
+             null attribute1, null attribute2, null attribute3, null attribute4, 
+             count(*) attribute5, null attribute6, null attribute7, 'B' orderby 
+      from aes_tlr.tbl_stat_installazione si
+           INNER JOIN utenti_tlg.TBL_AREA_LOCALITA al ON substr(si.nome_sst, 4,2) = al.LOCALITA_BREVE
+           inner join utenti_tlg.tbl_aree a on al.id_area = a.id
+      where gprs= 'Si'
+      and nvl(:P1_AREAGEO, a.id) = a.id
+      and sysdate-nvl(lastclock_dan,sysdate)>2 
+      and sysdate-nvl(lastclock_sie,sysdate)>2 
+      and sysdate-nvl(lastclock_rvl,sysdate)>2
+      ) order by orderby
+      
+      
+
+- # ====== List: QuadriCollaudati ==============================
+  id: 14029888699890237
+  identification: 
+    name: QuadriCollaudati
+
+  subscription: 
+    version-number: 1
+
+  source: 
+    type: SQL Query
+    sql-query: |
+      select lvl, label, target, attribute1, attribute2, attribute3, attribute4,
+          attribute5, attribute6, attribute7
+      from (
+      select null as lvl,'Esito positivo' label, 'javascript:void(0);' as target,
+             null attribute1, null attribute2, null attribute3, null attribute4, 
+             18934 attribute5, null attribute6, null attribute7, 'A' orderby from dual
+      union
+      select null as lvl,'Esito negativo' label, 'javascript:void(0);' as target,
+             null attribute1, null attribute2, null attribute3, null attribute4, 
+             239 attribute5, null attribute6, null attribute7, 'B' orderby from dual
+      union 
+      select null as lvl,'In valutazione' label, 'javascript:void(0);' as target,
+             null attribute1, null attribute2, null attribute3, null attribute4, 
+             14 attribute5, null attribute6, null attribute7, 'C' orderby from dual
+      ) order by orderby
+      
+
+- # ====== List: QuadriAttivati ================================
+  id: 14112610393347462
+  identification: 
+    name: QuadriAttivati
+
+  subscription: 
+    version-number: 1
+
+  source: 
+    type: SQL Query
+    sql-query: |
+      select null as lvl, label, 
+             apex_util.prepare_url(p_url => 'f?p='||v('APP_ID')||':2:'||v('SESSION')||'::NO::P2_AREAGEO,P2_ANNO:'||v('P1_AREAGEO')||','||label) as target,
+             null attribute1, null attribute2, null attribute3, null attribute4, 
+             value attribute5, null attribute6, null attribute7
+      from (
+      select count(*) value, substr(in_funz_dal,7) label
+      from aes_tlr.v_aes_imprese_totali ai
+           inner join utenti_tlg.tbl_area_localita al on ai.localita_breve = al.localita_breve
+           inner join utenti_tlg.tbl_aree a on a.id = al.id_area
+      where substr(in_funz_dal,7)>= to_char(to_number(to_char(sysdate,'yyyy'))-1)
+      and   nvl(:P1_AREAGEO, a.id) = a.id
+      group by substr(in_funz_dal,7)
+      )
+      
+
+- # ====== List: QuadriOnOff ===================================
+  id: 14128047185074911
+  identification: 
+    name: QuadriOnOff
+
+  subscription: 
+    version-number: 1
+
+  source: 
+    type: SQL Query
+    sql-query: |
+      select lvl, label, 
+      target, 
+          attribute1, attribute2, attribute3, attribute4,
+          attribute5, attribute6, attribute7
+      from (
+      select null as lvl,'On line' label, '#' as target, 
+             null attribute1, null attribute2, null attribute3, null attribute4, 
+             count(*) attribute5, null attribute6, null attribute7, 'A' orderby 
+      from aes_tlr.tbl_stat_installazione si
+           inner join utenti_tlg.TBL_AREA_LOCALITA al ON substr(si.nome_sst, 4,2) = al.LOCALITA_BREVE
+           inner join utenti_tlg.TBL_AREE a on a.id = al.id_area
+      where trunc(DATA_ULTIMO_INVIO) = trunc(sysdate)
+      and   nvl(:P1_AREAGEO, a.id) = a.id
+      union
+      select null as lvl,'off line da ' || to_char(trunc(sysdate)- trunc(DATA_ULTIMO_INVIO)) label,
+             apex_util.prepare_url(p_url => 'f?p='||v('APP_ID')||':5:'||v('SESSION')||'::NO::P5_AREAGEO,P5_GIORNI:'||v('P1_AREAGEO')||','||to_char(trunc(sysdate)- trunc(DATA_ULTIMO_INVIO))) as target, 
+             null attribute1, null attribute2, null attribute3, null attribute4, 
+             count(*) attribute5, null attribute6, null attribute7, 'B' orderby 
+      from aes_tlr.tbl_stat_installazione si
+           inner join utenti_tlg.TBL_AREA_LOCALITA al ON substr(si.nome_sst, 4,2) = al.LOCALITA_BREVE
+           inner join utenti_tlg.TBL_AREE a on a.id = al.id_area
+      where   nvl(:P1_AREAGEO, a.id) = a.id
+      group by trunc(sysdate)- trunc(DATA_ULTIMO_INVIO)--, to_char(rownum)
+      having trunc(sysdate)- trunc(DATA_ULTIMO_INVIO) between 1 and 6
+      --order by 2 desc
+      union
+      select null as lvl,'off line da 6+ gg' label,
+             apex_util.prepare_url(p_url => 'f?p='||v('APP_ID')||':5:'||v('SESSION')||'::NO::P5_AREAGEO,P5_GIORNI:'||v('P1_AREAGEO')||','||'> 6') as target, 
+             null attribute1, null attribute2, null attribute3, null attribute4, 
+             count(*) attribute5, null attribute6, null attribute7, 'C' orderby 
+      from aes_tlr.tbl_stat_installazione si
+           inner join utenti_tlg.TBL_AREA_LOCALITA al ON substr(si.nome_sst, 4,2) = al.LOCALITA_BREVE
+           inner join utenti_tlg.TBL_AREE a on a.id = al.id_area
+      where trunc(sysdate)- trunc(DATA_ULTIMO_INVIO) > 6
+      and   nvl(:P1_AREAGEO, a.id) = a.id
+      ) order by label desc;
+
+- # ====== List: MenuConfigurazione ============================
+  id: 28019051359224670
+  identification: 
+    name: MenuConfigurazione
+
+  subscription: 
+    version-number: 1
+
+  source: 
+    type: Static Values
+
+  entries: 
+  - # ====== Entry: Anagrafica Utenti ============================
+    id: 28019234900224672
+    label: 
+      label: Anagrafica Utenti
+
+    icon: 
+      image/icon-css-classes: fa-users
+
+    layout: 
+      sequence: 10
+
+    is-current: 
+      type: Target Page
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:6:&SESSION.::&DEBUG.::::'
+        page: 6 # Visualizza Utenti
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: false
+
+  - # ====== Entry: Anagrafica Imprese ===========================
+    id: 28019714197224673
+    label: 
+      label: Anagrafica Imprese
+
+    icon: 
+      image/icon-css-classes: fa-building-o
+
+    layout: 
+      sequence: 20
+
+    is-current: 
+      type: Target Page
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:11:&SESSION.::&DEBUG.::::'
+        page: 11 # Visualizza Imprese
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: false
+
+  - # ====== Entry: Anagrafica Applicazioni ======================
+    id: 28020028042224673
+    label: 
+      label: Anagrafica Applicazioni
+
+    icon: 
+      image/icon-css-classes: fa-folder-file
+
+    layout: 
+      sequence: 30
+
+    is-current: 
+      type: Target Page
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:9:&SESSION.::&DEBUG.::::'
+        page: 9 # Visualizza Applicazioni
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: false
+
+  - # ====== Entry: Anagrafica Profili ===========================
+    id: 28020449456224673
+    label: 
+      label: Anagrafica Profili
+
+    icon: 
+      image/icon-css-classes: fa-server-arrow-down
+
+    layout: 
+      sequence: 40
+
+    is-current: 
+      type: Target Page
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:13:&SESSION.::&DEBUG.::::'
+        page: 13 # Visualizza Profili
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: false
+
+  - # ====== Entry: Gestione Utenti-GruppiHost ===================
+    id: 28020890832224673
+    label: 
+      label: Gestione Utenti-GruppiHost
+
+    icon: 
+      image/icon-css-classes: fa-calendar-edit
+
+    layout: 
+      sequence: 50
+
+    is-current: 
+      type: Target Page
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:28:&SESSION.::&DEBUG.:RP,28:::'
+        page: 28 # Elenco Utenti
+        clear-cache: RP,28
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: false
+
+  - # ====== Entry: Gestione Gruppi-Utenti  ======================
+    id: 28098370854291631
+    label: 
+      label: 'Gestione Gruppi-Utenti '
+
+    icon: 
+      image/icon-css-classes: fa-users-alt
+
+    layout: 
+      sequence: 60
+
+    is-current: 
+      type: Target Page
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:16:&SESSION.::&DEBUG.:RP:::'
+        page: 16 # Gruppi Utenti
+        clear-cache: RP
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: false
+
+  - # ====== Entry: Ruoli Portale ================================
+    id: 28427641044783134
+    label: 
+      label: Ruoli Portale
+
+    icon: 
+      image/icon-css-classes: fa-lock-user
+
+    layout: 
+      sequence: 70
+
+    is-current: 
+      type: Target Page
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:8:&SESSION.::&DEBUG.:RP:::'
+        page: 8 # Ruolo Portale
+        clear-cache: RP
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: false
+
+  - # ====== Entry: Ruolo e Applicazioni =========================
+    id: 28468325373603065
+    label: 
+      label: Ruolo e Applicazioni
+
+    icon: 
+      image/icon-css-classes: fa-badges
+
+    layout: 
+      sequence: 80
+
+    is-current: 
+      type: Target Page
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:22:&SESSION.::&DEBUG.:RP:::'
+        page: 22 # Ruolo Portale e Applicazioni
+        clear-cache: RP
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: false
+
+  - # ====== Entry: Anagrafica Aree ==============================
+    id: 28547035406881455
+    label: 
+      label: Anagrafica Aree
+
+    icon: 
+      image/icon-css-classes: fa-tree
+
+    layout: 
+      sequence: 31
+
+    is-current: 
+      type: Target Page
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:23:&SESSION.::&DEBUG.:RP:::'
+        page: 23 # Visualizza Aree Geografiche
+        clear-cache: RP
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: false
+
+  - # ====== Entry: Anagrafica Località ==========================
+    id: 28560474050958426
+    label: 
+      label: Anagrafica Località
+
+    icon: 
+      image/icon-css-classes: fa-home
+
+    layout: 
+      sequence: 32
+
+    is-current: 
+      type: Target Page
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:25:&SESSION.::&DEBUG.:RP:::'
+        page: 25 # Visualizza Localita'
+        clear-cache: RP
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: false
+
+- # ====== List: MenuControlRoom ===============================
+  id: 327072626453726578
+  identification: 
+    name: MenuControlRoom
+
+  subscription: 
+    version-number: 1
+
+  source: 
+    type: Static Values
+
+  entries: 
+  - # ====== Entry: Job Status Monitoring ========================
+    id: 327072877711726580
+    label: 
+      label: Job Status Monitoring
+
+    icon: 
+      image/icon-css-classes: fa-tachometer
+
+    layout: 
+      sequence: 10
+
+    is-current: 
+      type: Target Page
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:33:&SESSION.::&DEBUG.::::'
+        page: 33 # Job Status Monitoring
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: false
+

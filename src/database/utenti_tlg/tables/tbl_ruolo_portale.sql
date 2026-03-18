@@ -1,0 +1,8 @@
+create table utenti_tlg.tbl_ruolo_portale (
+    id_ruolo_portale number(38, 0) default utenti_tlg.seq_ruoli.nextval not null enable,
+    ruolo_portale    varchar2(100 byte) not null enable,
+    descrizione      varchar2(100 byte)
+);
+
+
+-- sqlcl_snapshot {"hash":"b2ef6745aac082bca09abcbe30f07b4b5d7b08f7","type":"TABLE","name":"TBL_RUOLO_PORTALE","schemaName":"UTENTI_TLG","sxml":"\n  <TABLE xmlns=\"http://xmlns.oracle.com/ku\" version=\"1.0\">\n   <SCHEMA>UTENTI_TLG</SCHEMA>\n   <NAME>TBL_RUOLO_PORTALE</NAME>\n   <RELATIONAL_TABLE>\n      <COL_LIST>\n         <COL_LIST_ITEM>\n            <NAME>ID_RUOLO_PORTALE</NAME>\n            <DATATYPE>NUMBER</DATATYPE>\n            <PRECISION>38</PRECISION>\n            <SCALE>0</SCALE>\n            <DEFAULT>\"UTENTI_TLG\".\"SEQ_RUOLI\".\"NEXTVAL\"</DEFAULT>\n            <NOT_NULL></NOT_NULL>\n         </COL_LIST_ITEM>\n         <COL_LIST_ITEM>\n            <NAME>RUOLO_PORTALE</NAME>\n            <DATATYPE>VARCHAR2</DATATYPE>\n            <LENGTH>100</LENGTH>\n            <COLLATE_NAME>USING_NLS_COMP</COLLATE_NAME>\n            <NOT_NULL></NOT_NULL>\n         </COL_LIST_ITEM>\n         <COL_LIST_ITEM>\n            <NAME>DESCRIZIONE</NAME>\n            <DATATYPE>VARCHAR2</DATATYPE>\n            <LENGTH>100</LENGTH>\n            <COLLATE_NAME>USING_NLS_COMP</COLLATE_NAME>\n         </COL_LIST_ITEM>\n      </COL_LIST>\n      <DEFAULT_COLLATION>USING_NLS_COMP</DEFAULT_COLLATION>\n      <PHYSICAL_PROPERTIES>\n         <HEAP_TABLE></HEAP_TABLE>\n      </PHYSICAL_PROPERTIES>\n   </RELATIONAL_TABLE>\n</TABLE>"}

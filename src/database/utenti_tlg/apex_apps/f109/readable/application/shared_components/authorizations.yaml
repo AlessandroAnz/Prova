@@ -1,0 +1,319 @@
+---
+- # ====== Authorization: Administration Rights ================
+  id: 12046149896520904
+  identification: 
+    name: Administration Rights
+
+  subscription: 
+    version-number: 1
+
+  authorization-scheme: 
+    type: Is In Role or Group
+
+  settings: 
+    type: Application Role
+    name(s): Administrator
+
+  server-cache: 
+    evaluation-point: Once per Page View
+
+  error: 
+    error-message: Insufficient privileges, user is not an Administrator
+
+- # ====== Authorization: Reader Rights ========================
+  id: 12046280190520904
+  identification: 
+    name: Reader Rights
+
+  subscription: 
+    version-number: 1
+
+  authorization-scheme: 
+    type: PL/SQL Function Returning Boolean
+
+  settings: 
+    pl/sql-function-body: |
+      if nvl(apex_app_setting.get_value(
+         p_name => 'ACCESS_CONTROL_SCOPE'),'x') = 'ALL_USERS' then
+          -- allow user not in the ACL to access the application
+          return true;
+      else
+          -- require user to have at least one role
+          return apex_acl.has_user_any_roles (
+              p_application_id => :APP_ID, 
+              p_user_name      => :APP_USER);
+      end if;
+
+  server-cache: 
+    evaluation-point: Once per Session
+
+  error: 
+    error-message: You are not authorized to view this application, either because you have not been granted access, or your account has been locked. Please contact the application administrator.
+
+- # ====== Authorization: Contribution Rights ==================
+  id: 12046371062520904
+  identification: 
+    name: Contribution Rights
+
+  subscription: 
+    version-number: 1
+
+  authorization-scheme: 
+    type: Is In Role or Group
+
+  settings: 
+    type: Application Role
+    name(s): Administrator,Contributor
+
+  server-cache: 
+    evaluation-point: Once per Page View
+
+  error: 
+    error-message: Insufficient privileges, user is not a Contributor
+
+- # ====== Authorization: LOGIN  MONITOR =======================
+  id: 22242570725690357
+  identification: 
+    name: LOGIN  MONITOR
+
+  subscription: 
+    version-number: 1
+
+  authorization-scheme: 
+    type: Exists SQL Query
+
+  settings: 
+    sql-query: |
+      SELECT 1 FROM TBL_ANAG_UTENTI au
+               inner join TBL_UTENTI_PROFILI_APPLICAZIONI upa on au.id_utente = upa.id_utente
+      WHERE UPPER(LDAP_ACCOUNT) = UPPER(:APP_USER)
+      AND ID_APPLICAZIONE = 8
+
+  server-cache: 
+    evaluation-point: Once per Session
+
+- # ====== Authorization: LOGIN  DIAGNOSTICA ===================
+  id: 22242877114695569
+  identification: 
+    name: LOGIN  DIAGNOSTICA
+
+  subscription: 
+    version-number: 1
+
+  authorization-scheme: 
+    type: Exists SQL Query
+
+  settings: 
+    sql-query: |
+      SELECT 1 FROM TBL_ANAG_UTENTI au
+               inner join TBL_UTENTI_PROFILI_APPLICAZIONI upa on au.id_utente = upa.id_utente
+      WHERE UPPER(LDAP_ACCOUNT) = UPPER(:APP_USER)
+      AND ID_APPLICAZIONE = 4
+
+  server-cache: 
+    evaluation-point: Once per Session
+
+- # ====== Authorization: LOGIN_ADMIN ==========================
+  id: 22946394815853309
+  identification: 
+    name: LOGIN_ADMIN
+
+  subscription: 
+    version-number: 1
+
+  authorization-scheme: 
+    type: Exists SQL Query
+
+  settings: 
+    sql-query: |
+      SELECT 1
+      FROM TBL_ANAG_UTENTI A 
+            WHERE A.ID_UTENTE IN  (283, 284, 287, 282)   
+      AND A.LDAP_ACCOUNT = :APP_USER;
+
+  server-cache: 
+    evaluation-point: Once per Session
+
+- # ====== Authorization: CHECK_APPLICATION ====================
+  id: 28411814942165785
+  identification: 
+    name: CHECK_APPLICATION
+
+  subscription: 
+    version-number: 1
+
+  authorization-scheme: 
+    type: PL/SQL Function Returning Boolean
+
+  settings: 
+    pl/sql-function-body: 'return utenti_tlg.check_applicazione(:APP_USER, :APP_ID) OR utenti_tlg.is_role_admin(:APP_USER);'
+
+  server-cache: 
+    evaluation-point: Once per Session
+
+- # ====== Authorization: CHECK_APPLICATION_PAGE ===============
+  id: 28585317882305475
+  identification: 
+    name: CHECK_APPLICATION_PAGE
+
+  subscription: 
+    version-number: 1
+
+  authorization-scheme: 
+    type: PL/SQL Function Returning Boolean
+
+  settings: 
+    pl/sql-function-body: 'return utenti_tlg.check_applicazione_pagina(:APP_USER, :APP_ID, :APP_PAGE_ID);'
+
+  server-cache: 
+    evaluation-point: Always (No Caching)
+
+- # ====== Authorization: CHECK_APPLICATION_PAGE1 ==============
+  id: 28932075339284631
+  identification: 
+    name: CHECK_APPLICATION_PAGE1
+
+  subscription: 
+    master: 
+      referenced-id: 21554992429853717
+
+  authorization-scheme: 
+    type: PL/SQL Function Returning Boolean
+
+  settings: 
+    pl/sql-function-body: 'return utenti_tlg.check_applicazione_pagina(:APP_USER, :APP_ID, :APP_PAGE_ID);'
+
+  server-cache: 
+    evaluation-point: Always (No Caching)
+
+- # ====== Authorization: LOGIN_AES_TLR ========================
+  id: 29356218657929419
+  identification: 
+    name: LOGIN_AES_TLR
+
+  subscription: 
+    version-number: 1
+
+  authorization-scheme: 
+    type: Exists SQL Query
+
+  settings: 
+    sql-query: |
+      SELECT 1 FROM TBL_ANAG_UTENTI au
+               inner join TBL_UTENTI_PROFILI_APPLICAZIONI upa on au.id_utente = upa.id_utente
+      WHERE UPPER(LDAP_ACCOUNT) = UPPER(:APP_USER)
+      AND ID_APPLICAZIONE = 1
+
+  server-cache: 
+    evaluation-point: Once per Session
+
+  error: 
+    error-message: Accesso non abilitato
+
+- # ====== Authorization: LOGIN TELELETTUREAES =================
+  id: 29357066579018629
+  identification: 
+    name: LOGIN TELELETTUREAES
+
+  subscription: 
+    version-number: 1
+
+  authorization-scheme: 
+    type: Exists SQL Query
+
+  settings: 
+    sql-query: |
+      SELECT 1 FROM TBL_ANAG_UTENTI au
+               inner join TBL_UTENTI_PROFILI_APPLICAZIONI upa on au.id_utente = upa.id_utente
+      WHERE UPPER(LDAP_ACCOUNT) = UPPER(:APP_USER)
+      AND ID_APPLICAZIONE = 2
+
+  server-cache: 
+    evaluation-point: Once per Session
+
+- # ====== Authorization: LOGIN_TELERISCAES ====================
+  id: 29357233585032941
+  identification: 
+    name: LOGIN_TELERISCAES
+
+  subscription: 
+    version-number: 1
+
+  authorization-scheme: 
+    type: Exists SQL Query
+
+  settings: 
+    sql-query: |
+      SELECT 1 FROM TBL_ANAG_UTENTI au
+               inner join TBL_UTENTI_PROFILI_APPLICAZIONI upa on au.id_utente = upa.id_utente
+      WHERE UPPER(LDAP_ACCOUNT) = UPPER(:APP_USER)
+      AND ID_APPLICAZIONE = 3
+
+  server-cache: 
+    evaluation-point: Once per Session
+
+- # ====== Authorization: LOGIN EXPORTTLR ======================
+  id: 29357459798045032
+  identification: 
+    name: LOGIN EXPORTTLR
+
+  subscription: 
+    version-number: 1
+
+  authorization-scheme: 
+    type: Exists SQL Query
+
+  settings: 
+    sql-query: |
+      SELECT 1 FROM TBL_ANAG_UTENTI au
+               inner join TBL_UTENTI_PROFILI_APPLICAZIONI upa on au.id_utente = upa.id_utente
+      WHERE UPPER(LDAP_ACCOUNT) = UPPER(:APP_USER)
+      AND ID_APPLICAZIONE = 5
+
+  server-cache: 
+    evaluation-point: Once per Session
+
+- # ====== Authorization: CHECK_DITTE_ESTERNE ==================
+  id: 51791914820359514
+  identification: 
+    name: CHECK_DITTE_ESTERNE
+
+  subscription: 
+    version-number: 1
+
+  authorization-scheme: 
+    type: PL/SQL Function Returning Boolean
+
+  settings: 
+    pl/sql-function-body: 'return (NOT utenti_tlg.IS_ROLE_DITTE_ESTERNE(:APP_USER)) OR utenti_tlg.is_role_admin(:APP_USER);'
+
+  server-cache: 
+    evaluation-point: Once per Session
+
+- # ====== Authorization: AUT_TAB_ALLARMI ======================
+  id: 347795054657669006
+  identification: 
+    name: AUT_TAB_ALLARMI
+
+  subscription: 
+    version-number: 1
+
+  authorization-scheme: 
+    type: Exists SQL Query
+
+  settings: 
+    sql-query: |
+      SELECT 1
+      FROM TBL_ANAG_UTENTI A 
+             inner join TBL_UTENTI_PROFILI_APPLICAZIONI B  on A.ID_UTENTE = B.ID_UTENTE
+             inner join tbl_anag_applicazioni aa on aa.id_applicazione = b.id_applicazione
+      where aa.id_applicazione = 3
+      AND a.ID_utente IN (282, 283, 284, 285, 286, 287, 37, 86, 87, 110, 166, 191, 209, 4, 98, 144, 137, 877, 168)               
+      AND UPPER(A.LDAP_ACCOUNT) = UPPER(:APP_USER);
+
+  server-cache: 
+    evaluation-point: Once per Session
+
+  error: 
+    error-message: L'utente non è abilitato a questa funzione!
+

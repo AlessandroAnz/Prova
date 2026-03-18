@@ -1,0 +1,40 @@
+---
+- # ====== Application Item: G_PROFILO =========================
+  id: 24714325266515737
+  identification: 
+    name: G_PROFILO
+    scope: Application
+
+  security: 
+    session-state-protection: Restricted - May not be set from browser
+    escape-special-characters: true
+
+  subscription: 
+    version-number: 1
+
+- # ====== Application Item: G_IMPRESA =========================
+  id: 24714430015516983
+  identification: 
+    name: G_IMPRESA
+    scope: Application
+
+  security: 
+    session-state-protection: Restricted - May not be set from browser
+    escape-special-characters: true
+
+  subscription: 
+    version-number: 1
+
+- # ====== Application Item: G_ID_IMPRESA ======================
+  id: 24726341184746661
+  identification: 
+    name: G_ID_IMPRESA
+    scope: Application
+
+  security: 
+    session-state-protection: Restricted - May not be set from browser
+    escape-special-characters: true
+
+  subscription: 
+    version-number: 1
+

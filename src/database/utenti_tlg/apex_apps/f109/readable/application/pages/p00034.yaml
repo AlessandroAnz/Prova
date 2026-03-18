@@ -1,0 +1,488 @@
+---
+# ====== Page: Visualizza Job Logs ===========================
+id: 34
+identification: 
+  name: Visualizza Job Logs
+  alias: VISUALIZZA-JOB-LOGS
+  title: Visualizza Job Logs
+
+appearance: 
+  page-mode: Normal
+  page-template: Theme Default
+  template-options: 
+  - '#DEFAULT#'
+
+navigation-menu: 
+  override-user-interface-level: false
+
+navigation: 
+  cursor-focus: Do not focus cursor
+  warn-on-unsaved-changes: true
+
+javascript: 
+  execute-when-page-loads: |
+    setInterval(function() {
+        var region = apex.region("reportjob");
+        if (region) {
+            region.refresh({showWait: false});
+        }
+    }, 1000);
+
+css: 
+  inline: |
+    #reportjob .u-Processing {
+        display: none !important;
+    }
+    
+
+security: 
+  authentication: Page Requires Authentication
+  deep-linking: Application Default
+  page-access-protection: Arguments Must Have Checksum
+  form-auto-complete: Off
+  browser-cache: Application Default
+
+session-management: 
+  rejoin-sessions: Application Default
+
+advanced: 
+  enable-duplicate-page-submissions: Yes - Enable page to be re-posted
+  reload-on-submit: Only for Success
+
+server-cache: 
+  caching: Disabled
+
+regions: 
+- # ====== Region: Breadcrumb ==================================
+  id: 327470124530209161
+  identification: 
+    name: Breadcrumb
+    type: Breadcrumb
+
+  source: 
+    breadcrumb: Breadcrumb # 11853987875520682
+
+  layout: 
+    sequence: 30
+    parent-region: No Parent
+    slot: REGION_POSITION_01
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Title Bar
+    template-options: 
+    - '#DEFAULT#'
+    - t-BreadcrumbRegion--compactTitle
+    - t-BreadcrumbRegion--useBreadcrumbTitle
+    render-components: Above Content
+
+  advanced: 
+    region-display-selector: true
+    exclude-title-from-translation: false
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    appearance: 
+      breadcrumb-template: Breadcrumb
+      template-options: 
+      - '#DEFAULT#'
+
+- # ====== Region: new =========================================
+  id: 327470165041209162
+  identification: 
+    name: new
+    type: Classic Report
+
+  source: 
+    location: Local Database
+    type: SQL Query
+    sql-query: |2
+          SELECT req_start_date, actual_start_date, run_duration, status, log_date 
+          FROM all_scheduler_job_run_details
+          WHERE owner = :P34_OWNER
+          AND job_name = :P34_JOB
+      UNION ALL
+          SELECT req_start_date, actual_start_date, run_duration, status, log_date 
+          FROM all_scheduler_job_run_details@mobitlg.localdomain
+          WHERE owner = :P34_OWNER
+          AND job_name = :P34_JOB
+      UNION ALL
+          SELECT req_start_date, actual_start_date, run_duration, status, log_date 
+          FROM all_scheduler_job_run_details@alert.localdomain
+          WHERE owner = :P34_OWNER
+          AND job_name = :P34_JOB
+      UNION ALL
+          SELECT CAST(NULL AS DATE) AS req_start_date,
+          CAST(NULL AS DATE) AS actual_start_date,
+          r.elapsed_time AS run_duration,
+          'RUNNING' AS status,
+          CAST(NULL AS DATE) AS log_date
+          FROM all_scheduler_running_jobs r
+          WHERE r.owner = :P34_OWNER
+          AND r.job_name = :P34_JOB
+      UNION ALL
+          SELECT CAST(NULL AS DATE) AS req_start_date,
+          CAST(NULL AS DATE) AS actual_start_date,
+          GET_JOB_ELAPSED_TIME@mobitlg.localdomain(:P34_OWNER, :P34_JOB) AS run_duration,
+          'RUNNING' AS status,
+          CAST(NULL AS DATE) AS log_date
+          FROM dual
+          WHERE :P34_OWNER = :P34_OWNER 
+          AND :P34_JOB = :P34_JOB
+          AND GET_JOB_RUNNING_COUNT@mobitlg.localdomain(:P34_OWNER, :P34_JOB) > 0
+      UNION ALL
+          SELECT CAST(NULL AS DATE) AS req_start_date,
+          CAST(NULL AS DATE) AS actual_start_date,
+          GET_JOB_ELAPSED_TIME@alert.localdomain(:P34_OWNER, :P34_JOB) AS run_duration,
+          'RUNNING' AS status,
+          CAST(NULL AS DATE) AS log_date
+          FROM dual
+          WHERE :P34_OWNER = :P34_OWNER 
+          AND :P34_JOB = :P34_JOB
+          AND GET_JOB_RUNNING_COUNT@alert.localdomain(:P34_OWNER, :P34_JOB) > 0
+          ORDER BY req_start_date DESC
+
+  layout: 
+    sequence: 30
+    parent-region: No Parent
+    slot: BODY
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Standard
+    template-options: 
+    - '#DEFAULT#'
+    - t-Region--noPadding
+    - t-Region--removeHeader js-removeLandmark
+    - t-Region--noBorder
+    - t-Region--scrollBody
+    render-components: Above Content
+
+  advanced: 
+    static-id: reportjob
+    region-display-selector: true
+    exclude-title-from-translation: false
+
+  server-cache: 
+    caching: Disabled
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    layout: 
+      number-of-rows-type: Static Value
+      number-of-rows: 50
+
+    appearance: 
+      template-type: Theme
+      template: Standard
+      template-options: 
+      - '#DEFAULT#'
+      - t-Report--altRowsDefault
+      - t-Report--rowHighlight
+
+    pagination: 
+      type: No Pagination (Show All Rows)
+      partial-page-refresh: true
+
+    performance: 
+      lazy-loading: false
+
+    break-formatting: 
+      break-columns: No Break
+
+    advanced: 
+      strip-html: false
+      sort-nulls: Last
+
+    heading: 
+      type: Custom Headings
+
+    download: 
+      csv-export-enabled: false
+
+    printing: 
+      enabled: false
+
+  columns: 
+  - # ====== Column: LOG_DATE ====================================
+    id: 327470388557209164
+    identification: 
+      column-name: LOG_DATE
+      type: Plain Text
+
+    heading: 
+      heading: Data Fine Esecuzione
+      alignment: center
+
+    layout: 
+      sequence: 5
+      column-alignment: start
+
+    accessibility: 
+      value-identifies-row: false
+
+    appearance: 
+      format-mask: 'DD-MM-YYYY HH24:MI:SS'
+
+    sorting: 
+      sortable: false
+
+    export-/-printing: 
+      include-in-export-/-print: true
+
+    advanced: 
+      compute-sum: false
+
+    ui-defaults-reference: 
+      table-owner: Parsing Schema
+
+    security: 
+      escape-special-characters: true
+
+  - # ====== Column: STATUS ======================================
+    id: 327470802418209168
+    identification: 
+      column-name: STATUS
+      type: Plain Text
+
+    heading: 
+      heading: Stato
+      alignment: center
+
+    layout: 
+      sequence: 4
+      column-alignment: start
+
+    accessibility: 
+      value-identifies-row: false
+
+    sorting: 
+      sortable: false
+
+    export-/-printing: 
+      include-in-export-/-print: true
+
+    advanced: 
+      compute-sum: false
+
+    ui-defaults-reference: 
+      table-owner: Parsing Schema
+
+    security: 
+      escape-special-characters: true
+
+  - # ====== Column: REQ_START_DATE ==============================
+    id: 327470986818209170
+    identification: 
+      column-name: REQ_START_DATE
+      type: Plain Text
+
+    heading: 
+      heading: Data Richiesta Esecuzione
+      alignment: center
+
+    layout: 
+      sequence: 1
+      column-alignment: start
+
+    accessibility: 
+      value-identifies-row: false
+
+    appearance: 
+      format-mask: 'DD-MM-YYYY HH24:MI:SS'
+
+    sorting: 
+      sortable: false
+
+    export-/-printing: 
+      include-in-export-/-print: true
+
+    advanced: 
+      compute-sum: false
+
+    ui-defaults-reference: 
+      table-owner: Parsing Schema
+
+    security: 
+      escape-special-characters: true
+
+  - # ====== Column: ACTUAL_START_DATE ===========================
+    id: 327471114545209171
+    identification: 
+      column-name: ACTUAL_START_DATE
+      type: Plain Text
+
+    heading: 
+      heading: Data Esecuzione Effettiva
+      alignment: center
+
+    layout: 
+      sequence: 2
+      column-alignment: start
+
+    accessibility: 
+      value-identifies-row: false
+
+    appearance: 
+      format-mask: 'DD-MM-YYYY HH24:MI:SS'
+
+    sorting: 
+      sortable: false
+
+    export-/-printing: 
+      include-in-export-/-print: true
+
+    advanced: 
+      compute-sum: false
+
+    ui-defaults-reference: 
+      table-owner: Parsing Schema
+
+    security: 
+      escape-special-characters: true
+
+  - # ====== Column: RUN_DURATION ================================
+    id: 327471152533209172
+    identification: 
+      column-name: RUN_DURATION
+      type: Plain Text
+
+    heading: 
+      heading: Durata
+      alignment: center
+
+    layout: 
+      sequence: 3
+      column-alignment: start
+
+    accessibility: 
+      value-identifies-row: false
+
+    sorting: 
+      sortable: false
+
+    export-/-printing: 
+      include-in-export-/-print: true
+
+    advanced: 
+      compute-sum: false
+
+    ui-defaults-reference: 
+      table-owner: Parsing Schema
+
+    security: 
+      escape-special-characters: true
+
+page-items: 
+- # ====== Page Item: P34_OWNER ================================
+  id: 327485293091236884
+  identification: 
+    name: P34_OWNER
+    type: Display Only
+
+  label: 
+    label: 'Schema:'
+    alignment: Left
+
+  settings: 
+    format: Plain Text
+    based-on: Item Value
+    show-line-breaks: true
+    send-on-page-submit: true
+
+  layout: 
+    sequence: 10
+    region: No Parent
+    slot: BODY
+    alignment: Left
+    start-new-layout: false
+    start-new-row: true
+    column: 1
+    new-column: true
+    column-span: 3
+    label-column-span: Page Template Default
+
+  appearance: 
+    template: Optional - Above
+    template-options: 
+    - '#DEFAULT#'
+    - margin-bottom-lg
+    format-mask: 'DD-MM-YYYY HH24:MI:SS'
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    type: Null
+    used: Only when current value in session state is null
+
+  session-state: 
+    data-type: VARCHAR2
+    storage: Per Session (Persistent)
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: false
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P34_JOB ==================================
+  id: 327485653067236887
+  identification: 
+    name: P34_JOB
+    type: Display Only
+
+  label: 
+    label: 'Job:'
+    alignment: Left
+
+  settings: 
+    format: Plain Text
+    based-on: Item Value
+    show-line-breaks: true
+    send-on-page-submit: true
+
+  layout: 
+    sequence: 20
+    region: No Parent
+    slot: BODY
+    alignment: Left
+    start-new-layout: false
+    start-new-row: false
+    column: Automatic
+    new-column: true
+    column-span: 3
+    label-column-span: Page Template Default
+
+  appearance: 
+    template: Optional - Above
+    template-options: 
+    - '#DEFAULT#'
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    type: Null
+    used: Only when current value in session state is null
+
+  session-state: 
+    data-type: VARCHAR2
+    storage: Per Session (Persistent)
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: false
+    restricted-characters: All characters can be saved.
+

@@ -1,0 +1,70 @@
+---
+# ====== Page: Global Page ===================================
+id: 0
+identification: 
+  name: Global Page
+
+dynamic-actions: 
+- # ====== Dynamic Action: Tooltip =============================
+  id: 9854419375594865
+  identification: 
+    name: Tooltip
+
+  execution: 
+    sequence: 10
+    event-scope: Static
+
+  when: 
+    event: Page Load
+
+  actions: 
+  - # ====== Action: Execute JavaScript Code =====================
+    id: 9854455275594866
+    identification: 
+      action: Execute JavaScript Code
+
+    settings: 
+      code: |
+        /*$("#t_TreeNav").treeView("option", "tooltip", {
+            content: function(cb, node) {
+                return node.label;
+            }
+        } );
+        $("#t_TreeNav").tooltip("option", "items", ".a-TreeView-content");*/
+        
+        try {
+        
+          //Tooltip for Menu Text
+          $("#t_TreeNav").treeView("option", "tooltip", {
+            content: function (cb, node) {
+              var ttText;
+        
+              // Only display the tooltip if the menu is collapsed ...
+              if ($(".js-navCollapsed ").length > 0) {
+                ttText = node.label;
+              }
+              else {
+                ttText = "";
+              }
+              return ttText;
+            },
+            position: {
+              my: "left+5 center", at: "right center"
+            }
+          });
+        
+          //This tells the tooltip to show up for the whole node content including the icon.
+          $("#t_TreeNav").tooltip("option", "items", ".a-TreeView-content");
+        
+        }
+        catch (err) {
+          // Do nothing ...
+        
+        }
+
+    execution: 
+      sequence: 10
+      event: Tooltip # 9854419375594865
+      fire-when-event-result-is: True
+      fire-on-initialization: true
+

@@ -1,0 +1,632 @@
+---
+# ====== Page: Aggiungi BCT o Gruppo =========================
+id: 21
+identification: 
+  name: Aggiungi BCT o Gruppo
+  alias: AGGIUNGI-BCT-O-GRUPPO
+  title: Aggiungi BCT o Gruppo
+
+appearance: 
+  page-mode: Normal
+  page-template: Theme Default
+  template-options: 
+  - '#DEFAULT#'
+
+navigation-menu: 
+  override-user-interface-level: false
+
+navigation: 
+  cursor-focus: Do not focus cursor
+  warn-on-unsaved-changes: true
+
+css: 
+  inline: |
+    .a-IG-header {
+        background: whitesmoke;
+    }
+
+security: 
+  authentication: Page Requires Authentication
+  deep-linking: Application Default
+  page-access-protection: Arguments Must Have Checksum
+  form-auto-complete: Off
+  browser-cache: Application Default
+
+session-management: 
+  rejoin-sessions: Application Default
+
+advanced: 
+  enable-duplicate-page-submissions: Yes - Enable page to be re-posted
+  reload-on-submit: Only for Success
+
+server-cache: 
+  caching: Disabled
+
+regions: 
+- # ====== Region: Breadcrumb ==================================
+  id: 67958337799741156
+  identification: 
+    name: Breadcrumb
+    type: Breadcrumb
+
+  source: 
+    breadcrumb: Breadcrumb # 11853987875520682
+
+  layout: 
+    sequence: 10
+    parent-region: No Parent
+    slot: REGION_POSITION_01
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Title Bar
+    template-options: 
+    - '#DEFAULT#'
+    - t-BreadcrumbRegion--compactTitle
+    - t-BreadcrumbRegion--useBreadcrumbTitle
+    render-components: Above Content
+
+  advanced: 
+    region-display-selector: false
+    exclude-title-from-translation: false
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    appearance: 
+      breadcrumb-template: Breadcrumb
+      template-options: 
+      - '#DEFAULT#'
+
+- # ====== Region: Aggiungi BCT o Gruppo =======================
+  id: 67958919450741157
+  identification: 
+    name: Aggiungi BCT o Gruppo
+    type: Interactive Grid
+
+  source: 
+    location: Local Database
+    type: SQL Query
+    sql-query: |
+      SELECT g2.NAME, g2.GROUPID 
+      FROM monitoraggio_tlg.GROUPS g2 
+      MINUS
+      SELECT g.NAME, g.GROUPID 
+      FROM monitoraggio_tlg.usrgrp ug INNER JOIN monitoraggio_tlg.RIGHTS r ON ug.USRGRPID = r.GROUPID 
+      INNER JOIN monitoraggio_tlg.GROUPS g ON g.GROUPID = r.ID 
+      WHERE  ug.USRGRPID = :P21_USRGRPID;
+
+  layout: 
+    sequence: 40
+    parent-region: No Parent
+    slot: BODY
+    start-new-layout: false
+    start-new-row: true
+    column: 2
+    new-column: true
+    column-span: 4
+
+  appearance: 
+    template: Interactive Report
+    template-options: 
+    - '#DEFAULT#'
+    render-components: Above Content
+
+  advanced: 
+    static-id: IG_USRID
+    region-display-selector: false
+    exclude-title-from-translation: false
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    id: 65761735501263459
+    edit: 
+      enabled: true
+      lost-update-type: Row Values
+
+    performance: 
+      lazy-loading: false
+
+    appearance: 
+      select-first-row: false
+      fixed-row-height: true
+
+    pagination: 
+      type: Page
+      show-total-count: false
+
+    toolbar: 
+      show: true
+      controls: 
+      - Search Field
+      - Actions Menu
+
+    enable-users-to: 
+      save-public-report: false
+      flashback: false
+      define-chart-view: false
+      download: false
+
+    heading: 
+      fixed-to: Page
+
+    icon-view: 
+      show: false
+
+    detail-view: 
+      show: false
+
+    saved-reports: 
+    - # ====== Saved Report: Primary Report ========================
+      id: 67966343938745345
+      identification: 
+        name: Primary Report
+        alias: 198504
+
+  columns: 
+  - # ====== Column: NAME ========================================
+    id: 47988393062286283
+    identification: 
+      column-name: NAME
+      type: Text Field
+
+    heading: 
+      heading: BCT/Groups
+      alignment: start
+
+    settings: 
+      trim-spaces: Leading and Trailing
+      text-case: NO CHANGE
+
+    layout: 
+      sequence: 20
+      column-alignment: start
+      stretch: Use Report Setting
+
+    accessibility: 
+      value-identifies-row: false
+
+    validation: 
+      value-required: false
+      maximum-length: 64
+
+    source: 
+      type: Database Column
+      database-column: NAME
+      data-type: VARCHAR2
+      query-only: false
+      primary-key: false
+
+    default: 
+      duplicate-copies-existing-value: true
+
+    column-filter: 
+      enabled: true
+      performance-impacting-operators: 
+      - Contains
+      - Starts With
+      - Case Insensitive
+      - Regular Expression
+      text-case: Mixed
+      lov-type: Distinct Column
+      exact-match: true
+
+    export-/-printing: 
+      include-in-export-/-print: true
+
+    enable-users-to: 
+      sort: true
+      control-break/aggregate: true
+      hide: true
+
+  - # ====== Column: GROUPID =====================================
+    id: 47988499547286284
+    identification: 
+      column-name: GROUPID
+      type: Hidden
+
+    settings: 
+      value-protected: true
+
+    layout: 
+      sequence: 30
+
+    accessibility: 
+      value-identifies-row: false
+
+    source: 
+      type: Database Column
+      database-column: GROUPID
+      data-type: NUMBER
+      query-only: false
+      primary-key: true
+
+    default: 
+      duplicate-copies-existing-value: true
+
+    session-state: 
+      data-type: VARCHAR2
+
+    export-/-printing: 
+      include-in-export-/-print: false
+
+    enable-users-to: 
+      sort: false
+
+  - # ====== Column: APEX$ROW_SELECTOR ===========================
+    id: 67981483578875117
+    identification: 
+      column-name: APEX$ROW_SELECTOR
+      type: Row Selector
+
+    settings: 
+      enable-multi-select: true
+      show-select-all: true
+      hide-control: false
+
+    layout: 
+      sequence: 10
+
+page-items: 
+- # ====== Page Item: P21_USRGRPID =============================
+  id: 28124440382817155
+  identification: 
+    name: P21_USRGRPID
+    type: Hidden
+
+  settings: 
+    value-protected: true
+
+  layout: 
+    sequence: 10
+    region: No Parent
+    slot: BODY
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    type: Null
+    used: Only when current value in session state is null
+
+  session-state: 
+    data-type: VARCHAR2
+    storage: Per Session (Persistent)
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P21_GRUPPO ===============================
+  id: 28124902633817156
+  identification: 
+    name: P21_GRUPPO
+    type: Display Only
+
+  label: 
+    label: Gruppo
+    alignment: Left
+
+  settings: 
+    format: Plain Text
+    based-on: Item Value
+    show-line-breaks: true
+    send-on-page-submit: true
+
+  layout: 
+    sequence: 20
+    region: No Parent
+    slot: BODY
+    alignment: Left
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+    label-column-span: Page Template Default
+
+  appearance: 
+    template: Optional
+    template-options: 
+    - '#DEFAULT#'
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    type: SQL Query (return single value)
+    sql-query: |
+      select name from monitoraggio_tlg.usrgrp
+      where usrgrpid = :P21_USRGRPID
+    used: Only when current value in session state is null
+
+  session-state: 
+    data-type: VARCHAR2
+    storage: Per Session (Persistent)
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P21_SELECTED_ROWS ========================
+  id: 28125268364817156
+  identification: 
+    name: P21_SELECTED_ROWS
+    type: Hidden
+
+  settings: 
+    value-protected: false
+
+  layout: 
+    sequence: 30
+    region: No Parent
+    slot: BODY
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    type: Null
+    used: Only when current value in session state is null
+
+  session-state: 
+    data-type: VARCHAR2
+    storage: Per Session (Persistent)
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+buttons: 
+- # ====== Button: CANCEL ======================================
+  id: 28122670124817154
+  identification: 
+    button-name: CANCEL
+    label: Annulla
+
+  layout: 
+    sequence: 10
+    region: Aggiungi BCT o Gruppo # 67958919450741157
+    slot: TOP
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+    horizontal-alignment: Right
+
+  appearance: 
+    button-template: Text
+    hot: true
+    template-options: 
+    - '#DEFAULT#'
+    - t-Button--primary
+    - t-Button--padBottom
+
+  behavior: 
+    action: Redirect to Page in this Application
+    target: 
+      url: 'f?p=&APP_ID.:18:&SESSION.::&DEBUG.:::'
+      page: 18 # Elenco Utenti
+
+    warn-on-unsaved-changes: Do Not Check
+
+- # ====== Button: SAVE ========================================
+  id: 28123029355817154
+  identification: 
+    button-name: SAVE
+    label: Conferma
+
+  layout: 
+    sequence: 20
+    region: Aggiungi BCT o Gruppo # 67958919450741157
+    slot: TOP
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+    horizontal-alignment: Right
+
+  appearance: 
+    button-template: Text
+    hot: true
+    template-options: 
+    - '#DEFAULT#'
+    - t-Button--primary
+    - t-Button--padBottom
+
+  behavior: 
+    action: Defined by Dynamic Action
+    execute-validations: true
+
+dynamic-actions: 
+- # ====== Dynamic Action: Cancel Dialog =======================
+  id: 28126432537817157
+  identification: 
+    name: Cancel Dialog
+
+  execution: 
+    sequence: 10
+    event-scope: Static
+    type: Immediate
+
+  when: 
+    event: Click
+    selection-type: Button
+    button: CANCEL # 28122670124817154
+
+  actions: 
+  - # ====== Action: Cancel Dialog ===============================
+    id: 28126958301817158
+    identification: 
+      action: Cancel Dialog
+
+    execution: 
+      sequence: 10
+      event: Cancel Dialog # 28126432537817157
+      fire-when-event-result-is: True
+      fire-on-initialization: false
+
+- # ====== Dynamic Action: GetID ===============================
+  id: 28127390646817158
+  identification: 
+    name: GetID
+
+  execution: 
+    sequence: 20
+    event-scope: Static
+    type: Immediate
+
+  when: 
+    event: Click
+    selection-type: Button
+    button: SAVE # 28123029355817154
+
+  actions: 
+  - # ====== Action: Execute JavaScript Code =====================
+    id: 28127911379817158
+    identification: 
+      action: Execute JavaScript Code
+
+    settings: 
+      code: |
+        // Clear previous selections, if any
+        $s("P21_SELECTED_ROWS", "");
+        // IG static id is defined as emp
+        var gridView = apex.region("IG_USRID").widget().interactiveGrid("getViews").grid;
+        var records = gridView.getSelectedRecords();
+        var empNo;
+        
+        // define empty JSON object to hold selected rows
+        var selRecords = {
+        	"rows": []
+        };
+        
+        var selRecordsJSON;
+        
+        if (records.length > 0) {
+        	if (confirm("Vuoi associare i Baricentri al gruppo?")) {
+        		$.each(records, function(i, r) {
+        			// employee number defined as PK for IG
+        			empNo = gridView.model.getRecordId(r);
+        			// you can also get other columns values using below code
+        			// ENAME is column name in IG query
+        			//empName = gridView.model.getValue(r, "ENAME");
+        			// Push selected rows into an array
+        			selRecords.rows.push({
+        				"grpID": empNo
+        			});
+        		});
+        		// convert JSON into string
+        		selRecordsJSON = JSON.stringify(selRecords);
+        		console.log(selRecordsJSON);
+        		apex.page.submit({
+        			request: "SAVE",
+        			set: {
+        				"P21_SELECTED_ROWS": selRecordsJSON
+        			},
+        			showWait: true
+        		});
+        	}
+        } else {
+        	alert("Please select atleast one Baricentro.");
+        }
+
+    execution: 
+      sequence: 10
+      event: GetID # 28127390646817158
+      fire-when-event-result-is: True
+      fire-on-initialization: false
+
+processes: 
+- # ====== Process: Initialize form AggiungiUtente =============
+  id: 28123456054817154
+  identification: 
+    name: Initialize form AggiungiUtente
+    type: Form - Initialization
+    execution-chain: None
+    form-region: Aggiungi BCT o Gruppo # 67958919450741157
+
+  execution: 
+    sequence: 10
+    point: Before Header
+    run-process: Once Per Page Visit (default)
+
+- # ====== Process: AddGroupToRights ===========================
+  id: 28126072236817157
+  identification: 
+    name: AddGroupToRights
+    type: Execute Code
+    execution-chain: None
+
+  source: 
+    location: Local Database
+    language: PL/SQL
+    pl/sql-code: |
+      DECLARE
+          l_groupid   monitoraggio_tlg.groups.groupid%type;
+          l_values    apex_json.t_values;
+          l_row_count PLS_INTEGER;
+          l_rid       PLS_INTEGER;
+      BEGIN
+          apex_debug.message('inside process Bulk Add User To Group');
+          -- parse text to JSON
+          apex_json.parse(p_values => l_values, p_source => :P21_SELECTED_ROWS);
+          apex_debug.message('In process: '|| :P21_SELECTED_ROWS);
+          -- get number of rows selected
+          l_row_count := apex_json.get_count(p_path => 'rows', p_values => l_values);
+          apex_debug.message('In process - count: '|| l_row_count);
+          -- loop through the selected rows
+          FOR i IN 1..l_row_count LOOP
+              -- get Primary Key value from JSON data
+              l_groupid := null;
+              -- if primary key column type is not a number type, then remove TO_NUMBER part
+              l_groupid := TO_NUMBER(apex_json.get_varchar2(p_path => 'rows[%d].grpID', p0 => i, p_values => l_values));
+              apex_debug.message('l_groupid' || l_groupid);
+              -- update employee commission
+              select max(rightid)+1 into l_rid from monitoraggio_tlg.rights;
+              INSERT INTO monitoraggio_tlg.rights (rightid, groupid, permission, id) values (l_rid,:P21_USRGRPID, 3, l_groupid);
+          END LOOP;
+      END;
+
+  execution: 
+    sequence: 20
+    point: Processing
+    run-process: Once Per Page Visit (default)
+
+  success-message: 
+    success-message: Baricentri assegnati al Gruppo
+
+  error: 
+    display-location: Inline in Notification
+
+  server-side-condition: 
+    when-button-pressed: SAVE # 28123029355817154
+
+branches: 
+- # ====== Branch: Go To Page 18 ===============================
+  id: 27728970742450392
+  identification: 
+    name: Go To Page 18
+
+  execution: 
+    sequence: 10
+    point: After Processing
+
+  behavior: 
+    type: Page or URL (Redirect)
+    target: 
+      url: 'f?p=&APP_ID.:18:&SESSION.::&DEBUG.:::&success_msg=#SUCCESS_MSG#'
+      page: 18 # Elenco Utenti
+

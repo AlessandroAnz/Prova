@@ -1,0 +1,434 @@
+---
+# ====== Page: Login Page ====================================
+id: 9999
+identification: 
+  name: Login Page
+  alias: LOGIN
+  title: Home - Portale Unico - Log In
+
+appearance: 
+  page-mode: Normal
+  page-template: Login
+  template-options: 
+  - '#DEFAULT#'
+  - t-LoginPage--split
+  - t-LoginPage--bg2
+
+navigation-menu: 
+  override-user-interface-level: false
+
+navigation: 
+  cursor-focus: First item on page
+  warn-on-unsaved-changes: false
+
+security: 
+  authentication: Page Is Public
+  deep-linking: Application Default
+  page-access-protection: Arguments Must Have Checksum
+  form-auto-complete: Off
+  browser-cache: Application Default
+
+session-management: 
+  rejoin-sessions: Application Default
+
+advanced: 
+  enable-meta-tags: false
+  enable-duplicate-page-submissions: Yes - Enable page to be re-posted
+  reload-on-submit: Only for Success
+
+server-cache: 
+  caching: Disabled
+
+regions: 
+- # ====== Region: Versione Portale ============================
+  id: 9509219148111466
+  identification: 
+    name: Versione Portale
+    type: Static Content
+
+  source: 
+    html-code: |
+      <hr>
+      
+      
+      <p align="center">
+      
+      <font  style="font-size: 11pt; font-weight: bold; color: #000000">IREN ENERGIA - Powered by COMMIT WORLD</font>
+      
+      <br>
+
+  layout: 
+    sequence: 20
+    parent-region: No Parent
+    slot: REGION_POSITION_02
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Standard
+    template-options: 
+    - '#DEFAULT#'
+    - t-Region--removeHeader js-removeLandmark
+    - t-Region--scrollBody
+    render-components: Above Content
+
+  advanced: 
+    region-display-selector: true
+    exclude-title-from-translation: false
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    settings: 
+      output-as: HTML
+      expand-shortcuts: false
+
+- # ====== Region: Home - Portale Unico ========================
+  id: 12048665696520926
+  identification: 
+    name: Home - Portale Unico
+    type: Static Content
+
+  layout: 
+    sequence: 10
+    parent-region: No Parent
+    slot: BODY
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Login
+    template-options: 
+    - '#DEFAULT#'
+    icon: fa-universal-access
+    render-components: Above Content
+
+  advanced: 
+    region-display-selector: false
+    exclude-title-from-translation: false
+
+  header-and-footer: 
+    header-text: |
+      <div style = "text-align: center">
+      <img src= "#WORKSPACE_FILES#Logo-Iren-nuovo.jpg" height="auto" width="20%"
+      display="block" margin="10" auto><br><br><br>
+      </div>
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    settings: 
+      output-as: Text (escape special characters)
+      show-line-breaks: true
+
+page-items: 
+- # ====== Page Item: P9999_USERNAME ===========================
+  id: 12049051549520931
+  identification: 
+    name: P9999_USERNAME
+    type: Text Field
+
+  label: 
+    label: Username
+    alignment: Right
+
+  settings: 
+    subtype: Text
+    trim-spaces: None
+    text-case: NO CHANGE
+    submit-when-enter-pressed: false
+    disabled: false
+
+  layout: 
+    sequence: 10
+    region: Home - Portale Unico # 12048665696520926
+    slot: BODY
+    alignment: Left
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+    label-column-span: Page Template Default
+
+  appearance: 
+    template: Hidden
+    template-options: 
+    - '#DEFAULT#'
+    icon: fa-user
+    width: 40
+    value-placeholder: Username
+
+  validation: 
+    value-required: false
+    maximum-length: 100
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    type: Null
+    used: Only when current value in session state is null
+
+  session-state: 
+    storage: Per Request (Memory Only)
+
+  quick-picks: 
+    show-quick-picks: false
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P9999_PASSWORD ===========================
+  id: 12049502117520932
+  identification: 
+    name: P9999_PASSWORD
+    type: Password
+
+  label: 
+    label: Password
+    alignment: Right
+
+  settings: 
+    submit-when-enter-pressed: true
+
+  layout: 
+    sequence: 20
+    region: Home - Portale Unico # 12048665696520926
+    slot: BODY
+    alignment: Left
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+    label-column-span: Page Template Default
+
+  appearance: 
+    template: Hidden
+    template-options: 
+    - '#DEFAULT#'
+    icon: fa-key
+    width: 40
+    value-placeholder: Password
+
+  validation: 
+    value-required: false
+    maximum-length: 100
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    type: Null
+    used: Only when current value in session state is null
+
+  session-state: 
+    storage: Per Request (Memory Only)
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P9999_REMEMBER ===========================
+  id: 12050541237520935
+  identification: 
+    name: P9999_REMEMBER
+    type: Checkbox Group
+
+  label: 
+    label: Remember username
+    alignment: Right
+
+  settings: 
+    number-of-columns: 1
+
+  multiple-values: 
+    type: Delimited List
+    separator: ':'
+
+  layout: 
+    sequence: 30
+    region: Home - Portale Unico # 12048665696520926
+    slot: BODY
+    alignment: Left
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+    label-column-span: Page Template Default
+
+  appearance: 
+    template: Hidden
+    template-options: 
+    - '#DEFAULT#'
+
+  validation: 
+    value-required: false
+
+  list-of-values: 
+    type: Shared Component
+    list-of-values: LOGIN_REMEMBER_USERNAME # 12049725829520933
+    display-extra-values: false
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    type: Null
+    used: Only when current value in session state is null
+
+  session-state: 
+    storage: Per Request (Memory Only)
+
+  server-side-condition: 
+    type: Expression
+    language: PL/SQL
+    pl/sql-expression: apex_authentication.persistent_cookies_enabled
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: true
+    escape-special-characters: true
+    restricted-characters: All characters can be saved.
+
+  help: 
+    help-text: |
+      <p>
+      If you select this checkbox, the application will save your username in a persistent browser cookie named "LOGIN_USERNAME_COOKIE".
+      When you go to the login page the next time,
+      the username field will be automatically populated with this value.
+      </p>
+      <p>
+      If you deselect this checkbox and your username is already saved in the cookie,
+      the application will overwrite it with an empty value.
+      You can also use your browser's developer tools to completely remove the cookie.
+      </p>
+
+buttons: 
+- # ====== Button: LOGIN =======================================
+  id: 12051456172520941
+  identification: 
+    button-name: LOGIN
+    label: Sign In
+
+  layout: 
+    sequence: 40
+    region: Home - Portale Unico # 12048665696520926
+    slot: NEXT
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    button-template: Text
+    hot: true
+    template-options: 
+    - '#DEFAULT#'
+
+  behavior: 
+    action: Submit Page
+    execute-validations: true
+    show-processing: false
+    warn-on-unsaved-changes: Do Not Check
+
+processes: 
+- # ====== Process: Login ======================================
+  id: 12051848232520943
+  identification: 
+    name: Login
+    type: Execute Code
+    execution-chain: None
+
+  source: 
+    location: Local Database
+    language: PL/SQL
+    pl/sql-code: |
+      apex_authentication.login(
+          p_username => :P9999_USERNAME,
+          p_password => :P9999_PASSWORD );
+      
+
+  execution: 
+    sequence: 30
+    point: Processing
+    run-process: Once Per Page Visit (default)
+
+  error: 
+    display-location: Inline in Notification
+
+- # ====== Process: Set Username Cookie ========================
+  id: 12052233713520943
+  identification: 
+    name: Set Username Cookie
+    type: Execute Code
+    execution-chain: None
+
+  source: 
+    location: Local Database
+    language: PL/SQL
+    pl/sql-code: |
+      apex_authentication.send_login_username_cookie (
+          p_username => lower(:P9999_USERNAME),
+          p_consent  => :P9999_REMEMBER = 'Y' );
+      
+
+  execution: 
+    sequence: 10
+    point: Processing
+    run-process: Once Per Page Visit (default)
+
+  error: 
+    display-location: Inline in Notification
+
+- # ====== Process: Get Username Cookie ========================
+  id: 12052684592520944
+  identification: 
+    name: Get Username Cookie
+    type: Execute Code
+    execution-chain: None
+
+  source: 
+    location: Local Database
+    language: PL/SQL
+    pl/sql-code: |
+      :P9999_USERNAME := apex_authentication.get_login_username_cookie;
+      :P9999_REMEMBER := case when :P9999_USERNAME is not null then 'Y' end;
+
+  execution: 
+    sequence: 10
+    point: Before Header
+    run-process: Once Per Page Visit (default)
+
+- # ====== Process: Clear Page(s) Cache ========================
+  id: 12053108618520945
+  identification: 
+    name: Clear Page(s) Cache
+    type: Clear Session State
+    execution-chain: None
+
+  settings: 
+    type: Clear all Items on the Current Page
+
+  execution: 
+    sequence: 40
+    point: Processing
+    run-process: Once Per Page Visit (default)
+
+  error: 
+    display-location: Inline in Notification
+
